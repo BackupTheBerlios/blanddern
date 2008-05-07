@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adaptor:Adaptor xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adaptor="http://adaptor" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="toto">
+  <matching>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EAttribute" href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne/intensite"/>
+      <property>
+        <setPart request="this.intensite = value"/>
+        <getPart request="this.vessie.getContenu()*2*3.14"/>
+      </property>
+    </correspondanceRule>
+    <lhs>
+      <composed>
+        <concept href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
+      </composed>
+    </lhs>
+    <rhs>
+      <composed>
+        <concept href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne"/>
+      </composed>
+    </rhs>
+  </matching>
+</adaptor:Adaptor>
