@@ -5,7 +5,7 @@
       <feature xsi:type="ecore:EAttribute" href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne/intensite"/>
       <property>
         <setPart>
-          <request expression="this.intensite=value"/>
+          <request expression="intensite=newValue"/>
         </setPart>
         <getPart>
           <proxy name="v" package="vessie">
