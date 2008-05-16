@@ -4,11 +4,14 @@
     <correspondanceRule>
       <feature xsi:type="ecore:EAttribute" href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne/intensite"/>
       <property>
+        <setPart>
+          <request expression="this.intensite=value"/>
+        </setPart>
         <getPart>
           <proxy name="v" package="vessie">
             <type href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
           </proxy>
-          <request expression="this.v.getContenance()*2*3.14"/>
+          <request expression="v.getContenance()*2*3.14"/>
         </getPart>
       </property>
     </correspondanceRule>
@@ -19,7 +22,7 @@
           <proxy name="v2" package="vessie">
             <type href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
           </proxy>
-          <request expression="this.v2.getContenance()-1"/>
+          <request expression="v2.getContenance()-1"/>
         </getPart>
       </property>
     </correspondanceRule>
