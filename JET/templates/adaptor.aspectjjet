@@ -7,7 +7,9 @@ privileged aspect TestAspect {
 		<% String methodeName = args.getModel().getCorrespondanceRule().get(i).getFeature().getName(); %>
 		<% CorrespondanceRule correspondanceRule = args.getModel().getCorrespondanceRule().get(i); %>
 		
-		private package.<%=correspondanceRule.getProperty().getGetPart().getProxy().getType().getName()%> <%= args.getEClass() %>.<%= correspondanceRule.getProperty().getGetPart().getProxy().getName() %>;
+		<% String packageName = correspondanceRule.getProperty().getGetPart().getProxy().getPackage(); %>
+		
+		private <% if (packageName!="") { %><%=packageName%>.<% } %><%=correspondanceRule.getProperty().getGetPart().getProxy().getType().getName()%> <%= args.getEClass() %>.<%= correspondanceRule.getProperty().getGetPart().getProxy().getName() %>;
 		
 		pointcut getter<%=i%>() : call(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= className %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
 		<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
