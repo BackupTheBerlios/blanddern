@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmi:id="_EYSdcBqBEd2jJaGs-4dczA" type="Ecore" name="vessie.ecore_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_45GA0BqBEd2jJaGs-4dczA" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_45GA0xqBEd2jJaGs-4dczA" type="5001"/>
+    <children xmi:type="notation:Node" xmi:id="_45ebUBqBEd2jJaGs-4dczA" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_7aN5wBqBEd2jJaGs-4dczA" type="3001">
+        <element xmi:type="ecore:EAttribute" href="vessie.ecore#//Vessie/contenance"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_7aN5wRqBEd2jJaGs-4dczA"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_45ebURqBEd2jJaGs-4dczA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_45ebUhqBEd2jJaGs-4dczA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_45ebUxqBEd2jJaGs-4dczA"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_45ebVBqBEd2jJaGs-4dczA" type="7002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_45ebVRqBEd2jJaGs-4dczA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_45ebVhqBEd2jJaGs-4dczA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_45ebVxqBEd2jJaGs-4dczA"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_45ebWBqBEd2jJaGs-4dczA" type="7003">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_45ebWRqBEd2jJaGs-4dczA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_45ebWhqBEd2jJaGs-4dczA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_45ebWxqBEd2jJaGs-4dczA"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_45GA0RqBEd2jJaGs-4dczA"/>
+    <element xmi:type="ecore:EClass" href="vessie.ecore#//Vessie"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45GA0hqBEd2jJaGs-4dczA" x="168" y="96" width="106" height="67"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_EYSdcRqBEd2jJaGs-4dczA"/>
+  <element xmi:type="ecore:EPackage" href="vessie.ecore#/"/>
+</notation:Diagram>
