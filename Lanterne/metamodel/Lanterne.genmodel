@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Lanterne/src"
+    modelPluginID="Lanterne" modelName="Lanterne" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>Lanterne.ecore</foreignModel>
+  <genPackages prefix="Lanterne" disposableProviderFactory="true" ecorePackage="Lanterne.ecore#/">
+    <genClasses ecoreClass="Lanterne.ecore#//Lanterne">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Lanterne.ecore#//Lanterne/intensite"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Lanterne.ecore#//Lanterne/luminosite"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

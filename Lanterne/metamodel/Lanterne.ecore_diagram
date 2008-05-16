@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation" xmi:id="_sUYRUBqoEd2Tnalu2qrz1g" type="Ecore" name="Lanterne.ecore_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Node" xmi:id="_udZMQBqoEd2Tnalu2qrz1g" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_udbBcBqoEd2Tnalu2qrz1g" type="5001"/>
+    <children xmi:type="notation:Node" xmi:id="_udi9QBqoEd2Tnalu2qrz1g" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_vt81MBqoEd2Tnalu2qrz1g" type="3001">
+        <element xmi:type="ecore:EAttribute" href="Lanterne.ecore#//Lanterne/intensite"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_vt9cQBqoEd2Tnalu2qrz1g"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_YYgqUCGvEd2b260cYF0smQ" type="3001">
+        <element xmi:type="ecore:EAttribute" href="Lanterne.ecore#//Lanterne/luminosite"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_YYgqUSGvEd2b260cYF0smQ"/>
+      </children>
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_udi9QRqoEd2Tnalu2qrz1g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_udjkUBqoEd2Tnalu2qrz1g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_udjkURqoEd2Tnalu2qrz1g"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_udkLYBqoEd2Tnalu2qrz1g" type="7002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_udkLYRqoEd2Tnalu2qrz1g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_udkLYhqoEd2Tnalu2qrz1g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_udkLYxqoEd2Tnalu2qrz1g"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_udlZgBqoEd2Tnalu2qrz1g" type="7003">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_udlZgRqoEd2Tnalu2qrz1g"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_udlZghqoEd2Tnalu2qrz1g"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_udlZgxqoEd2Tnalu2qrz1g"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_udZMQRqoEd2Tnalu2qrz1g" fontName="Segoe UI"/>
+    <element xmi:type="ecore:EClass" href="Lanterne.ecore#//Lanterne"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_udZMQhqoEd2Tnalu2qrz1g" x="192" y="144"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_sUYRURqoEd2Tnalu2qrz1g"/>
+  <element xmi:type="ecore:EPackage" href="Lanterne.ecore#/"/>
+</notation:Diagram>
