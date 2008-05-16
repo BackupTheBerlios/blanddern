@@ -11,14 +11,14 @@ privileged aspect TestAspect {
 		
 		private <% if (packageName!="") { %><%=packageName%>.<% } %><%=correspondanceRule.getProperty().getGetPart().getProxy().getType().getName()%> <%= args.getEClass() %>.<%= correspondanceRule.getProperty().getGetPart().getProxy().getName() %>;
 		
-		pointcut getter<%=i%>() : call(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= className %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
+		pointcut getter<%=i%>(<%=className%> o) : target(o) && call(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= className %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
 		<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
 		pointcut setter<%=i%>(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> value) : call(void <%= className %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*));
 		<% } %>
 		
-		<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around () : getter<%=i%>(){
+		<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around (<%=className%> o) : getter<%=i%>(o){
 			<% FeatureFilter filter = new FeatureFilter(correspondanceRule);%>
-			return <%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>;
+			return o.<%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>;
 		}
 		
 		<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
