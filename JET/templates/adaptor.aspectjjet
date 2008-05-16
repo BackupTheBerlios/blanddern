@@ -1,0 +1,30 @@
+<%@ jet package="translated" imports="filtering.* adaptor.* launcher.* org.eclipse.emf.ecore.*" class="AdaptorGeneration"%>
+<% ArgumentsList args = (ArgumentsList) argument; %>
+<% String className = args.getEClass(); %>
+
+privileged aspect TestAspect {
+	<% for(int i=0;i<args.getModel().getCorrespondanceRule().size();i++){ %>
+		<% String methodeName = args.getModel().getCorrespondanceRule().get(i).getFeature().getName(); %>
+		<% CorrespondanceRule correspondanceRule = args.getModel().getCorrespondanceRule().get(i); %>
+		
+		private package.<%=correspondanceRule.getProperty().getGetPart().getProxy().getType().getName()%> <%= args.getEClass() %>.<%= correspondanceRule.getProperty().getGetPart().getProxy().getName() %>;
+		
+		pointcut getter<%=i%>() : call(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= className %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
+		<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
+		pointcut setter<%=i%>(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> value) : call(void <%= className %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*));
+		<% } %>
+		
+		<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around () : getter<%=i%>(){
+			<% FeatureFilter filter = new FeatureFilter(correspondanceRule);%>
+			return <%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>;
+		}
+		
+		<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
+		void around(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> value) : setter<%=i%>(value){
+			<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>;
+		}
+		<% } %>
+<% } %>
+}
+
+
