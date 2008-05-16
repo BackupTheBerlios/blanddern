@@ -13,7 +13,7 @@ privileged aspect TestAspect {
 		
 		pointcut getter<%=i%>(<%=className%> self) : target(self) && execution(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= className %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
 		<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
-		pointcut setter<%=i%>(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> value) : execution(void <%= className %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*));
+		pointcut setter<%=i%>(<%=className%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : target(self) && execution(void <%= className %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*)) && args(newValue);
 		<% } %>
 		
 		<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around (<%=className%> self) : getter<%=i%>(self){
@@ -22,8 +22,8 @@ privileged aspect TestAspect {
 		}
 		
 		<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
-		void around(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> value) : setter<%=i%>(value){
-			<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>;
+		void around(<%=className%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : setter<%=i%>(self, newValue){
+			self.<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>;
 		}
 		<% } %>
 <% } %>
