@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Query.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: Query.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor;
 
@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link adaptor.Query#getProxy <em>Proxy</em>}</li>
  *   <li>{@link adaptor.Query#getRequest <em>Request</em>}</li>
  * </ul>
  * </p>
@@ -25,30 +26,56 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Query extends EObject {
-
 	/**
-	 * Returns the value of the '<em><b>Request</b></em>' attribute.
+	 * Returns the value of the '<em><b>Proxy</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Request</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Proxy</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Request</em>' attribute.
-	 * @see #setRequest(String)
-	 * @see adaptor.AdaptorPackage#getQuery_Request()
-	 * @model
+	 * @return the value of the '<em>Proxy</em>' containment reference.
+	 * @see #setProxy(Proxy)
+	 * @see adaptor.AdaptorPackage#getQuery_Proxy()
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getRequest();
+	Proxy getProxy();
 
 	/**
-	 * Sets the value of the '{@link adaptor.Query#getRequest <em>Request</em>}' attribute.
+	 * Sets the value of the '{@link adaptor.Query#getProxy <em>Proxy</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Request</em>' attribute.
+	 * @param value the new value of the '<em>Proxy</em>' containment reference.
+	 * @see #getProxy()
+	 * @generated
+	 */
+	void setProxy(Proxy value);
+
+	/**
+	 * Returns the value of the '<em><b>Request</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Request</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Request</em>' containment reference.
+	 * @see #setRequest(Request)
+	 * @see adaptor.AdaptorPackage#getQuery_Request()
+	 * @model containment="true" required="true"
+	 * @generated
+	 */
+	Request getRequest();
+
+	/**
+	 * Sets the value of the '{@link adaptor.Query#getRequest <em>Request</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Request</em>' containment reference.
 	 * @see #getRequest()
 	 * @generated
 	 */
-	void setRequest(String value);
+	void setRequest(Request value);
+
 } // Query

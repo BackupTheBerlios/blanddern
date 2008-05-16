@@ -2,12 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackage.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: AdaptorPackage.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -227,13 +228,22 @@ public interface AdaptorPackage extends EPackage {
 	int INSTANCE = 3;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE__NAME = NAMED__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Concept</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE__CONCEPT = 0;
+	int INSTANCE__CONCEPT = NAMED_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Instance</em>' class.
@@ -242,7 +252,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FEATURE_COUNT = 1;
+	int INSTANCE_FEATURE_COUNT = NAMED_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link adaptor.impl.CorrespondanceRuleImpl <em>Correspondance Rule</em>}' class.
@@ -329,13 +339,22 @@ public interface AdaptorPackage extends EPackage {
 	int QUERY = 6;
 
 	/**
-	 * The feature id for the '<em><b>Request</b></em>' attribute.
+	 * The feature id for the '<em><b>Proxy</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY__REQUEST = 0;
+	int QUERY__PROXY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Request</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY__REQUEST = 1;
 
 	/**
 	 * The number of structural features of the '<em>Query</em>' class.
@@ -344,7 +363,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_FEATURE_COUNT = 1;
+	int QUERY_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link adaptor.impl.ActionImpl <em>Action</em>}' class.
@@ -357,7 +376,7 @@ public interface AdaptorPackage extends EPackage {
 	int ACTION = 7;
 
 	/**
-	 * The feature id for the '<em><b>Request</b></em>' attribute.
+	 * The feature id for the '<em><b>Request</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -447,6 +466,99 @@ public interface AdaptorPackage extends EPackage {
 	 * @ordered
 	 */
 	int RHS_PATTERN_FEATURE_COUNT = PATTERN_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link adaptor.impl.ProxyImpl <em>Proxy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see adaptor.impl.ProxyImpl
+	 * @see adaptor.impl.AdaptorPackageImpl#getProxy()
+	 * @generated
+	 */
+	int PROXY = 11;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROXY__NAME = NAMED__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROXY__TYPE = NAMED_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROXY__PACKAGE = NAMED_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Proxy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROXY_FEATURE_COUNT = NAMED_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link adaptor.impl.RequestImpl <em>Request</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see adaptor.impl.RequestImpl
+	 * @see adaptor.impl.AdaptorPackageImpl#getRequest()
+	 * @generated
+	 */
+	int REQUEST = 12;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUEST__EXPRESSION = 0;
+
+	/**
+	 * The feature id for the '<em><b>Langage</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUEST__LANGAGE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Request</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REQUEST_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link adaptor.Langage <em>Langage</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see adaptor.Langage
+	 * @see adaptor.impl.AdaptorPackageImpl#getLangage()
+	 * @generated
+	 */
+	int LANGAGE = 13;
 
 
 	/**
@@ -652,15 +764,26 @@ public interface AdaptorPackage extends EPackage {
 	EClass getQuery();
 
 	/**
-	 * Returns the meta object for the attribute '{@link adaptor.Query#getRequest <em>Request</em>}'.
+	 * Returns the meta object for the containment reference '{@link adaptor.Query#getProxy <em>Proxy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Request</em>'.
+	 * @return the meta object for the containment reference '<em>Proxy</em>'.
+	 * @see adaptor.Query#getProxy()
+	 * @see #getQuery()
+	 * @generated
+	 */
+	EReference getQuery_Proxy();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link adaptor.Query#getRequest <em>Request</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Request</em>'.
 	 * @see adaptor.Query#getRequest()
 	 * @see #getQuery()
 	 * @generated
 	 */
-	EAttribute getQuery_Request();
+	EReference getQuery_Request();
 
 	/**
 	 * Returns the meta object for class '{@link adaptor.Action <em>Action</em>}'.
@@ -673,15 +796,15 @@ public interface AdaptorPackage extends EPackage {
 	EClass getAction();
 
 	/**
-	 * Returns the meta object for the attribute '{@link adaptor.Action#getRequest <em>Request</em>}'.
+	 * Returns the meta object for the containment reference '{@link adaptor.Action#getRequest <em>Request</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Request</em>'.
+	 * @return the meta object for the containment reference '<em>Request</em>'.
 	 * @see adaptor.Action#getRequest()
 	 * @see #getAction()
 	 * @generated
 	 */
-	EAttribute getAction_Request();
+	EReference getAction_Request();
 
 	/**
 	 * Returns the meta object for class '{@link adaptor.Named <em>Named</em>}'.
@@ -723,6 +846,80 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRhsPattern();
+
+	/**
+	 * Returns the meta object for class '{@link adaptor.Proxy <em>Proxy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Proxy</em>'.
+	 * @see adaptor.Proxy
+	 * @generated
+	 */
+	EClass getProxy();
+
+	/**
+	 * Returns the meta object for the reference '{@link adaptor.Proxy#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see adaptor.Proxy#getType()
+	 * @see #getProxy()
+	 * @generated
+	 */
+	EReference getProxy_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link adaptor.Proxy#getPackage <em>Package</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Package</em>'.
+	 * @see adaptor.Proxy#getPackage()
+	 * @see #getProxy()
+	 * @generated
+	 */
+	EAttribute getProxy_Package();
+
+	/**
+	 * Returns the meta object for class '{@link adaptor.Request <em>Request</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Request</em>'.
+	 * @see adaptor.Request
+	 * @generated
+	 */
+	EClass getRequest();
+
+	/**
+	 * Returns the meta object for the attribute '{@link adaptor.Request#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Expression</em>'.
+	 * @see adaptor.Request#getExpression()
+	 * @see #getRequest()
+	 * @generated
+	 */
+	EAttribute getRequest_Expression();
+
+	/**
+	 * Returns the meta object for the attribute '{@link adaptor.Request#getLangage <em>Langage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Langage</em>'.
+	 * @see adaptor.Request#getLangage()
+	 * @see #getRequest()
+	 * @generated
+	 */
+	EAttribute getRequest_Langage();
+
+	/**
+	 * Returns the meta object for enum '{@link adaptor.Langage <em>Langage</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Langage</em>'.
+	 * @see adaptor.Langage
+	 * @generated
+	 */
+	EEnum getLangage();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -913,12 +1110,20 @@ public interface AdaptorPackage extends EPackage {
 		EClass QUERY = eINSTANCE.getQuery();
 
 		/**
-		 * The meta object literal for the '<em><b>Request</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Proxy</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute QUERY__REQUEST = eINSTANCE.getQuery_Request();
+		EReference QUERY__PROXY = eINSTANCE.getQuery_Proxy();
+
+		/**
+		 * The meta object literal for the '<em><b>Request</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference QUERY__REQUEST = eINSTANCE.getQuery_Request();
 
 		/**
 		 * The meta object literal for the '{@link adaptor.impl.ActionImpl <em>Action</em>}' class.
@@ -931,12 +1136,12 @@ public interface AdaptorPackage extends EPackage {
 		EClass ACTION = eINSTANCE.getAction();
 
 		/**
-		 * The meta object literal for the '<em><b>Request</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Request</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ACTION__REQUEST = eINSTANCE.getAction_Request();
+		EReference ACTION__REQUEST = eINSTANCE.getAction_Request();
 
 		/**
 		 * The meta object literal for the '{@link adaptor.impl.NamedImpl <em>Named</em>}' class.
@@ -975,6 +1180,68 @@ public interface AdaptorPackage extends EPackage {
 		 * @generated
 		 */
 		EClass RHS_PATTERN = eINSTANCE.getRhsPattern();
+
+		/**
+		 * The meta object literal for the '{@link adaptor.impl.ProxyImpl <em>Proxy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see adaptor.impl.ProxyImpl
+		 * @see adaptor.impl.AdaptorPackageImpl#getProxy()
+		 * @generated
+		 */
+		EClass PROXY = eINSTANCE.getProxy();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PROXY__TYPE = eINSTANCE.getProxy_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Package</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROXY__PACKAGE = eINSTANCE.getProxy_Package();
+
+		/**
+		 * The meta object literal for the '{@link adaptor.impl.RequestImpl <em>Request</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see adaptor.impl.RequestImpl
+		 * @see adaptor.impl.AdaptorPackageImpl#getRequest()
+		 * @generated
+		 */
+		EClass REQUEST = eINSTANCE.getRequest();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REQUEST__EXPRESSION = eINSTANCE.getRequest_Expression();
+
+		/**
+		 * The meta object literal for the '<em><b>Langage</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute REQUEST__LANGAGE = eINSTANCE.getRequest_Langage();
+
+		/**
+		 * The meta object literal for the '{@link adaptor.Langage <em>Langage</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see adaptor.Langage
+		 * @see adaptor.impl.AdaptorPackageImpl#getLangage()
+		 * @generated
+		 */
+		EEnum LANGAGE = eINSTANCE.getLangage();
 
 	}
 

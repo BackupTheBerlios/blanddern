@@ -2,13 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorFactoryImpl.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: AdaptorFactoryImpl.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor.impl;
 
 import adaptor.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -69,8 +70,40 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 			case AdaptorPackage.ACTION: return createAction();
 			case AdaptorPackage.LHS_PATTERN: return createLhsPattern();
 			case AdaptorPackage.RHS_PATTERN: return createRhsPattern();
+			case AdaptorPackage.PROXY: return createProxy();
+			case AdaptorPackage.REQUEST: return createRequest();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case AdaptorPackage.LANGAGE:
+				return createLangageFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case AdaptorPackage.LANGAGE:
+				return convertLangageToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -162,6 +195,46 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 	public RhsPattern createRhsPattern() {
 		RhsPatternImpl rhsPattern = new RhsPatternImpl();
 		return rhsPattern;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Proxy createProxy() {
+		ProxyImpl proxy = new ProxyImpl();
+		return proxy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Request createRequest() {
+		RequestImpl request = new RequestImpl();
+		return request;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Langage createLangageFromString(EDataType eDataType, String initialValue) {
+		Langage result = Langage.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertLangageToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

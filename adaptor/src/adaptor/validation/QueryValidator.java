@@ -2,10 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryValidator.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: QueryValidator.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor.validation;
 
+import adaptor.Proxy;
+import adaptor.Request;
 
 /**
  * A sample validator interface for {@link adaptor.Query}.
@@ -16,6 +18,6 @@ package adaptor.validation;
 public interface QueryValidator {
 	boolean validate();
 
-	boolean validateRequest(String value);
-
+	boolean validateProxy(Proxy value);
+	boolean validateRequest(Request value);
 }

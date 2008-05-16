@@ -2,15 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ActionImpl.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: ActionImpl.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor.impl;
 
 import adaptor.Action;
 import adaptor.AdaptorPackage;
+import adaptor.Request;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -30,23 +34,14 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  */
 public class ActionImpl extends EObjectImpl implements Action {
 	/**
-	 * The default value of the '{@link #getRequest() <em>Request</em>}' attribute.
+	 * The cached value of the '{@link #getRequest() <em>Request</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRequest()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String REQUEST_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getRequest() <em>Request</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRequest()
-	 * @generated
-	 * @ordered
-	 */
-	protected String request = REQUEST_EDEFAULT;
+	protected Request request;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -72,7 +67,7 @@ public class ActionImpl extends EObjectImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getRequest() {
+	public Request getRequest() {
 		return request;
 	}
 
@@ -81,11 +76,47 @@ public class ActionImpl extends EObjectImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRequest(String newRequest) {
-		String oldRequest = request;
+	public NotificationChain basicSetRequest(Request newRequest, NotificationChain msgs) {
+		Request oldRequest = request;
 		request = newRequest;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptorPackage.ACTION__REQUEST, oldRequest, request));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptorPackage.ACTION__REQUEST, oldRequest, newRequest);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRequest(Request newRequest) {
+		if (newRequest != request) {
+			NotificationChain msgs = null;
+			if (request != null)
+				msgs = ((InternalEObject)request).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptorPackage.ACTION__REQUEST, null, msgs);
+			if (newRequest != null)
+				msgs = ((InternalEObject)newRequest).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptorPackage.ACTION__REQUEST, null, msgs);
+			msgs = basicSetRequest(newRequest, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptorPackage.ACTION__REQUEST, newRequest, newRequest));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case AdaptorPackage.ACTION__REQUEST:
+				return basicSetRequest(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -111,7 +142,7 @@ public class ActionImpl extends EObjectImpl implements Action {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AdaptorPackage.ACTION__REQUEST:
-				setRequest((String)newValue);
+				setRequest((Request)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -126,7 +157,7 @@ public class ActionImpl extends EObjectImpl implements Action {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.ACTION__REQUEST:
-				setRequest(REQUEST_EDEFAULT);
+				setRequest((Request)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -141,25 +172,9 @@ public class ActionImpl extends EObjectImpl implements Action {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.ACTION__REQUEST:
-				return REQUEST_EDEFAULT == null ? request != null : !REQUEST_EDEFAULT.equals(request);
+				return request != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (request: ");
-		result.append(request);
-		result.append(')');
-		return result.toString();
 	}
 
 } //ActionImpl

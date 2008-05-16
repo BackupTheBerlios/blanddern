@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Instance.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: Instance.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Instance extends EObject {
+public interface Instance extends Named {
 	/**
 	 * Returns the value of the '<em><b>Concept</b></em>' reference.
 	 * <!-- begin-user-doc -->

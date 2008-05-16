@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InstanceImpl.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: InstanceImpl.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +29,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class InstanceImpl extends EObjectImpl implements Instance {
+public class InstanceImpl extends NamedImpl implements Instance {
 	/**
 	 * The cached value of the '{@link #getConcept() <em>Concept</em>}' reference.
 	 * <!-- begin-user-doc -->

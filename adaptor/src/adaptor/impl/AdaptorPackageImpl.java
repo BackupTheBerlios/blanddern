@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackageImpl.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: AdaptorPackageImpl.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -12,16 +12,20 @@ import adaptor.AdaptorFactory;
 import adaptor.AdaptorPackage;
 import adaptor.CorrespondanceRule;
 import adaptor.Instance;
+import adaptor.Langage;
 import adaptor.LhsPattern;
 import adaptor.Matching;
 import adaptor.Named;
 import adaptor.Pattern;
 import adaptor.Property;
+import adaptor.Proxy;
 import adaptor.Query;
+import adaptor.Request;
 import adaptor.RhsPattern;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -111,6 +115,27 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * @generated
 	 */
 	private EClass rhsPatternEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass proxyEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass requestEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum langageEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -359,8 +384,17 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getQuery_Request() {
-		return (EAttribute)queryEClass.getEStructuralFeatures().get(0);
+	public EReference getQuery_Proxy() {
+		return (EReference)queryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getQuery_Request() {
+		return (EReference)queryEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -377,8 +411,8 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAction_Request() {
-		return (EAttribute)actionEClass.getEStructuralFeatures().get(0);
+	public EReference getAction_Request() {
+		return (EReference)actionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -415,6 +449,69 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 */
 	public EClass getRhsPattern() {
 		return rhsPatternEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getProxy() {
+		return proxyEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getProxy_Type() {
+		return (EReference)proxyEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getProxy_Package() {
+		return (EAttribute)proxyEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getRequest() {
+		return requestEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRequest_Expression() {
+		return (EAttribute)requestEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRequest_Langage() {
+		return (EAttribute)requestEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getLangage() {
+		return langageEEnum;
 	}
 
 	/**
@@ -470,10 +567,11 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		createEReference(propertyEClass, PROPERTY__GET_PART);
 
 		queryEClass = createEClass(QUERY);
-		createEAttribute(queryEClass, QUERY__REQUEST);
+		createEReference(queryEClass, QUERY__PROXY);
+		createEReference(queryEClass, QUERY__REQUEST);
 
 		actionEClass = createEClass(ACTION);
-		createEAttribute(actionEClass, ACTION__REQUEST);
+		createEReference(actionEClass, ACTION__REQUEST);
 
 		namedEClass = createEClass(NAMED);
 		createEAttribute(namedEClass, NAMED__NAME);
@@ -481,6 +579,17 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		lhsPatternEClass = createEClass(LHS_PATTERN);
 
 		rhsPatternEClass = createEClass(RHS_PATTERN);
+
+		proxyEClass = createEClass(PROXY);
+		createEReference(proxyEClass, PROXY__TYPE);
+		createEAttribute(proxyEClass, PROXY__PACKAGE);
+
+		requestEClass = createEClass(REQUEST);
+		createEAttribute(requestEClass, REQUEST__EXPRESSION);
+		createEAttribute(requestEClass, REQUEST__LANGAGE);
+
+		// Create enums
+		langageEEnum = createEEnum(LANGAGE);
 	}
 
 	/**
@@ -515,8 +624,10 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 
 		// Add supertypes to classes
 		adaptorEClass.getESuperTypes().add(this.getNamed());
+		instanceEClass.getESuperTypes().add(this.getNamed());
 		lhsPatternEClass.getESuperTypes().add(this.getPattern());
 		rhsPatternEClass.getESuperTypes().add(this.getPattern());
+		proxyEClass.getESuperTypes().add(this.getNamed());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(adaptorEClass, Adaptor.class, "Adaptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -541,13 +652,14 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 
 		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProperty_SetPart(), this.getAction(), null, "setPart", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProperty_GetPart(), this.getQuery(), null, "getPart", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProperty_GetPart(), this.getQuery(), null, "getPart", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(queryEClass, Query.class, "Query", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getQuery_Request(), theEcorePackage.getEString(), "request", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuery_Proxy(), this.getProxy(), null, "proxy", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getQuery_Request(), this.getRequest(), null, "request", null, 1, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAction_Request(), theEcorePackage.getEString(), "request", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAction_Request(), this.getRequest(), null, "request", null, 1, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(namedEClass, Named.class, "Named", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getNamed_Name(), ecorePackage.getEString(), "name", null, 0, 1, Named.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -555,6 +667,18 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		initEClass(lhsPatternEClass, LhsPattern.class, "LhsPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(rhsPatternEClass, RhsPattern.class, "RhsPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(proxyEClass, Proxy.class, "Proxy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProxy_Type(), theEcorePackage.getEClass(), null, "type", null, 0, 1, Proxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getProxy_Package(), ecorePackage.getEString(), "package", null, 0, 1, Proxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(requestEClass, Request.class, "Request", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRequest_Expression(), ecorePackage.getEString(), "expression", null, 0, 1, Request.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRequest_Langage(), this.getLangage(), "langage", null, 0, 1, Request.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(langageEEnum, Langage.class, "Langage");
+		addEEnumLiteral(langageEEnum, Langage.JAVA);
 
 		// Create resource
 		createResource(eNS_URI);

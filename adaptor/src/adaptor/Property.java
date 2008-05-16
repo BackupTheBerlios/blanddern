@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Property.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: Property.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor;
 
@@ -63,7 +63,7 @@ public interface Property extends EObject {
 	 * @return the value of the '<em>Get Part</em>' containment reference.
 	 * @see #setGetPart(Query)
 	 * @see adaptor.AdaptorPackage#getProperty_GetPart()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Query getGetPart();

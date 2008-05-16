@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adaptor:Adaptor xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adaptor="http://adaptor" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="adaptateur">
+  <matching>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EAttribute" href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne/intensite"/>
+      <property>
+        <getPart>
+          <proxy name="v" package="vessie">
+            <type href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
+          </proxy>
+          <request expression="this.v.getContenance()*2*3.14"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EAttribute" href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne/luminosite"/>
+      <property>
+        <getPart>
+          <proxy name="v2" package="vessie">
+            <type href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
+          </proxy>
+          <request expression="this.v2.getContenance()-1"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <lhs>
+      <composed name="vessie">
+        <concept href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
+      </composed>
+    </lhs>
+    <rhs>
+      <composed name="lanterne">
+        <concept href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne"/>
+      </composed>
+    </rhs>
+  </matching>
+</adaptor:Adaptor>

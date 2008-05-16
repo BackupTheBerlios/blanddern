@@ -5,7 +5,7 @@
  <copyright>
  </copyright>
 
- $Id: plugin.xml,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ $Id: plugin.xml,v 1.2 2008/05/16 09:05:06 scheerj Exp $
 -->
 
 <plugin>
@@ -14,7 +14,7 @@
     <package 
        uri = "http://adaptor" 
        class = "adaptor.AdaptorPackage"
-       genModel = "metamodel/adaptor2.genmodel" /> 
+       genModel = "metamodel/adaptor.genmodel" /> 
   </extension>
 
 </plugin>

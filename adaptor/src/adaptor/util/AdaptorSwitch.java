@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorSwitch.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: AdaptorSwitch.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor.util;
 
@@ -109,6 +109,7 @@ public class AdaptorSwitch<T> {
 			case AdaptorPackage.INSTANCE: {
 				Instance instance = (Instance)theEObject;
 				T result = caseInstance(instance);
+				if (result == null) result = caseNamed(instance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -153,6 +154,19 @@ public class AdaptorSwitch<T> {
 				RhsPattern rhsPattern = (RhsPattern)theEObject;
 				T result = caseRhsPattern(rhsPattern);
 				if (result == null) result = casePattern(rhsPattern);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptorPackage.PROXY: {
+				Proxy proxy = (Proxy)theEObject;
+				T result = caseProxy(proxy);
+				if (result == null) result = caseNamed(proxy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptorPackage.REQUEST: {
+				Request request = (Request)theEObject;
+				T result = caseRequest(request);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -322,6 +336,36 @@ public class AdaptorSwitch<T> {
 	 * @generated
 	 */
 	public T caseRhsPattern(RhsPattern object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Proxy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Proxy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProxy(Proxy object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Request</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Request</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseRequest(Request object) {
 		return null;
 	}
 

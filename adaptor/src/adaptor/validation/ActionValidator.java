@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ActionValidator.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: ActionValidator.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor.validation;
 
+import adaptor.Request;
 
 /**
  * A sample validator interface for {@link adaptor.Action}.
@@ -16,6 +17,5 @@ package adaptor.validation;
 public interface ActionValidator {
 	boolean validate();
 
-	boolean validateRequest(String value);
-
+	boolean validateRequest(Request value);
 }

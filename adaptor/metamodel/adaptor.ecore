@@ -23,7 +23,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="query" eType="#//Query"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Instance">
+  <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//Named">
     <eStructuralFeatures xsi:type="ecore:EReference" name="concept" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CorrespondanceRule">
@@ -34,18 +34,33 @@
   <eClassifiers xsi:type="ecore:EClass" name="Property">
     <eStructuralFeatures xsi:type="ecore:EReference" name="setPart" eType="#//Action"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="getPart" eType="#//Query"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="getPart" lowerBound="1"
+        eType="#//Query" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Query">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="request" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="proxy" eType="#//Proxy"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="request" lowerBound="1"
+        eType="#//Request" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Action">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="request" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="request" lowerBound="1"
+        eType="#//Request" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Named" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LhsPattern" eSuperTypes="#//Pattern"/>
   <eClassifiers xsi:type="ecore:EClass" name="RhsPattern" eSuperTypes="#//Pattern"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Proxy" eSuperTypes="#//Named">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="package" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Request">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="langage" eType="#//Langage"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Langage">
+    <eLiterals name="Java"/>
+  </eClassifiers>
 </ecore:EPackage>

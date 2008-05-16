@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Action.java,v 1.1 2008/05/07 13:02:03 fondemen Exp $
+ * $Id: Action.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
  */
 package adaptor;
 
@@ -25,30 +25,30 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Action extends EObject {
-
 	/**
-	 * Returns the value of the '<em><b>Request</b></em>' attribute.
+	 * Returns the value of the '<em><b>Request</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Request</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Request</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Request</em>' attribute.
-	 * @see #setRequest(String)
+	 * @return the value of the '<em>Request</em>' containment reference.
+	 * @see #setRequest(Request)
 	 * @see adaptor.AdaptorPackage#getAction_Request()
-	 * @model
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	String getRequest();
+	Request getRequest();
 
 	/**
-	 * Sets the value of the '{@link adaptor.Action#getRequest <em>Request</em>}' attribute.
+	 * Sets the value of the '{@link adaptor.Action#getRequest <em>Request</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Request</em>' attribute.
+	 * @param value the new value of the '<em>Request</em>' containment reference.
 	 * @see #getRequest()
 	 * @generated
 	 */
-	void setRequest(String value);
+	void setRequest(Request value);
+
 } // Action
