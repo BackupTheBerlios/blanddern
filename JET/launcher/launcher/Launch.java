@@ -114,7 +114,7 @@ public class Launch{
 			while(i.hasNext()){
 				EClass c = (EClass)i.next();
 			
-				ArgumentsList arg = new ArgumentsList(a.getMatching().get(0), c.getName(), implLoc.implPackage()+"."+c.getName()+"Impl");
+				ArgumentsList arg = new ArgumentsList(a, c.getName(), implLoc.implPackage()+"."+c.getName()+"Impl");
 				String result = adapt.generate(arg);
 				
 				File file = new File("src-gen/"+c.getName()+".aj");
