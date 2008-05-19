@@ -13,10 +13,17 @@ public class AspectLaunch {
 	/**
 	 * This class compile files .aj into field src-gen
 	 */
-	public static void main(String[] arg) {
+	public void launch(String srcDir, String targetDir) {
+		File ajDir = new File("src-gen");
+		
+		File outputDir = new File("adapted");
+		File outputJar = new File("adapted\\VessieLanterneAdapted.jar");
+		if(!outputDir.exists()){
+			outputDir.mkdir();
+		}
 		
 		
-		String [] args = {"-showWeaveInfo", "-sourceroots"  , "D:\\ENSISA\\PROJET2A\\workspace\\JET\\src-gen" , "-inpath" , "D:\\ENSISA\\PROJET2A\\workspace\\Lanterne\\bin", "-outjar", "D:\\ENSISA\\PROJET2A\\workspace\\JET\\adapted\\VessieLanterneAdapted.jar", "-cp", System.getProperty("java.class.path") + System.getProperty("path.separator") + "D:\\ENSISA\\PROJET2A\\workspace\\Vessie\\bin"};
+		String [] args = {"-showWeaveInfo", "-sourceroots"  , ajDir.getAbsolutePath() , "-inpath" , targetDir, "-outjar", outputJar.getAbsolutePath(), "-cp", System.getProperty("java.class.path") + System.getProperty("path.separator") + srcDir};
 		
 		Main compiler = new Main();
 	    MessageHandler m = new MessageHandler();

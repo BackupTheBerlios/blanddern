@@ -66,7 +66,7 @@ public class Launch{
 		// TODO Demander le chemin du modèle d'adaptateur
 		File adaptModel = new File("../adaptor/models/model.adaptor");
 		URI adaptor = URI.createFileURI(adaptModel.getAbsolutePath());
-		EObject [] objects = loadScModel(adaptor);
+		EObject [] objects = loadModel(adaptor);
 		
 		//convert the adaptor model into a prolog file
 		convert2Prolog(adaptModel);
@@ -121,6 +121,8 @@ public class Launch{
 				saveGenerated(result, file);
 				// TODO aspectFiles.add(file);
 			}
+			
+			launchAspect();
 		}catch(Exception e){
 			e.printStackTrace();
 		}
@@ -192,7 +194,7 @@ public class Launch{
 	/* load the model which URI is sourceXMI
 	 * an EObject array which contains the model is returned
 	 */
-	public static EObject [] loadScModel (URI sourceXMI) {
+	public static EObject [] loadModel (URI sourceXMI) {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
 				Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
@@ -202,5 +204,35 @@ public class Launch{
 		Resource resource = resourceSet.getResource(sourceXMI, true);
 
 		return resource.getContents().toArray(new EObject [resource.getContents().size()]);
+	}
+	
+	/* executes the class that will launch the aspectJ files */
+	public static void launchAspect(){
+		JFileChooser jfile = new JFileChooser();
+		jfile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		
+		String srcDir="C:\\Documents and Settings\\leonhart\\Mes documents\\ENSISA\\ProjetIMM\\workspace\\Vessie\\bin";
+		String targetDir="C:\\Documents and Settings\\leonhart\\Mes documents\\ENSISA\\ProjetIMM\\workspace\\Lanterne\\bin";
+		
+		/* asks the user for the directories of the source and target metamodel binaries */
+		/*JOptionPane.showMessageDialog(null, "Directory of the source metamodel binaries : ");
+		if(jfile.showOpenDialog(null)==JFileChooser.APPROVE_OPTION){
+			srcDir = jfile.getSelectedFile().getAbsolutePath();
+		}else{
+			System.err.println("No source metamodel directory chosen");
+			System.exit(-1);
+		}
+		
+		JOptionPane.showMessageDialog(null, "Directory of the target metamodel binaries");
+		if(jfile.showOpenDialog(null)==JFileChooser.APPROVE_OPTION){
+			targetDir = jfile.getSelectedFile().getAbsolutePath();
+		}else{
+			System.err.println("No target metamodel directory chosen");
+			System.exit(-1);
+		}*/
+		
+		//execute the compiler
+		AspectLaunch al = new AspectLaunch();
+		al.launch(srcDir, targetDir);
 	}
 }
