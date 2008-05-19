@@ -10,11 +10,13 @@ import adaptor.Matching;
  */
 public class ArgumentsList {
 	private Matching model;
-	private String eclass;
+	private String eClass;
+	private String ePackage;
 	
-	public ArgumentsList(Matching model, String eclass){
+	public ArgumentsList(Matching model, String eclass, String ePackage){
 		this.model = model;
-		this.eclass = eclass;
+		this.eClass = eclass;
+		this.ePackage = ePackage;
 	}
 	
 	public Matching getModel(){
@@ -22,6 +24,10 @@ public class ArgumentsList {
 	}
 	
 	public String getEClass(){
-		return eclass;
+		return eClass;
+	}
+	
+	public String getEPackage(){
+		return ePackage;
 	}
 }
