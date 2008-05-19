@@ -68,8 +68,10 @@ public class Launch{
 		URI adaptor = URI.createFileURI(adaptModel.getAbsolutePath());
 		EObject [] objects = loadModel(adaptor);
 		
-		//convert the adaptor model into a prolog file
-		convert2Prolog(adaptModel);
+		//convert the source model into a prolog file
+		//TODO demander chemin du modèle de vessie
+		File srcModel = new File("../Vessie/models/model1.vessie");
+		convert2Prolog(srcModel);
 		
 		/* FileChooser used for the choice of the genmodel file corresponding
 		 * to the target metamodel (filter on .genmodel extension)
@@ -137,7 +139,7 @@ public class Launch{
 		copyFile(model, umlFile);
 		
 		//launch the transformation with the corrects arguments
-		String[] args = {umlModel, "prologFiles\\adaptor.pl", "http://adaptor"};
+		String[] args = {umlModel, "prologFiles\\sourceModel.pl", "http://sourceModel"};
 		UML21ToPrologV6.main(args);
 		
 		umlFile.delete();
