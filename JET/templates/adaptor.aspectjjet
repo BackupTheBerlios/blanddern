@@ -2,31 +2,41 @@
 <% ArgumentsList args = (ArgumentsList) argument; %>
 <% String className = args.getEClass(); %>
 
-privileged aspect TestAspect {
-	<% for(int i=0;i<args.getModel().getCorrespondanceRule().size();i++){ %>
-		<% String methodeName = args.getModel().getCorrespondanceRule().get(i).getFeature().getName(); %>
-		<% CorrespondanceRule correspondanceRule = args.getModel().getCorrespondanceRule().get(i); %>
-		
-		<% String packageName = correspondanceRule.getProperty().getGetPart().getProxy().getPackage(); %>
-		
-		private <% if (packageName!="") { %><%=packageName%>.<% } %><%=correspondanceRule.getProperty().getGetPart().getProxy().getType().getName()%> <%= args.getEClass() %>.<%= correspondanceRule.getProperty().getGetPart().getProxy().getName() %>;
-		
-		pointcut getter<%=i%>(<%=className%> self) : target(self) && execution(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= className %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
-		<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
-		pointcut setter<%=i%>(<%=className%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : target(self) && execution(void <%= className %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*)) && args(newValue);
+privileged aspect <%=className%>Aspect {
+<% for(int i=0; i<args.getModel().getMatching().size(); i++){ %>
+	<% for(int j=0; j<args.getModel().getMatching().get(i).getRhs().size(); j++){ %>
+		<% for(int k=0; k<args.getModel().getMatching().get(i).getRhs().get(j).getComposed().size(); k++){ %>
+			<% if(args.getModel().getMatching().get(i).getRhs().get(j).getComposed().get(k).getConcept().getName()==className){ %>
+				<% for(int l=0;l<args.getModel().getMatching().get(k).getCorrespondanceRule().size();l++){ %>
+					<% String methodeName = args.getModel().getMatching().get(k).getCorrespondanceRule().get(l).getFeature().getName(); %>
+					<% CorrespondanceRule correspondanceRule = args.getModel().getMatching().get(k).getCorrespondanceRule().get(l); %>
+					
+					<% String packageName = correspondanceRule.getProperty().getGetPart().getProxy().getPackage(); %>
+					<% String ePackageName = args.getEPackage(); %>
+					
+					private <% if (packageName!="") { %><%=packageName%>.<% } %><%=correspondanceRule.getProperty().getGetPart().getProxy().getType().getName()%> <%= args.getEPackage() %>.<%= correspondanceRule.getProperty().getGetPart().getProxy().getName() %>;
+					
+					pointcut getter<%=l%>(<%=ePackageName%> self) : target(self) && execution(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= ePackageName %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
+					<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
+					pointcut setter<%=l%>(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : target(self) && execution(void <%= ePackageName %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*)) && args(newValue);
+					<% } %>
+					
+					<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around (<%=ePackageName%> self) : getter<%=l%>(self){
+						<% FeatureFilter filter = new FeatureFilter(correspondanceRule);%>
+						return self.<%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>;
+					}
+					
+					<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
+					void around(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : setter<%=l%>(self, newValue){
+						self.<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>;
+					}
+					<% } %>
+			<% } %>
+	<% } %>
+	
 		<% } %>
-		
-		<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around (<%=className%> self) : getter<%=i%>(self){
-			<% FeatureFilter filter = new FeatureFilter(correspondanceRule);%>
-			return self.<%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>;
-		}
-		
-		<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
-		void around(<%=className%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : setter<%=i%>(self, newValue){
-			self.<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>;
-		}
-		<% } %>
-<% } %>
+	<% } %>
+<% } %>	
 }
 
 
