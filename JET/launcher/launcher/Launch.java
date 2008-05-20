@@ -38,6 +38,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import emf2prolog.UML21ToPrologV6;
 
 import translated.AdaptorGeneration;
+import utils.Tools;
 
 import adaptor.*;
 
@@ -52,10 +53,10 @@ public class Launch{
 		File plDir = new File("prologFiles/");
 		try{
 			if(ajDir.exists()){
-				recursifDelete(ajDir);
+				Tools.recursifDelete(ajDir);
 			}
 			if(plDir.exists()){
-				recursifDelete(plDir);
+				Tools.recursifDelete(plDir);
 			}
 			ajDir.mkdir();
 			plDir.mkdir();
@@ -66,7 +67,7 @@ public class Launch{
 		// TODO Demander le chemin du modèle d'adaptateur
 		File adaptModel = new File("../adaptor/models/model.adaptor");
 		URI adaptor = URI.createFileURI(adaptModel.getAbsolutePath());
-		EObject [] objects = loadModel(adaptor);
+		EObject [] objects = Tools.loadModel(adaptor);
 		
 		//convert the source model into a prolog file
 		//TODO demander chemin du modèle de vessie
@@ -120,7 +121,7 @@ public class Launch{
 				String result = adapt.generate(arg);
 				
 				File file = new File("src-gen/"+c.getName()+".aj");
-				saveGenerated(result, file);
+				Tools.saveGenerated(result, file);
 				// TODO aspectFiles.add(file);
 			}
 			
@@ -136,7 +137,7 @@ public class Launch{
 		String umlModel = model.getAbsolutePath().substring(model.getAbsolutePath().lastIndexOf('\\'), model.getAbsolutePath().lastIndexOf('.'));
 		umlModel = "prologFiles\\"+umlModel+".uml";
 		File umlFile = new File(umlModel);
-		copyFile(model, umlFile);
+		Tools.copyFile(model, umlFile);
 		
 		//launch the transformation with the corrects arguments
 		String[] args = {umlModel, "prologFiles\\sourceModel.pl", "http://sourceModel"};
@@ -145,76 +146,13 @@ public class Launch{
 		umlFile.delete();
 	}
 	
-	/* saves the result string in the File file */
-	public static void saveGenerated(String result, File file){
-		try {
-			FileWriter fw = new FileWriter(file);
-			fw.write(result);
-			fw.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	
-	/* recursively deletes path file */
-	public static void recursifDelete(File path) throws IOException {
-	       if (!path.exists()) throw new IOException(
-	          "File not found '" + path.getAbsolutePath() + "'");
-	       if (path.isDirectory()) {
-	          File[] children = path.listFiles();
-	          for (int i=0; children != null && i<children.length; i++)
-	             recursifDelete(children[i]);
-	          if (!path.delete()) throw new IOException(
-	             "No delete path '" + path.getAbsolutePath() + "'");
-	       }
-	       else if (!path.delete()) throw new IOException(
-	          "No delete file '" + path.getAbsolutePath() + "'");
-	}
-	
-	/* copy the input file into the output file */
-	public static void copyFile(File input, File output){
-		try {
-			BufferedInputStream in = new BufferedInputStream(new FileInputStream(input));
-			BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(output));
-			byte[] buffer = new byte[512];
-			int nbLus=0;
-			
-			while((nbLus=in.read(buffer))!=-1){
-				out.write(buffer, 0, nbLus);
-			}
-			in.close();
-			out.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch(IOException e2){
-			e2.printStackTrace();
-		}
-	}
-	
-	/* load the model which URI is sourceXMI
-	 * an EObject array which contains the model is returned
-	 */
-	public static EObject [] loadModel (URI sourceXMI) {
-		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
-				Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
-		
-		AdaptorPackage libraryPackage = AdaptorPackage.eINSTANCE;
-
-		Resource resource = resourceSet.getResource(sourceXMI, true);
-
-		return resource.getContents().toArray(new EObject [resource.getContents().size()]);
-	}
-	
 	/* executes the class that will launch the aspectJ files */
 	public static void launchAspect(){
 		JFileChooser jfile = new JFileChooser();
 		jfile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
-		String srcDir="C:\\Documents and Settings\\leonhart\\Mes documents\\ENSISA\\ProjetIMM\\workspace\\Vessie\\bin";
-		String targetDir="C:\\Documents and Settings\\leonhart\\Mes documents\\ENSISA\\ProjetIMM\\workspace\\Lanterne\\bin";
+		String srcDir="..\\Vessie\\bin";
+		String targetDir="..\\Lanterne\\bin";
 		
 		/* asks the user for the directories of the source and target metamodel binaries */
 		/*JOptionPane.showMessageDialog(null, "Directory of the source metamodel binaries : ");
@@ -235,6 +173,6 @@ public class Launch{
 		
 		//execute the compiler
 		AspectLaunch al = new AspectLaunch();
-		al.launch(srcDir, targetDir);
+		al.launch(new File(srcDir).getAbsolutePath(), new File(targetDir).getAbsolutePath());
 	}
 }
