@@ -7,13 +7,13 @@ public class Go {
 	static public void main(String args[]) {
 		FileInputStream fis;
 		String program;
-		String query = "habite(Qui, illfurth).";
+		String query = "habite(Personne, paris).";
 		String tmp;
 		//program = "habite(jean, belfort).habite(lucie, paris).habite(christian, toulouse).habite(adeline, paris).habite(nicolas, paris).";
 		//run(program,query);
 		
 		ArrayList prologProgramIntoTab = new ArrayList();
-		String fileName = "D:\\ENSISA\\PROJET2A\\workspace\\PROLOG\\src\\prolog.pl";
+		String fileName = "D:\\User\\ProjetIMM\\workspace\\PROLOG\\src\\prolog.pl";
 		
 		cutStringIntoHashTable(query);
 		
@@ -70,7 +70,11 @@ public class Go {
         		 //Si le resultat est différent de no., on affiche
    			    //L'ideal serai de créer une classe qui stocke toutes ces données
         		   
-        		   System.out.println(eng.getCall().getarg(0));
+        		   List pos = indexOfVar(query);
+        		   Iterator i = pos.iterator();
+        		   while(i.hasNext()){
+        			   System.out.println(eng.getCall().getarg(Integer.valueOf(i.next().toString())));
+        		   }
 			    }
 			    
 			    
@@ -92,8 +96,33 @@ public class Go {
 	     }*/
 	}
 	
-	public void indexOfVar(String var){
+	public static List indexOfVar(String var){
+		int posCount=0;
 		
+		List result = new ArrayList();
+		String tmp = var;
+		
+		tmp = tmp.substring(tmp.indexOf('(')+1);
+		
+		while(tmp.contains(",") || tmp.contains(")")){
+			while(tmp.charAt(0)==' ' || tmp.charAt(0)=='\t' || tmp.charAt(0)=='\n'){
+				tmp=tmp.substring(1);
+			}
+			
+			if(Character.isUpperCase(tmp.charAt(0))){
+					result.add(posCount);
+			}
+			
+			if(!tmp.contains(",")){
+				tmp = tmp.substring(tmp.indexOf(')')+1);
+			}else{
+				tmp = tmp.substring(tmp.indexOf(',')+1);
+			}
+			posCount++;
+		}
+		
+		return result;
 	}
+	
 	
 }
