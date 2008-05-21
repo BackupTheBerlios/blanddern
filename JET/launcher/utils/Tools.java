@@ -8,6 +8,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collections;
+
+import javax.swing.JOptionPane;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -42,6 +45,24 @@ public class Tools {
 		Resource resource = resourceSet.getResource(sourceXMI, true);
 
 		return resource.getContents().toArray(new EObject [resource.getContents().size()]);
+	}
+	
+	public static void saveModel (URI targetXMI, EObject [] toBeSaved) {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(
+				Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl());
+
+		Resource resource = resourceSet.createResource(targetXMI);
+
+		for (int i = 0; i < toBeSaved.length; i++) {
+			resource.getContents().add(toBeSaved[i]);
+		}
+
+		try {
+			resource.save(Collections.EMPTY_MAP);
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage(), "Cannot save XMI " + targetXMI, JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	/* copy the input file into the output file */
