@@ -1,4 +1,4 @@
-package launcher;
+package filtering;
 
 import java.io.File;
 import javax.swing.filechooser.FileFilter;
