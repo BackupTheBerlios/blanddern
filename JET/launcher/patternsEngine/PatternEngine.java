@@ -21,13 +21,15 @@ public class PatternEngine implements ItfPatternEngine{
 	 * return a list of EClass that correspond to the argument feature
 	 */
 	public List executesProlog(EStructuralFeature feature) {
-		// TODO Auto-generated method stub
-		return null;
+		File queryFile = new File("prologFiles/patterns.pl");
+		File programFile = new File("prologFiles/sourceModel.pl");
+		
+		ItfPrologInterpret pexec = new PrologExecutor();
+		return pexec.executePrologQuery(queryFile.getAbsolutePath(), programFile.getAbsolutePath());
 	}
 
 	/* generates the requests prolog file from the adaptor model */
 	public void generatesAdaptorMdlProlog(File adaptorModel) {
-		// TODO Auto-generated method stub
 		PrologGeneration gen = new PrologGeneration();
 		gen.generateProlog(adaptorModel);
 	}
