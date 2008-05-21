@@ -35,12 +35,21 @@ import org.eclipse.emf.codegen.jet.JETEmitter;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 
+import patternsEngine.ItfPatternEngine;
+import patternsEngine.PatternEngine;
+
 import emf2prolog.UML21ToPrologV6;
 
 import translated.AdaptorGeneration;
 import utils.Tools;
 
 import adaptor.*;
+
+/**
+ * 
+ * @author Jérémie SCHEER & Loïc SUTTER
+ *
+ */
 
 /* launch the .aj files generation */
 public class Launch{
@@ -64,15 +73,19 @@ public class Launch{
 			e.printStackTrace();
 		}
 		
+		ItfPatternEngine eng = new PatternEngine();
+		
 		// TODO Demander le chemin du modèle d'adaptateur
+		// load the adaptor model and convert it into a prolog file
 		File adaptModel = new File("../adaptor/models/model.adaptor");
 		URI adaptor = URI.createFileURI(adaptModel.getAbsolutePath());
 		EObject [] objects = Tools.loadModel(adaptor);
+		eng.generatesAdaptorMdlProlog(adaptModel);
 		
 		//convert the source model into a prolog file
 		//TODO demander chemin du modèle de vessie
 		File srcModel = new File("../Vessie/models/model1.vessie");
-		convert2Prolog(srcModel);
+		eng.generatesSrcMdlProlog(srcModel);
 		
 		/* FileChooser used for the choice of the genmodel file corresponding
 		 * to the target metamodel (filter on .genmodel extension)
@@ -129,21 +142,6 @@ public class Launch{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-	}
-	
-	/* uses the PraxisEMF2Prolog project to convert the adaptor model file into a prolog file */
-	public static void convert2Prolog(File model){
-		// transforms the extension of the model into a .uml file and copy the original file
-		String umlModel = model.getAbsolutePath().substring(model.getAbsolutePath().lastIndexOf('\\'), model.getAbsolutePath().lastIndexOf('.'));
-		umlModel = "prologFiles\\"+umlModel+".uml";
-		File umlFile = new File(umlModel);
-		Tools.copyFile(model, umlFile);
-		
-		//launch the transformation with the corrects arguments
-		String[] args = {umlModel, "prologFiles\\sourceModel.pl", "http://sourceModel"};
-		UML21ToPrologV6.main(args);
-		
-		umlFile.delete();
 	}
 	
 	/* executes the class that will launch the aspectJ files */

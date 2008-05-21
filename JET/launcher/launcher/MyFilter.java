@@ -1,8 +1,13 @@
 package launcher;
 
 import java.io.File;
-
 import javax.swing.filechooser.FileFilter;
+
+/**
+ * 
+ * @author Jérémie SCHEER & Loïc SUTTER
+ *
+ */
 
 /* creation of a particular filter for the JFileChooser
  * component 

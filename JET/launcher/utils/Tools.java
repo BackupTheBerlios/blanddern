@@ -18,6 +18,12 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
 import adaptor.AdaptorPackage;
 
+/**
+ * 
+ * @author Jérémie SCHEER & Loïc SUTTER
+ *
+ */
+
 /* Tools methods that are used in some other classes
  * Methods in there are statically accessible
  */
@@ -49,6 +55,7 @@ public class Tools {
 			while((nbLus=in.read(buffer))!=-1){
 				out.write(buffer, 0, nbLus);
 			}
+			
 			in.close();
 			out.close();
 		} catch (FileNotFoundException e) {

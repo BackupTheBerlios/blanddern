@@ -12,6 +12,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 
+/**
+ * 
+ * @author Jérémie SCHEER &	Loïc SUTTER
+ *
+ */
+
 /* find the name of the impl files package in the genmodel
  * file (for instance : lanterne.impl)
  */

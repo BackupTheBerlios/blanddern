@@ -5,6 +5,12 @@ import org.eclipse.emf.ecore.EObject;
 
 import adaptor.Adaptor;
 
+/**
+ * 
+ * @author Jérémie SCHEER & Loïc SUTTER
+ *
+ */
+
 /* store an adaptor model and the package of an EClass
  * (for instance : lanterne.impl.LanterneImpl)
  */
