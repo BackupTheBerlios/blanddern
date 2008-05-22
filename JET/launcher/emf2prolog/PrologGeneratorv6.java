@@ -30,12 +30,12 @@ import java.util.UUID;
 public class PrologGeneratorv6 {
 	
 	
-	public static String makeCreate(UUID id,String typename, String TS){
-		return "create("+typename+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
+	public static String makeCreate(String nodeName, UUID id,String typename, String TS){
+		return "create("+nodeName+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
 	}
 	
-	public static String makeDelete(UUID id,String typename, String TS){
-		return "delNode("+typename+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
+	public static String makeDelete(String nodeName, UUID id,String typename, String TS){
+		return "delNode("+nodeName+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
 	}
 	
 	public static String makeAddProperty(String nodeName, UUID id,String typename,String prop, String TS){

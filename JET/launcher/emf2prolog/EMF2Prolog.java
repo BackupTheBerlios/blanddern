@@ -139,7 +139,7 @@ public class EMF2Prolog {
 	        
 	        //writing the create action
 	        StringBuffer buff = new StringBuffer();
-	        buff.append(PrologGeneratorv6.makeCreate(mine, obj.eClass().getName(),VirtualTimer.getTimeStamp(sitename)));
+	        buff.append(PrologGeneratorv6.makeCreate(obj.getClass().getName(), mine, obj.eClass().getName(),VirtualTimer.getTimeStamp(sitename)));
 	        buff.append(".\n");
 
 	        fw.write(buff.toString());
