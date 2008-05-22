@@ -59,6 +59,7 @@ public class PrologExecutor implements ItfPrologInterpret{
 			while(itPrologProg.hasNext()){
 				String programLine = (String)itPrologProg.next();
 				programLine = programLine.replaceAll("'", "");
+				programLine = programLine.replaceAll("=", ",");
 				
 				//We use WProlog to run prolog query and prolog program
 				Term t;
@@ -72,6 +73,9 @@ public class PrologExecutor implements ItfPrologInterpret{
 					    //The result of the prolog engine
 					    String result = eng.run(true);  	  
 		        	   
+					    /* adds String array tabTmp, which contains the functor's name
+					     * and the variable's value, to the results List
+					     */
 					    if(!result.equals("No.")){
 		        		   List pos = indexesOfVars(query);
 		        		   Iterator i = pos.iterator();

@@ -39,11 +39,11 @@ public class PrologGeneratorv6 {
 	}
 	
 	public static String makeAddProperty(String nodeName, UUID id,String typename,String prop, String TS){
-		return "addProperty("+nodeName.toLowerCase()+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
+		return "addProperty("+nodeName.toLowerCase()+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
 	}
 	
 	public static String makeRemProperty(String nodeName, UUID id,String typename,String prop, String TS){
-		return "remProperty("+nodeName.toLowerCase()+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
+		return "remProperty("+nodeName.toLowerCase()+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
 	}
 	
 	public static String makeAddReference(String nodeName, UUID id,String typename, UUID target, String TS){
