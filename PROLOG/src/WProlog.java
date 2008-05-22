@@ -1,19 +1,4 @@
-//////////////////////////////////////////////////////
-//
-// Prolog in Java
-//
-// Michael Winikoff
-//
-// Version 1.0: 27/9/96 - 16/10/96
-//
-// Version 1.1: 20 January 1997
-// 
-// Version 1.2:  2 April 1997
-//
-// Version 1.2.1: 19 August 1999 (fixed bug with unification of variable
-//		  to itself.
-//
-//////////////////////////////////////////////////////
+
 
 
 // package wprolog;
@@ -1327,6 +1312,8 @@ new variable */
 	final public Term getvar() {
 		String s; Term t;
 		s = this.getname();
+		
+		
 		t = (Term) vardict.get(s);
 
 		if (t==null) {

@@ -75,6 +75,12 @@ public class PrologExecutor {
 		        		   Iterator i = pos.iterator();
 		        		   while(i.hasNext()){
 		        			   int index = Integer.valueOf(i.next().toString());
+		        			   /*
+		        			    * String [] tabTmp = new String [2];
+		        			   tabTmp[0] = eng.getCall().getarg(index).toString();
+		        			   tabTmp[1] = eng.getCall().getarg(index).getfunctor();
+		        			    */
+		        			   
 		        			   results.add(eng.getCall().getarg(index));
 		        		   }
 					    }

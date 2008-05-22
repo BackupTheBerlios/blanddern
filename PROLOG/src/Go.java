@@ -3,19 +3,37 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.*;
 
+
 public class Go {
+	
+	
+	
+	
+	
+	
 	static public void main(String args[]) {
-		FileInputStream fis;
+		
+		PrologExecutor pex = new PrologExecutor();
+
+		List test = pex.executePrologQuery("D:\\ENSISA\\PROJET2A\\workspace\\PROLOG\\src\\queries.pl" , "D:\\ENSISA\\PROJET2A\\workspace\\PROLOG\\src\\prolog.pl");
+		
+		Iterator it = test.iterator();
+		
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
+		
+		/*FileInputStream fis;
 		String program;
-		String query = "habite(Personne, paris).";
+		
+		
+		String query = "habite(loic, Ou).";
+
 		String tmp;
-		//program = "habite(jean, belfort).habite(lucie, paris).habite(christian, toulouse).habite(adeline, paris).habite(nicolas, paris).";
-		//run(program,query);
 		
 		ArrayList prologProgramIntoTab = new ArrayList();
 		String fileName = "D:\\User\\ProjetIMM\\workspace\\PROLOG\\src\\prolog.pl";
 		
-		cutStringIntoHashTable(query);
 		
 		//We open the file which contains prolog instructions
 		try {
@@ -48,11 +66,19 @@ public class Go {
 		} catch (FileNotFoundException x) {
 			
 			System.out.println("Can't open: " +fileName);
-		}
+		}*/
 	}
-
+	
+	/* */
+	
+	
+	
+	
+	
+	/* Run */
 	static private void run(String prog, String query) {
-		Term t; Engine eng;
+		Term t;
+		Engine eng;
 
         try {
 			// second arg null ... nowhere for error to be indicated
@@ -64,22 +90,20 @@ public class Go {
 			    //The result of the prolog engine
 			    
         	   String result = eng.run(true);
-       	              	  
+        	   System.out.println(eng.getCall().getarg(1));
+        	           	  
         	   
         	   if(!result.equals("No.")){
         		 //Si le resultat est différent de no., on affiche
    			    //L'ideal serai de créer une classe qui stocke toutes ces données
         		   
-        		   List pos = indexOfVar(query);
+        		   List pos = indexesOfVars(query);
         		   Iterator i = pos.iterator();
         		   while(i.hasNext()){
         			   System.out.println(eng.getCall().getarg(Integer.valueOf(i.next().toString())));
         		   }
+
 			    }
-			    
-			    
-			    
-			   
 			   
            } catch (Exception f) { 
                 System.out.println("Can't parse program!");
@@ -89,14 +113,8 @@ public class Go {
        }
 	}
 	
-	static public void cutStringIntoHashTable(String query){	
-		/*StringTokenizer st = new StringTokenizer(query , "(");
-		while (st.hasMoreTokens()) {
-			System.out.println(st.nextToken());
-	     }*/
-	}
 	
-	public static List indexOfVar(String var){
+	public static List indexesOfVars(String var){
 		int posCount=0;
 		
 		List result = new ArrayList();
