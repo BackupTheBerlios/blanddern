@@ -42,6 +42,7 @@ public class PrologExecutor implements ItfPrologInterpret{
 				StringTokenizer st = new StringTokenizer(program , ".");
 				while (st.hasMoreTokens()) {
 					tmp = st.nextToken()+".";
+					
 					prologProgramIntoTab.add(tmp);
 			     }
 			} catch (java.io.IOException x) {
@@ -76,7 +77,10 @@ public class PrologExecutor implements ItfPrologInterpret{
 		        		   Iterator i = pos.iterator();
 		        		   while(i.hasNext()){
 		        			   int index = Integer.valueOf(i.next().toString());
-		        			   results.add(eng.getCall().getarg(index));
+		        			   String [] tabTmp = new String [2];
+		        			   tabTmp[0] = eng.getCall().getarg(index).toString();
+		        			   tabTmp[1] = eng.getCall().getarg(index).getfunctor();
+		        			   results.add(tabTmp);
 		        		   }
 					    }
 		           } catch (Exception f) { 
