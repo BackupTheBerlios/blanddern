@@ -31,27 +31,27 @@ public class PrologGeneratorv6 {
 	
 	
 	public static String makeCreate(UUID id,String typename, String TS){
-		return "create("+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
+		return "create("+typename+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
 	}
 	
 	public static String makeDelete(UUID id,String typename, String TS){
-		return "delNode("+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
+		return "delNode("+typename+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
 	}
 	
-	public static String makeAddProperty(UUID id,String typename,String prop, String TS){
-		return "addProperty("+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
+	public static String makeAddProperty(String nodeName, UUID id,String typename,String prop, String TS){
+		return "addProperty("+nodeName+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
 	}
 	
-	public static String makeRemProperty(UUID id,String typename,String prop, String TS){
-		return "remProperty("+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
+	public static String makeRemProperty(String nodeName, UUID id,String typename,String prop, String TS){
+		return "remProperty("+nodeName+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
 	}
 	
-	public static String makeAddReference(UUID id,String typename, UUID target, String TS){
-		return "addReference("+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
+	public static String makeAddReference(String nodeName, UUID id,String typename, UUID target, String TS){
+		return "addReference("+nodeName+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
 	}
 	
-	public static String makeRemReference(UUID id,String typename, UUID target, String TS){
-		return "remReference("+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
+	public static String makeRemReference(String nodeName, UUID id,String typename, UUID target, String TS){
+		return "remReference("+nodeName+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
 	}
 	
 	
