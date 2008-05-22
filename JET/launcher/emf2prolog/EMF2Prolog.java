@@ -76,7 +76,7 @@ public class EMF2Prolog {
 					if(referencedElt != null){
 					UUID his = makeNode(referencedElt);
 					toAbsorb.add(referencedElt);
-					buff.append(PrologGeneratorv6.makeAddReference(obj.getClass().getName(), mine, current.getName(), his, VirtualTimer.getTimeStamp(sitename)));
+					buff.append(PrologGeneratorv6.makeAddReference(obj.eClass().getName(), mine, current.getName(), his, VirtualTimer.getTimeStamp(sitename)));
 					buff.append(".\n");
 					}
 				}
@@ -86,7 +86,7 @@ public class EMF2Prolog {
 				if(referencedElt != null){
 				UUID his = makeNode(referencedElt);
 				toAbsorb.add(referencedElt);
-				buff.append(PrologGeneratorv6.makeAddReference(obj.getClass().getName(), mine, current.getName(), his, VirtualTimer.getTimeStamp(sitename)));
+				buff.append(PrologGeneratorv6.makeAddReference(obj.eClass().getName(), mine, current.getName(), his, VirtualTimer.getTimeStamp(sitename)));
 				buff.append(".\n");
 				}
 			}
@@ -139,7 +139,7 @@ public class EMF2Prolog {
 	        
 	        //writing the create action
 	        StringBuffer buff = new StringBuffer();
-	        buff.append(PrologGeneratorv6.makeCreate(obj.getClass().getName(), mine, obj.eClass().getName(),VirtualTimer.getTimeStamp(sitename)));
+	        buff.append(PrologGeneratorv6.makeCreate(obj.eClass().getName(), mine, obj.eClass().getName(),VirtualTimer.getTimeStamp(sitename)));
 	        buff.append(".\n");
 
 	        fw.write(buff.toString());
@@ -173,14 +173,14 @@ public class EMF2Prolog {
 	                EList Attr = (EList) values;
 	                for (EAttribute val : ttref) {
 	                    if(val != null){
-	                        buff.append(PrologGeneratorv6.makeAddProperty(obj.getClass().getName(),mine, currentAttribute.getName(), val.toString(), VirtualTimer.getTimeStamp(sitename)));
+	                        buff.append(PrologGeneratorv6.makeAddProperty(obj.eClass().getName(),mine, currentAttribute.getName(), val.toString(), VirtualTimer.getTimeStamp(sitename)));
 	                        buff.append(".\n");
 	                    }
 	                }
 	            }
 
 	            if(values != null){	
-	            buff.append(PrologGeneratorv6.makeAddProperty(obj.getClass().getName(), mine, currentAttribute.getName(), values.toString(), VirtualTimer.getTimeStamp(sitename)));
+	            buff.append(PrologGeneratorv6.makeAddProperty(obj.eClass().getName(), mine, currentAttribute.getName(), values.toString(), VirtualTimer.getTimeStamp(sitename)));
 	            buff.append(".\n");
 	            }
 

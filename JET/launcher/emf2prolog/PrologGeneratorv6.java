@@ -31,27 +31,27 @@ public class PrologGeneratorv6 {
 	
 	
 	public static String makeCreate(String nodeName, UUID id,String typename, String TS){
-		return "create("+nodeName+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
+		return "create("+nodeName.toLowerCase()+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
 	}
 	
 	public static String makeDelete(String nodeName, UUID id,String typename, String TS){
-		return "delNode("+nodeName+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
+		return "delNode("+nodeName.toLowerCase()+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
 	}
 	
 	public static String makeAddProperty(String nodeName, UUID id,String typename,String prop, String TS){
-		return "addProperty("+nodeName+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
+		return "addProperty("+nodeName.toLowerCase()+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
 	}
 	
 	public static String makeRemProperty(String nodeName, UUID id,String typename,String prop, String TS){
-		return "remProperty("+nodeName+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
+		return "remProperty("+nodeName.toLowerCase()+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", '"+ prop.replace('\n', ' ').replace('\'',' ') +"' ,"+ TS +")";
 	}
 	
 	public static String makeAddReference(String nodeName, UUID id,String typename, UUID target, String TS){
-		return "addReference("+nodeName+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
+		return "addReference("+nodeName.toLowerCase()+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
 	}
 	
 	public static String makeRemReference(String nodeName, UUID id,String typename, UUID target, String TS){
-		return "remReference("+nodeName+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
+		return "remReference("+nodeName.toLowerCase()+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
 	}
 	
 	

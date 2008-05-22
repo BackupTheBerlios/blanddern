@@ -44,10 +44,13 @@ public class PrologGeneration {
 		PatternsGeneration patterns = new PatternsGeneration();
 		String result = patterns.generate(a);
 		
+		result = result.replaceAll("\n", "");
+		result = result.replaceAll("\r", "");
+		result = result.replaceAll("\t", "");
+		result = result.replaceAll(" ", "");
+		
 		File file = new File("prologFiles/patterns.pl");
 		Tools.saveGenerated(result, file);
-		
-		deleteGaps(file);
 	}
 	
 	/* delete the jump lines in the Prolog requests */

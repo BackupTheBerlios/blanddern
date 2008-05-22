@@ -87,6 +87,15 @@ public class Launch{
 		File srcModel = new File("../Vessie/models/model1.vessie");
 		eng.generatesSrcMdlProlog(srcModel);
 		
+		//TODO just for tests !!!! à supprimer
+		List testres = eng.executesProlog(null);
+		Iterator it = testres.iterator();
+		while(it.hasNext()){
+			String[] tmp = (String[])it.next();
+			System.out.println(tmp[0]+" "+tmp[1]);
+		}
+		
+		
 		/* FileChooser used for the choice of the genmodel file corresponding
 		 * to the target metamodel (filter on .genmodel extension)
 		 */
@@ -108,6 +117,8 @@ public class Launch{
 			System.exit(-1);
 		}*/
 		
+		
+		
 		/* the package where the Impl files are stored is sought */
 		ImplFinder implLoc = new ImplFinder(new File(/*genmodel*/"../Lanterne/metamodel/lanterne.genmodel"));
 		
@@ -123,7 +134,8 @@ public class Launch{
 					}
 				}
 			}
-
+			
+		
 			/* JET file used to generate as many .aj files as EClass */
 			AdaptorGeneration adapt = new AdaptorGeneration();
 			Iterator i = eclasses.iterator();

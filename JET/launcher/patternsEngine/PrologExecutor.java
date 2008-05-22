@@ -42,7 +42,6 @@ public class PrologExecutor implements ItfPrologInterpret{
 				StringTokenizer st = new StringTokenizer(program , ".");
 				while (st.hasMoreTokens()) {
 					tmp = st.nextToken()+".";
-					
 					prologProgramIntoTab.add(tmp);
 			     }
 			} catch (java.io.IOException x) {
@@ -59,6 +58,7 @@ public class PrologExecutor implements ItfPrologInterpret{
 			Iterator itPrologProg = prologProgramIntoTab.iterator();
 			while(itPrologProg.hasNext()){
 				String programLine = (String)itPrologProg.next();
+				programLine = programLine.replaceAll("'", "");
 				
 				//We use WProlog to run prolog query and prolog program
 				Term t;
@@ -78,13 +78,14 @@ public class PrologExecutor implements ItfPrologInterpret{
 		        		   while(i.hasNext()){
 		        			   int index = Integer.valueOf(i.next().toString());
 		        			   String [] tabTmp = new String [2];
-		        			   tabTmp[0] = eng.getCall().getarg(index).toString();
-		        			   tabTmp[1] = eng.getCall().getarg(index).getfunctor();
+		        			   tabTmp[0] = eng.getCall().getfunctor();
+		        			   tabTmp[1] = eng.getCall().getarg(index)+"";
+		        			   
 		        			   results.add(tabTmp);
 		        		   }
 					    }
 		           } catch (Exception f) { 
-		                System.out.println("Can't parse program!");
+		                //System.out.println("Can't parse program!");
 		           }
 		       } catch (Exception f) {
 		    	   System.out.println("Can't parse query!");
@@ -147,7 +148,9 @@ public class PrologExecutor implements ItfPrologInterpret{
 			}
 			
 			if(Character.isUpperCase(tmp.charAt(0))){
+				if(tmp.charAt(0)!='N' || !Character.isDigit(tmp.charAt(1))){				
 					result.add(posCount);
+				}
 			}
 			
 			if(!tmp.contains(",")){

@@ -43,9 +43,9 @@ public class PatternEngine implements ItfPatternEngine{
 		Tools.copyFile(srcModel, umlFile);
 		
 		//launch the transformation with the corrects arguments
-		String[] args = {umlModel, "prologFiles\\sourceModel.pl", "http://sourceModel"};
+		String[] args = {umlModel, "prologFiles\\sourceModel.pl", "sourceModel"};
 		UML21ToPrologV6.main(args);
-		
+	
 		umlFile.delete();
 	}
 

@@ -2,51 +2,12 @@
 <% Adaptor a = (Adaptor) argument; %>
 
 <% for(int i=0; i<a.getMatching().size(); i++){ %>
-	rule(lhspattern(
-	
 	<% for(int j=0; j<a.getMatching().get(i).getLhs().getComposed().size(); j++){ %>
-		instance(<%= a.getMatching().get(i).getLhs().getComposed().get(j).getName() %>, <%= a.getMatching().get(i).getLhs().getComposed().get(j).getConcept().getName() %>)
-			
-			<% if(j<a.getMatching().get(i).getLhs().getComposed().size()-1){ %>
-				,
-			<% } %>
+		
+		<% EClass concept = a.getMatching().get(i).getLhs().getComposed().get(j).getConcept(); %>	
+		create(Node,N1,<%=concept.getName().toLowerCase()%>,N2).
 	<% } %>
-	),rhspattern(
-	
-	<% for(int j=0; j<a.getMatching().get(i).getRhs().size(); j++){ %>
-		pattern(
-		
-		<% for(int k=0; k<a.getMatching().get(i).getRhs().get(j).getComposed().size(); k++){ %>
-			instance(<%= a.getMatching().get(i).getRhs().get(j).getComposed().get(k).getName() %>, <%= a.getMatching().get(i).getRhs().get(j).getComposed().get(k).getConcept().getName() %>)
-			
-			<% if(k<a.getMatching().get(i).getRhs().get(j).getComposed().size()-1){ %>
-				,
-			<% } %>
-		<% } %>
-		
-		<% if(j<a.getMatching().get(i).getRhs().size()-1){ %>
-			),
-		<% } %>
-	<% } %>
-	), correspRulesList(
-	
-	<% for(int j=0; j<a.getMatching().get(i).getCorrespondanceRule().size(); j++){ %>
-		<% CorrespondanceRule c = a.getMatching().get(i).getCorrespondanceRule().get(j); %>
-	
-		correspondanceRule(<%= c.getFeature().getName() %>,
-		
-		<% if(c.getProperty().getSetPart() != null){ %>
-			setPart(<%= c.getProperty().getSetPart().getRequest().getExpression() %>, <%= c.getProperty().getSetPart().getRequest().getLangage() %>),
-		<% } %>
-		
-		<% Proxy p = c.getProperty().getGetPart().getProxy(); %>
-		getPart(proxy(<%= p.getType().getName() %>, <%= p.getPackage() %>, <%= p.getName() %>),
-		<%= c.getProperty().getGetPart().getRequest().getExpression() %>, <%= c.getProperty().getGetPart().getRequest().getLangage() %>))
-		
-		<% if(j < a.getMatching().get(i).getCorrespondanceRule().size()-1){ %>
-			,
-		<% } %>
-	<% } %>
-	)).
 <% } %>
+
+
 		
