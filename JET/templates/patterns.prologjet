@@ -6,6 +6,7 @@
 		
 		<% EClass concept = a.getMatching().get(i).getLhs().getComposed().get(j).getConcept(); %>	
 		create(Node,N1,<%=concept.getName().toLowerCase()%>,N2).
+		addProperty(<%=concept.getName().toLowerCase()%>,N1,Attname,AttValue,N2). 
 	<% } %>
 <% } %>
 
