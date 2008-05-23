@@ -38,11 +38,16 @@ public class TargetModelGeneration {
 
 	private String modelName; //lanterne
 	private String packageName; //lanterne.impl
+	private String adaptorModel;
+	private String outputModel;
 	
 	//Constructor
-	public TargetModelGeneration(String packageName) {
+	public TargetModelGeneration(String packageName, String adaptorModel) {
 		this.packageName = packageName;
 		modelName = packageName.substring(0, packageName.indexOf('.'));
+		
+		this.adaptorModel = adaptorModel;
+		this.outputModel = "test."+modelName;
 	}
 	
 	//Sequence to build the final model
@@ -58,7 +63,7 @@ public class TargetModelGeneration {
 	//param : string
 	//return EClass[]
 	public String getRhsPatternName(){
-		URI uri = URI.createFileURI(new File("../adaptor/models/model.adaptor").getAbsolutePath());
+		URI uri = URI.createFileURI(new File(adaptorModel).getAbsolutePath());
 		EObject [] model = Tools.loadModel(uri);
 		
 		Adaptor a = (Adaptor) model[0];
@@ -156,7 +161,7 @@ public class TargetModelGeneration {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		TargetModelGeneration tmg = new TargetModelGeneration("lanterne.impl");
+		TargetModelGeneration tmg = new TargetModelGeneration("lanterne.impl", "../adaptor/models/model.adaptor");
 		tmg.buildModel();
 	}
 	
