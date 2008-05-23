@@ -36,11 +36,13 @@ import utils.Tools;
  */
 public class TargetModelGeneration {
 
-	private String modelName;
+	private String modelName; //lanterne
+	private String packageName; //lanterne.impl
 	
 	//Constructor
-	public TargetModelGeneration() {
-		modelName = "";
+	public TargetModelGeneration(String packageName) {
+		this.packageName = packageName;
+		modelName = packageName.substring(0, packageName.indexOf('.'));
 	}
 	
 	//Sequence to build the final model
@@ -154,7 +156,7 @@ public class TargetModelGeneration {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		TargetModelGeneration tmg = new TargetModelGeneration();
+		TargetModelGeneration tmg = new TargetModelGeneration("lanterne.impl");
 		tmg.buildModel();
 	}
 	
