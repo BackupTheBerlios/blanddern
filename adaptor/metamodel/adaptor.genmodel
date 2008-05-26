@@ -24,6 +24,7 @@
     </genClasses>
     <genClasses ecoreClass="adaptor.ecore#//Instance">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference adaptor.ecore#//Instance/concept"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Instance/isMain"/>
     </genClasses>
     <genClasses ecoreClass="adaptor.ecore#//CorrespondanceRule">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference adaptor.ecore#//CorrespondanceRule/feature"/>

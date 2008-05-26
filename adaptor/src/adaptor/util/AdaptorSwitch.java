@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorSwitch.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
+ * $Id: AdaptorSwitch.java,v 1.6 2008/05/26 14:38:45 scheerj Exp $
  */
 package adaptor.util;
 

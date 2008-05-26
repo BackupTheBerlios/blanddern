@@ -21,7 +21,7 @@
       </property>
     </correspondanceRule>
     <lhs>
-      <composed name="v">
+      <composed name="v" isMain="true">
         <concept href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
       </composed>
     </lhs>

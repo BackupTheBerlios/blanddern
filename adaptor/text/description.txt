@@ -22,6 +22,7 @@ Package adaptor <http://adaptor>
 
   Class Instance -> Named
     Reference concept : EClass
+    Attribute isMain : EBoolean
 
   Class CorrespondanceRule
     Reference feature : EStructuralFeature

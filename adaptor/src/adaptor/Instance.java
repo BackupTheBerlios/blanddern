@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Instance.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
+ * $Id: Instance.java,v 1.6 2008/05/26 14:38:45 scheerj Exp $
  */
 package adaptor;
 
@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link adaptor.Instance#getConcept <em>Concept</em>}</li>
+ *   <li>{@link adaptor.Instance#isIsMain <em>Is Main</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,5 +51,31 @@ public interface Instance extends Named {
 	 * @generated
 	 */
 	void setConcept(EClass value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Main</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Main</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Main</em>' attribute.
+	 * @see #setIsMain(boolean)
+	 * @see adaptor.AdaptorPackage#getInstance_IsMain()
+	 * @model
+	 * @generated
+	 */
+	boolean isIsMain();
+
+	/**
+	 * Sets the value of the '{@link adaptor.Instance#isIsMain <em>Is Main</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Main</em>' attribute.
+	 * @see #isIsMain()
+	 * @generated
+	 */
+	void setIsMain(boolean value);
 
 } // Instance

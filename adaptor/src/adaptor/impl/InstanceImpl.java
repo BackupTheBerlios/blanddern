@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InstanceImpl.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
+ * $Id: InstanceImpl.java,v 1.6 2008/05/26 14:38:45 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link adaptor.impl.InstanceImpl#getConcept <em>Concept</em>}</li>
+ *   <li>{@link adaptor.impl.InstanceImpl#isIsMain <em>Is Main</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,6 +40,25 @@ public class InstanceImpl extends NamedImpl implements Instance {
 	 * @ordered
 	 */
 	protected EClass concept;
+
+	/**
+	 * The default value of the '{@link #isIsMain() <em>Is Main</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsMain()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_MAIN_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isIsMain() <em>Is Main</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsMain()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isMain = IS_MAIN_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -102,12 +122,35 @@ public class InstanceImpl extends NamedImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIsMain() {
+		return isMain;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsMain(boolean newIsMain) {
+		boolean oldIsMain = isMain;
+		isMain = newIsMain;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AdaptorPackage.INSTANCE__IS_MAIN, oldIsMain, isMain));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case AdaptorPackage.INSTANCE__CONCEPT:
 				if (resolve) return getConcept();
 				return basicGetConcept();
+			case AdaptorPackage.INSTANCE__IS_MAIN:
+				return isIsMain() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -122,6 +165,9 @@ public class InstanceImpl extends NamedImpl implements Instance {
 		switch (featureID) {
 			case AdaptorPackage.INSTANCE__CONCEPT:
 				setConcept((EClass)newValue);
+				return;
+			case AdaptorPackage.INSTANCE__IS_MAIN:
+				setIsMain(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,6 +184,9 @@ public class InstanceImpl extends NamedImpl implements Instance {
 			case AdaptorPackage.INSTANCE__CONCEPT:
 				setConcept((EClass)null);
 				return;
+			case AdaptorPackage.INSTANCE__IS_MAIN:
+				setIsMain(IS_MAIN_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -152,8 +201,26 @@ public class InstanceImpl extends NamedImpl implements Instance {
 		switch (featureID) {
 			case AdaptorPackage.INSTANCE__CONCEPT:
 				return concept != null;
+			case AdaptorPackage.INSTANCE__IS_MAIN:
+				return isMain != IS_MAIN_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (isMain: ");
+		result.append(isMain);
+		result.append(')');
+		return result.toString();
 	}
 
 } //InstanceImpl

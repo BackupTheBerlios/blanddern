@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RequestImpl.java,v 1.3 2008/05/26 12:32:16 scheerj Exp $
+ * $Id: RequestImpl.java,v 1.4 2008/05/26 14:38:45 scheerj Exp $
  */
 package adaptor.impl;
 

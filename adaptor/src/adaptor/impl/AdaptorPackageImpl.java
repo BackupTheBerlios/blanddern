@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackageImpl.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
+ * $Id: AdaptorPackageImpl.java,v 1.6 2008/05/26 14:38:45 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -313,6 +313,15 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getInstance_IsMain() {
+		return (EAttribute)instanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCorrespondanceRule() {
 		return correspondanceRuleEClass;
 	}
@@ -513,6 +522,7 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 
 		instanceEClass = createEClass(INSTANCE);
 		createEReference(instanceEClass, INSTANCE__CONCEPT);
+		createEAttribute(instanceEClass, INSTANCE__IS_MAIN);
 
 		correspondanceRuleEClass = createEClass(CORRESPONDANCE_RULE);
 		createEReference(correspondanceRuleEClass, CORRESPONDANCE_RULE__FEATURE);
@@ -595,6 +605,7 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 
 		initEClass(instanceEClass, Instance.class, "Instance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInstance_Concept(), theEcorePackage.getEClass(), null, "concept", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInstance_IsMain(), theEcorePackage.getEBoolean(), "isMain", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(correspondanceRuleEClass, CorrespondanceRule.class, "CorrespondanceRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCorrespondanceRule_Feature(), theEcorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, CorrespondanceRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

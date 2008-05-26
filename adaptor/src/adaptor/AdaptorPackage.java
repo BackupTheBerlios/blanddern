@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackage.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
+ * $Id: AdaptorPackage.java,v 1.6 2008/05/26 14:38:45 scheerj Exp $
  */
 package adaptor;
 
@@ -246,13 +246,22 @@ public interface AdaptorPackage extends EPackage {
 	int INSTANCE__CONCEPT = NAMED_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Is Main</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE__IS_MAIN = NAMED_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FEATURE_COUNT = NAMED_FEATURE_COUNT + 1;
+	int INSTANCE_FEATURE_COUNT = NAMED_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link adaptor.impl.CorrespondanceRuleImpl <em>Correspondance Rule</em>}' class.
@@ -635,6 +644,17 @@ public interface AdaptorPackage extends EPackage {
 	EReference getInstance_Concept();
 
 	/**
+	 * Returns the meta object for the attribute '{@link adaptor.Instance#isIsMain <em>Is Main</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Is Main</em>'.
+	 * @see adaptor.Instance#isIsMain()
+	 * @see #getInstance()
+	 * @generated
+	 */
+	EAttribute getInstance_IsMain();
+
+	/**
 	 * Returns the meta object for class '{@link adaptor.CorrespondanceRule <em>Correspondance Rule</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -948,6 +968,14 @@ public interface AdaptorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INSTANCE__CONCEPT = eINSTANCE.getInstance_Concept();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Main</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INSTANCE__IS_MAIN = eINSTANCE.getInstance_IsMain();
 
 		/**
 		 * The meta object literal for the '{@link adaptor.impl.CorrespondanceRuleImpl <em>Correspondance Rule</em>}' class.
