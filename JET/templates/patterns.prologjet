@@ -5,8 +5,9 @@
 	<% for(int j=0; j<a.getMatching().get(i).getLhs().getComposed().size(); j++){ %>
 		
 		<% EClass concept = a.getMatching().get(i).getLhs().getComposed().get(j).getConcept(); %>	
-		create(Node,N1,<%=concept.getName().toLowerCase()%>,N2).
-		addProperty(<%=concept.getName().toLowerCase()%>,N1,Attname,AttValue,N2). 
+		create(Node,Nodeid,<%=concept.getName().toLowerCase()%>,N1).
+		addProperty(<%=concept.getName().toLowerCase()%>,Nodeid,Attname,AttValue,N1). 
+		addReference(<%=concept.getName().toLowerCase()%>,Nodeid,Refname,Targetid,N1).
 	<% } %>
 <% } %>
 

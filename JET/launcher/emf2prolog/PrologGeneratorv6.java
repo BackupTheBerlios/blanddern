@@ -47,11 +47,11 @@ public class PrologGeneratorv6 {
 	}
 	
 	public static String makeAddReference(String nodeName, UUID id,String typename, UUID target, String TS){
-		return "addReference("+nodeName.toLowerCase()+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
+		return "addReference("+nodeName.toLowerCase()+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
 	}
 	
 	public static String makeRemReference(String nodeName, UUID id,String typename, UUID target, String TS){
-		return "remReference("+nodeName.toLowerCase()+","+typename+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
+		return "remReference("+nodeName.toLowerCase()+","+printID(id)+"," + typename.toLowerCase() + ", "+ printID(target) +" ,"+ TS +")";
 	}
 	
 	
