@@ -9,3 +9,4 @@ Package vessie <http://vessie>
 
   Class Vessie
     Attribute contenance : EInt
+    Attribute name : EString

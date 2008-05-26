@@ -7,6 +7,10 @@
         <element xmi:type="ecore:EAttribute" href="vessie.ecore#//Vessie/contenance"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_7aN5wRqBEd2jJaGs-4dczA"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_MocrUCsgEd2--O0yyRgrxg" type="3001">
+        <element xmi:type="ecore:EAttribute" href="vessie.ecore#//Vessie/name"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_MocrUSsgEd2--O0yyRgrxg"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_45ebURqBEd2jJaGs-4dczA"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_45ebUhqBEd2jJaGs-4dczA"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_45ebUxqBEd2jJaGs-4dczA"/>
@@ -23,7 +27,7 @@
     </children>
     <styles xmi:type="notation:ShapeStyle" xmi:id="_45GA0RqBEd2jJaGs-4dczA"/>
     <element xmi:type="ecore:EClass" href="vessie.ecore#//Vessie"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45GA0hqBEd2jJaGs-4dczA" x="168" y="96" width="106" height="67"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45GA0hqBEd2jJaGs-4dczA" x="168" y="96" width="106" height="85"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_EYSdcRqBEd2jJaGs-4dczA"/>
   <element xmi:type="ecore:EPackage" href="vessie.ecore#/"/>

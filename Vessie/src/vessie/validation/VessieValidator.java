@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessieValidator.java,v 1.1 2008/05/16 07:01:05 scheerj Exp $
+ * $Id: VessieValidator.java,v 1.2 2008/05/26 13:48:28 scheerj Exp $
  */
 package vessie.validation;
 
@@ -16,5 +16,9 @@ package vessie.validation;
 public interface VessieValidator {
 	boolean validate();
 
+	boolean validateContenance(String value);
+
 	boolean validateContenance(int value);
+
+	boolean validateName(String value);
 }

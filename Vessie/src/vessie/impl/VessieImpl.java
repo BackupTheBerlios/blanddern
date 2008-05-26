@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessieImpl.java,v 1.1 2008/05/16 07:01:05 scheerj Exp $
+ * $Id: VessieImpl.java,v 1.2 2008/05/26 13:48:28 scheerj Exp $
  */
 package vessie.impl;
 
@@ -24,6 +24,7 @@ import vessie.VessiePackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link vessie.impl.VessieImpl#getContenance <em>Contenance</em>}</li>
+ *   <li>{@link vessie.impl.VessieImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,6 +50,26 @@ public class VessieImpl extends EObjectImpl implements Vessie {
 	 * @ordered
 	 */
 	protected int contenance = CONTENANCE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,11 +116,34 @@ public class VessieImpl extends EObjectImpl implements Vessie {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VessiePackage.VESSIE__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case VessiePackage.VESSIE__CONTENANCE:
 				return new Integer(getContenance());
+			case VessiePackage.VESSIE__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,6 +158,9 @@ public class VessieImpl extends EObjectImpl implements Vessie {
 		switch (featureID) {
 			case VessiePackage.VESSIE__CONTENANCE:
 				setContenance(((Integer)newValue).intValue());
+				return;
+			case VessiePackage.VESSIE__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -130,6 +177,9 @@ public class VessieImpl extends EObjectImpl implements Vessie {
 			case VessiePackage.VESSIE__CONTENANCE:
 				setContenance(CONTENANCE_EDEFAULT);
 				return;
+			case VessiePackage.VESSIE__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -144,6 +194,8 @@ public class VessieImpl extends EObjectImpl implements Vessie {
 		switch (featureID) {
 			case VessiePackage.VESSIE__CONTENANCE:
 				return contenance != CONTENANCE_EDEFAULT;
+			case VessiePackage.VESSIE__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -160,6 +212,8 @@ public class VessieImpl extends EObjectImpl implements Vessie {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (contenance: ");
 		result.append(contenance);
+		result.append(", name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

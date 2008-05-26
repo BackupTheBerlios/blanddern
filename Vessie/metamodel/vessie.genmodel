@@ -8,6 +8,7 @@
   <genPackages prefix="Vessie" disposableProviderFactory="true" ecorePackage="vessie.ecore#/">
     <genClasses ecoreClass="vessie.ecore#//Vessie">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vessie.ecore#//Vessie/contenance"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vessie.ecore#//Vessie/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

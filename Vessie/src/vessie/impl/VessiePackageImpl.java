@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessiePackageImpl.java,v 1.1 2008/05/16 07:01:05 scheerj Exp $
+ * $Id: VessiePackageImpl.java,v 1.2 2008/05/26 13:48:28 scheerj Exp $
  */
 package vessie.impl;
 
@@ -121,6 +121,15 @@ public class VessiePackageImpl extends EPackageImpl implements VessiePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVessie_Name() {
+		return (EAttribute)vessieEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public VessieFactory getVessieFactory() {
 		return (VessieFactory)getEFactoryInstance();
 	}
@@ -146,6 +155,7 @@ public class VessiePackageImpl extends EPackageImpl implements VessiePackage {
 		// Create classes and their features
 		vessieEClass = createEClass(VESSIE);
 		createEAttribute(vessieEClass, VESSIE__CONTENANCE);
+		createEAttribute(vessieEClass, VESSIE__NAME);
 	}
 
 	/**
@@ -180,6 +190,7 @@ public class VessiePackageImpl extends EPackageImpl implements VessiePackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(vessieEClass, Vessie.class, "Vessie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVessie_Contenance(), ecorePackage.getEInt(), "contenance", null, 0, 1, Vessie.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVessie_Name(), ecorePackage.getEString(), "name", null, 0, 1, Vessie.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

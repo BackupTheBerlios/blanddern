@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessiePackage.java,v 1.1 2008/05/16 07:01:05 scheerj Exp $
+ * $Id: VessiePackage.java,v 1.2 2008/05/26 13:48:28 scheerj Exp $
  */
 package vessie;
 
@@ -78,13 +78,22 @@ public interface VessiePackage extends EPackage {
 	int VESSIE__CONTENANCE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VESSIE__NAME = 1;
+
+	/**
 	 * The number of structural features of the '<em>Vessie</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VESSIE_FEATURE_COUNT = 1;
+	int VESSIE_FEATURE_COUNT = 2;
 
 
 	/**
@@ -107,6 +116,17 @@ public interface VessiePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVessie_Contenance();
+
+	/**
+	 * Returns the meta object for the attribute '{@link vessie.Vessie#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see vessie.Vessie#getName()
+	 * @see #getVessie()
+	 * @generated
+	 */
+	EAttribute getVessie_Name();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -147,6 +167,14 @@ public interface VessiePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VESSIE__CONTENANCE = eINSTANCE.getVessie_Contenance();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VESSIE__NAME = eINSTANCE.getVessie_Name();
 
 	}
 
