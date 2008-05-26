@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InstanceValidator.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
+ * $Id: InstanceValidator.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
  */
 package adaptor.validation;
 
-import adaptor.AttributeCorrespondance;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -19,6 +18,4 @@ public interface InstanceValidator {
 	boolean validate();
 
 	boolean validateConcept(EClass value);
-
-	boolean validateCorresponds(AttributeCorrespondance value);
 }

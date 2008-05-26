@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorSwitch.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
+ * $Id: AdaptorSwitch.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
  */
 package adaptor.util;
 
@@ -167,12 +167,6 @@ public class AdaptorSwitch<T> {
 			case AdaptorPackage.REQUEST: {
 				Request request = (Request)theEObject;
 				T result = caseRequest(request);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptorPackage.ATTRIBUTE_CORRESPONDANCE: {
-				AttributeCorrespondance attributeCorrespondance = (AttributeCorrespondance)theEObject;
-				T result = caseAttributeCorrespondance(attributeCorrespondance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -372,21 +366,6 @@ public class AdaptorSwitch<T> {
 	 * @generated
 	 */
 	public T caseRequest(Request object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Attribute Correspondance</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Attribute Correspondance</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAttributeCorrespondance(AttributeCorrespondance object) {
 		return null;
 	}
 

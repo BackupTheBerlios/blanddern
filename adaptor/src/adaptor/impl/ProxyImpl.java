@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProxyImpl.java,v 1.1 2008/05/16 09:05:06 scheerj Exp $
+ * $Id: ProxyImpl.java,v 1.2 2008/05/26 09:25:12 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,6 +50,7 @@ public class ProxyImpl extends NamedImpl implements Proxy {
 	 * @ordered
 	 */
 	protected static final String PACKAGE_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getPackage() <em>Package</em>}' attribute.
 	 * <!-- begin-user-doc -->

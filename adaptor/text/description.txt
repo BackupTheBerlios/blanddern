@@ -22,7 +22,6 @@ Package adaptor <http://adaptor>
 
   Class Instance -> Named
     Reference concept : EClass
-    Reference corresponds : AttributeCorrespondance
 
   Class CorrespondanceRule
     Reference feature : EStructuralFeature
@@ -53,10 +52,6 @@ Package adaptor <http://adaptor>
   Class Request
     Attribute expression : EString
     Attribute langage : Langage
-
-  Class AttributeCorrespondance
-    Reference src : EAttribute
-    Reference target : EAttribute
 
   Enum Langage
     Literal Java = 0

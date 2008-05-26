@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ProxyValidator.java,v 1.1 2008/05/16 09:05:06 scheerj Exp $
+ * $Id: ProxyValidator.java,v 1.2 2008/05/26 09:25:12 scheerj Exp $
  */
 package adaptor.validation;
 
@@ -17,8 +17,6 @@ import org.eclipse.emf.ecore.EClass;
 public interface ProxyValidator {
 	boolean validate();
 
-	boolean validateName(String value);
 	boolean validateType(EClass value);
-
 	boolean validatePackage(String value);
 }

@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Proxy.java,v 1.1 2008/05/16 09:05:06 scheerj Exp $
+ * $Id: Proxy.java,v 1.2 2008/05/26 09:25:12 scheerj Exp $
  */
 package adaptor;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorAdapterFactory.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
+ * $Id: AdaptorAdapterFactory.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
  */
 package adaptor.util;
 
@@ -122,10 +122,6 @@ public class AdaptorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseRequest(Request object) {
 				return createRequestAdapter();
-			}
-			@Override
-			public Adapter caseAttributeCorrespondance(AttributeCorrespondance object) {
-				return createAttributeCorrespondanceAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -326,20 +322,6 @@ public class AdaptorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRequestAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link adaptor.AttributeCorrespondance <em>Attribute Correspondance</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see adaptor.AttributeCorrespondance
-	 * @generated
-	 */
-	public Adapter createAttributeCorrespondanceAdapter() {
 		return null;
 	}
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CorrespondanceRule.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
+ * $Id: CorrespondanceRule.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
  */
 package adaptor;
 

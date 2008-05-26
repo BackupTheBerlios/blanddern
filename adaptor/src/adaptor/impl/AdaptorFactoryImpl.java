@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorFactoryImpl.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
+ * $Id: AdaptorFactoryImpl.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -72,7 +72,6 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 			case AdaptorPackage.RHS_PATTERN: return createRhsPattern();
 			case AdaptorPackage.PROXY: return createProxy();
 			case AdaptorPackage.REQUEST: return createRequest();
-			case AdaptorPackage.ATTRIBUTE_CORRESPONDANCE: return createAttributeCorrespondance();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -216,16 +215,6 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 	public Request createRequest() {
 		RequestImpl request = new RequestImpl();
 		return request;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AttributeCorrespondance createAttributeCorrespondance() {
-		AttributeCorrespondanceImpl attributeCorrespondance = new AttributeCorrespondanceImpl();
-		return attributeCorrespondance;
 	}
 
 	/**

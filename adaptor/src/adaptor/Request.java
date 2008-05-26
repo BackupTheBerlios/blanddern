@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Request.java,v 1.1 2008/05/16 09:05:06 scheerj Exp $
+ * $Id: Request.java,v 1.2 2008/05/26 09:25:12 scheerj Exp $
  */
 package adaptor;
 
