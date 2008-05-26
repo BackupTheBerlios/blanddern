@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Instance.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
+ * $Id: Instance.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
  */
 package adaptor;
 
@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EClass;
  * The following features are supported:
  * <ul>
  *   <li>{@link adaptor.Instance#getConcept <em>Concept</em>}</li>
+ *   <li>{@link adaptor.Instance#getCorresponds <em>Corresponds</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,5 +51,31 @@ public interface Instance extends Named {
 	 * @generated
 	 */
 	void setConcept(EClass value);
+
+	/**
+	 * Returns the value of the '<em><b>Corresponds</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Corresponds</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Corresponds</em>' containment reference.
+	 * @see #setCorresponds(AttributeCorrespondance)
+	 * @see adaptor.AdaptorPackage#getInstance_Corresponds()
+	 * @model containment="true"
+	 * @generated
+	 */
+	AttributeCorrespondance getCorresponds();
+
+	/**
+	 * Sets the value of the '{@link adaptor.Instance#getCorresponds <em>Corresponds</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Corresponds</em>' containment reference.
+	 * @see #getCorresponds()
+	 * @generated
+	 */
+	void setCorresponds(AttributeCorrespondance value);
 
 } // Instance

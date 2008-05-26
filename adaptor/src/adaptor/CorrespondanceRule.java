@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: CorrespondanceRule.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
+ * $Id: CorrespondanceRule.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
  */
 package adaptor;
 
@@ -64,7 +64,7 @@ public interface CorrespondanceRule extends EObject {
 	 * @return the value of the '<em>Property</em>' containment reference.
 	 * @see #setProperty(Property)
 	 * @see adaptor.AdaptorPackage#getCorrespondanceRule_Property()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	Property getProperty();

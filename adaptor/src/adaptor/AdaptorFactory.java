@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorFactory.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
+ * $Id: AdaptorFactory.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
  */
 package adaptor;
 
@@ -123,6 +123,15 @@ public interface AdaptorFactory extends EFactory {
 	 * @generated
 	 */
 	Request createRequest();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Correspondance</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Correspondance</em>'.
+	 * @generated
+	 */
+	AttributeCorrespondance createAttributeCorrespondance();
 
 	/**
 	 * Returns the package supported by this factory.

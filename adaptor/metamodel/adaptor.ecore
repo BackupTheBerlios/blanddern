@@ -25,6 +25,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//Named">
     <eStructuralFeatures xsi:type="ecore:EReference" name="concept" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="corresponds" eType="#//AttributeCorrespondance"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CorrespondanceRule">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EStructuralFeature"/>
@@ -62,5 +64,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Langage">
     <eLiterals name="Java"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeCorrespondance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="src" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
   </eClassifiers>
 </ecore:EPackage>

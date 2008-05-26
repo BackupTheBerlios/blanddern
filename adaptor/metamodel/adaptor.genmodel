@@ -24,6 +24,7 @@
     </genClasses>
     <genClasses ecoreClass="adaptor.ecore#//Instance">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference adaptor.ecore#//Instance/concept"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Instance/corresponds"/>
     </genClasses>
     <genClasses ecoreClass="adaptor.ecore#//CorrespondanceRule">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference adaptor.ecore#//CorrespondanceRule/feature"/>
@@ -52,6 +53,10 @@
     <genClasses ecoreClass="adaptor.ecore#//Request">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Request/expression"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Request/langage"/>
+    </genClasses>
+    <genClasses ecoreClass="adaptor.ecore#//AttributeCorrespondance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference adaptor.ecore#//AttributeCorrespondance/src"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference adaptor.ecore#//AttributeCorrespondance/target"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

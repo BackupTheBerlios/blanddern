@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackage.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
+ * $Id: AdaptorPackage.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
  */
 package adaptor;
 
@@ -246,13 +246,22 @@ public interface AdaptorPackage extends EPackage {
 	int INSTANCE__CONCEPT = NAMED_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Corresponds</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE__CORRESPONDS = NAMED_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FEATURE_COUNT = NAMED_FEATURE_COUNT + 1;
+	int INSTANCE_FEATURE_COUNT = NAMED_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link adaptor.impl.CorrespondanceRuleImpl <em>Correspondance Rule</em>}' class.
@@ -551,6 +560,43 @@ public interface AdaptorPackage extends EPackage {
 	int REQUEST_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link adaptor.impl.AttributeCorrespondanceImpl <em>Attribute Correspondance</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see adaptor.impl.AttributeCorrespondanceImpl
+	 * @see adaptor.impl.AdaptorPackageImpl#getAttributeCorrespondance()
+	 * @generated
+	 */
+	int ATTRIBUTE_CORRESPONDANCE = 13;
+
+	/**
+	 * The feature id for the '<em><b>Src</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CORRESPONDANCE__SRC = 0;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CORRESPONDANCE__TARGET = 1;
+
+	/**
+	 * The number of structural features of the '<em>Attribute Correspondance</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_CORRESPONDANCE_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link adaptor.Langage <em>Langage</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -558,7 +604,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @see adaptor.impl.AdaptorPackageImpl#getLangage()
 	 * @generated
 	 */
-	int LANGAGE = 13;
+	int LANGAGE = 14;
 
 
 	/**
@@ -688,6 +734,17 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getInstance_Concept();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link adaptor.Instance#getCorresponds <em>Corresponds</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Corresponds</em>'.
+	 * @see adaptor.Instance#getCorresponds()
+	 * @see #getInstance()
+	 * @generated
+	 */
+	EReference getInstance_Corresponds();
 
 	/**
 	 * Returns the meta object for class '{@link adaptor.CorrespondanceRule <em>Correspondance Rule</em>}'.
@@ -912,6 +969,38 @@ public interface AdaptorPackage extends EPackage {
 	EAttribute getRequest_Langage();
 
 	/**
+	 * Returns the meta object for class '{@link adaptor.AttributeCorrespondance <em>Attribute Correspondance</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Attribute Correspondance</em>'.
+	 * @see adaptor.AttributeCorrespondance
+	 * @generated
+	 */
+	EClass getAttributeCorrespondance();
+
+	/**
+	 * Returns the meta object for the reference '{@link adaptor.AttributeCorrespondance#getSrc <em>Src</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Src</em>'.
+	 * @see adaptor.AttributeCorrespondance#getSrc()
+	 * @see #getAttributeCorrespondance()
+	 * @generated
+	 */
+	EReference getAttributeCorrespondance_Src();
+
+	/**
+	 * Returns the meta object for the reference '{@link adaptor.AttributeCorrespondance#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see adaptor.AttributeCorrespondance#getTarget()
+	 * @see #getAttributeCorrespondance()
+	 * @generated
+	 */
+	EReference getAttributeCorrespondance_Target();
+
+	/**
 	 * Returns the meta object for enum '{@link adaptor.Langage <em>Langage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1046,6 +1135,14 @@ public interface AdaptorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference INSTANCE__CONCEPT = eINSTANCE.getInstance_Concept();
+
+		/**
+		 * The meta object literal for the '<em><b>Corresponds</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE__CORRESPONDS = eINSTANCE.getInstance_Corresponds();
 
 		/**
 		 * The meta object literal for the '{@link adaptor.impl.CorrespondanceRuleImpl <em>Correspondance Rule</em>}' class.
@@ -1232,6 +1329,32 @@ public interface AdaptorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REQUEST__LANGAGE = eINSTANCE.getRequest_Langage();
+
+		/**
+		 * The meta object literal for the '{@link adaptor.impl.AttributeCorrespondanceImpl <em>Attribute Correspondance</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see adaptor.impl.AttributeCorrespondanceImpl
+		 * @see adaptor.impl.AdaptorPackageImpl#getAttributeCorrespondance()
+		 * @generated
+		 */
+		EClass ATTRIBUTE_CORRESPONDANCE = eINSTANCE.getAttributeCorrespondance();
+
+		/**
+		 * The meta object literal for the '<em><b>Src</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE_CORRESPONDANCE__SRC = eINSTANCE.getAttributeCorrespondance_Src();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE_CORRESPONDANCE__TARGET = eINSTANCE.getAttributeCorrespondance_Target();
 
 		/**
 		 * The meta object literal for the '{@link adaptor.Langage <em>Langage</em>}' enum.

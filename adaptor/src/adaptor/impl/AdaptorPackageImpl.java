@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackageImpl.java,v 1.2 2008/05/16 09:05:06 scheerj Exp $
+ * $Id: AdaptorPackageImpl.java,v 1.3 2008/05/26 07:05:10 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -10,6 +10,7 @@ import adaptor.Action;
 import adaptor.Adaptor;
 import adaptor.AdaptorFactory;
 import adaptor.AdaptorPackage;
+import adaptor.AttributeCorrespondance;
 import adaptor.CorrespondanceRule;
 import adaptor.Instance;
 import adaptor.Langage;
@@ -129,6 +130,13 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * @generated
 	 */
 	private EClass requestEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass attributeCorrespondanceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -314,6 +322,15 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 */
 	public EReference getInstance_Concept() {
 		return (EReference)instanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getInstance_Corresponds() {
+		return (EReference)instanceEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -510,6 +527,33 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAttributeCorrespondance() {
+		return attributeCorrespondanceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttributeCorrespondance_Src() {
+		return (EReference)attributeCorrespondanceEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAttributeCorrespondance_Target() {
+		return (EReference)attributeCorrespondanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getLangage() {
 		return langageEEnum;
 	}
@@ -557,6 +601,7 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 
 		instanceEClass = createEClass(INSTANCE);
 		createEReference(instanceEClass, INSTANCE__CONCEPT);
+		createEReference(instanceEClass, INSTANCE__CORRESPONDS);
 
 		correspondanceRuleEClass = createEClass(CORRESPONDANCE_RULE);
 		createEReference(correspondanceRuleEClass, CORRESPONDANCE_RULE__FEATURE);
@@ -587,6 +632,10 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		requestEClass = createEClass(REQUEST);
 		createEAttribute(requestEClass, REQUEST__EXPRESSION);
 		createEAttribute(requestEClass, REQUEST__LANGAGE);
+
+		attributeCorrespondanceEClass = createEClass(ATTRIBUTE_CORRESPONDANCE);
+		createEReference(attributeCorrespondanceEClass, ATTRIBUTE_CORRESPONDANCE__SRC);
+		createEReference(attributeCorrespondanceEClass, ATTRIBUTE_CORRESPONDANCE__TARGET);
 
 		// Create enums
 		langageEEnum = createEEnum(LANGAGE);
@@ -645,10 +694,11 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 
 		initEClass(instanceEClass, Instance.class, "Instance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getInstance_Concept(), theEcorePackage.getEClass(), null, "concept", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstance_Corresponds(), this.getAttributeCorrespondance(), null, "corresponds", null, 0, 1, Instance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(correspondanceRuleEClass, CorrespondanceRule.class, "CorrespondanceRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCorrespondanceRule_Feature(), theEcorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, CorrespondanceRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCorrespondanceRule_Property(), this.getProperty(), null, "property", null, 0, 1, CorrespondanceRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCorrespondanceRule_Property(), this.getProperty(), null, "property", null, 1, 1, CorrespondanceRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyEClass, Property.class, "Property", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProperty_SetPart(), this.getAction(), null, "setPart", null, 0, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -675,6 +725,10 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		initEClass(requestEClass, Request.class, "Request", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRequest_Expression(), ecorePackage.getEString(), "expression", null, 0, 1, Request.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRequest_Langage(), this.getLangage(), "langage", null, 0, 1, Request.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(attributeCorrespondanceEClass, AttributeCorrespondance.class, "AttributeCorrespondance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttributeCorrespondance_Src(), theEcorePackage.getEAttribute(), null, "src", null, 0, 1, AttributeCorrespondance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttributeCorrespondance_Target(), theEcorePackage.getEAttribute(), null, "target", null, 0, 1, AttributeCorrespondance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(langageEEnum, Langage.class, "Langage");
