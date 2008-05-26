@@ -11,7 +11,10 @@ privileged aspect <%=className%>Aspect {
 			
 				<% for(int z=0; z<args.getModel().getMatching().get(i).getLhs().getComposed().size(); z++){ %>
 					<% Instance proxy = args.getModel().getMatching().get(i).getLhs().getComposed().get(z); %>
-					public <%=proxy.getConcept().getEPackage().getName()%>.<%=proxy.getConcept().getName()%> <%=ePackageName%>.<%=proxy.getName()%>;
+					
+					<% if(proxy.isIsMain()){ %>
+						public <%=proxy.getConcept().getEPackage().getName()%>.<%=proxy.getConcept().getName()%> <%=ePackageName%>.<%=proxy.getName()%>;
+					<% } %>
 				<% } %>	
 				
 				<% for(int l=0;l<args.getModel().getMatching().get(k).getCorrespondanceRule().size();l++){ %>
