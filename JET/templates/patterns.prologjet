@@ -1,14 +1,11 @@
 <%@ jet package="patterns" imports="adaptor.* org.eclipse.emf.ecore.*" class="PatternsGeneration"%>
-<% Adaptor a = (Adaptor) argument; %>
+<% Matching m = (Matching) argument; %>
 
-<% for(int i=0; i<a.getMatching().size(); i++){ %>
-	<% for(int j=0; j<a.getMatching().get(i).getLhs().getComposed().size(); j++){ %>
-		
-		<% EClass concept = a.getMatching().get(i).getLhs().getComposed().get(j).getConcept(); %>	
-		create(Node,Nodeid,<%=concept.getName().toLowerCase()%>,N1).
-		addProperty(<%=concept.getName().toLowerCase()%>,Nodeid,Attname,AttValue,N1). 
-		addReference(<%=concept.getName().toLowerCase()%>,Nodeid,Refname,Targetid,N1).
-	<% } %>
+<% for(int i=0; i<m.getLhs().getComposed().size(); i++){ %>
+	<% EClass concept = m.getLhs().getComposed().get(i).getConcept(); %>
+	
+	create(Node,N1,<%=concept.getName().toLowerCase()%>,N2).
+	addProperty(<%=concept.getName().toLowerCase()%>,N1,name,Value,N2).	
 <% } %>
 
 
