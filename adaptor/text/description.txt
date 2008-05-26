@@ -32,7 +32,6 @@ Package adaptor <http://adaptor>
     Reference getPart : Query<<1..1>>
 
   Class Query
-    Reference proxy : Proxy
     Reference request : Request<<1..1>>
 
   Class Action
@@ -44,10 +43,6 @@ Package adaptor <http://adaptor>
   Class LhsPattern -> Pattern
 
   Class RhsPattern -> Pattern
-
-  Class Proxy -> Named
-    Reference type : EClass
-    Attribute package : EString
 
   Class Request
     Attribute expression : EString

@@ -2,12 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: QueryImpl.java,v 1.3 2008/05/26 09:25:12 scheerj Exp $
+ * $Id: QueryImpl.java,v 1.4 2008/05/26 12:32:16 scheerj Exp $
  */
 package adaptor.impl;
 
 import adaptor.AdaptorPackage;
-import adaptor.Proxy;
 import adaptor.Query;
 import adaptor.Request;
 
@@ -27,7 +26,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link adaptor.impl.QueryImpl#getProxy <em>Proxy</em>}</li>
  *   <li>{@link adaptor.impl.QueryImpl#getRequest <em>Request</em>}</li>
  * </ul>
  * </p>
@@ -35,16 +33,6 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @generated
  */
 public class QueryImpl extends EObjectImpl implements Query {
-	/**
-	 * The cached value of the '{@link #getProxy() <em>Proxy</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getProxy()
-	 * @generated
-	 * @ordered
-	 */
-	protected Proxy proxy;
-
 	/**
 	 * The cached value of the '{@link #getRequest() <em>Request</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -72,49 +60,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 	@Override
 	protected EClass eStaticClass() {
 		return AdaptorPackage.Literals.QUERY;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Proxy getProxy() {
-		return proxy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetProxy(Proxy newProxy, NotificationChain msgs) {
-		Proxy oldProxy = proxy;
-		proxy = newProxy;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AdaptorPackage.QUERY__PROXY, oldProxy, newProxy);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setProxy(Proxy newProxy) {
-		if (newProxy != proxy) {
-			NotificationChain msgs = null;
-			if (proxy != null)
-				msgs = ((InternalEObject)proxy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AdaptorPackage.QUERY__PROXY, null, msgs);
-			if (newProxy != null)
-				msgs = ((InternalEObject)newProxy).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AdaptorPackage.QUERY__PROXY, null, msgs);
-			msgs = basicSetProxy(newProxy, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AdaptorPackage.QUERY__PROXY, newProxy, newProxy));
 	}
 
 	/**
@@ -168,8 +113,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case AdaptorPackage.QUERY__PROXY:
-				return basicSetProxy(null, msgs);
 			case AdaptorPackage.QUERY__REQUEST:
 				return basicSetRequest(null, msgs);
 		}
@@ -184,8 +127,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AdaptorPackage.QUERY__PROXY:
-				return getProxy();
 			case AdaptorPackage.QUERY__REQUEST:
 				return getRequest();
 		}
@@ -200,9 +141,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AdaptorPackage.QUERY__PROXY:
-				setProxy((Proxy)newValue);
-				return;
 			case AdaptorPackage.QUERY__REQUEST:
 				setRequest((Request)newValue);
 				return;
@@ -218,9 +156,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AdaptorPackage.QUERY__PROXY:
-				setProxy((Proxy)null);
-				return;
 			case AdaptorPackage.QUERY__REQUEST:
 				setRequest((Request)null);
 				return;
@@ -236,8 +171,6 @@ public class QueryImpl extends EObjectImpl implements Query {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AdaptorPackage.QUERY__PROXY:
-				return proxy != null;
 			case AdaptorPackage.QUERY__REQUEST:
 				return request != null;
 		}

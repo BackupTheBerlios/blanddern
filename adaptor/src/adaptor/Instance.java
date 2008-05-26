@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Instance.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
+ * $Id: Instance.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
  */
 package adaptor;
 

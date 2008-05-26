@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorAdapterFactory.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
+ * $Id: AdaptorAdapterFactory.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
  */
 package adaptor.util;
 
@@ -114,10 +114,6 @@ public class AdaptorAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseRhsPattern(RhsPattern object) {
 				return createRhsPatternAdapter();
-			}
-			@Override
-			public Adapter caseProxy(Proxy object) {
-				return createProxyAdapter();
 			}
 			@Override
 			public Adapter caseRequest(Request object) {
@@ -294,20 +290,6 @@ public class AdaptorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRhsPatternAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link adaptor.Proxy <em>Proxy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see adaptor.Proxy
-	 * @generated
-	 */
-	public Adapter createProxyAdapter() {
 		return null;
 	}
 

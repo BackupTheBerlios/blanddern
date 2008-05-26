@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackageImpl.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
+ * $Id: AdaptorPackageImpl.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -18,7 +18,6 @@ import adaptor.Matching;
 import adaptor.Named;
 import adaptor.Pattern;
 import adaptor.Property;
-import adaptor.Proxy;
 import adaptor.Query;
 import adaptor.Request;
 import adaptor.RhsPattern;
@@ -115,13 +114,6 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * @generated
 	 */
 	private EClass rhsPatternEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass proxyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -384,17 +376,8 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getQuery_Proxy() {
-		return (EReference)queryEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getQuery_Request() {
-		return (EReference)queryEClass.getEStructuralFeatures().get(1);
+		return (EReference)queryEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -449,33 +432,6 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 */
 	public EClass getRhsPattern() {
 		return rhsPatternEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getProxy() {
-		return proxyEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EReference getProxy_Type() {
-		return (EReference)proxyEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getProxy_Package() {
-		return (EAttribute)proxyEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -567,7 +523,6 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		createEReference(propertyEClass, PROPERTY__GET_PART);
 
 		queryEClass = createEClass(QUERY);
-		createEReference(queryEClass, QUERY__PROXY);
 		createEReference(queryEClass, QUERY__REQUEST);
 
 		actionEClass = createEClass(ACTION);
@@ -579,10 +534,6 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		lhsPatternEClass = createEClass(LHS_PATTERN);
 
 		rhsPatternEClass = createEClass(RHS_PATTERN);
-
-		proxyEClass = createEClass(PROXY);
-		createEReference(proxyEClass, PROXY__TYPE);
-		createEAttribute(proxyEClass, PROXY__PACKAGE);
 
 		requestEClass = createEClass(REQUEST);
 		createEAttribute(requestEClass, REQUEST__EXPRESSION);
@@ -627,7 +578,6 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		instanceEClass.getESuperTypes().add(this.getNamed());
 		lhsPatternEClass.getESuperTypes().add(this.getPattern());
 		rhsPatternEClass.getESuperTypes().add(this.getPattern());
-		proxyEClass.getESuperTypes().add(this.getNamed());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(adaptorEClass, Adaptor.class, "Adaptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -655,7 +605,6 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		initEReference(getProperty_GetPart(), this.getQuery(), null, "getPart", null, 1, 1, Property.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(queryEClass, Query.class, "Query", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getQuery_Proxy(), this.getProxy(), null, "proxy", null, 0, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getQuery_Request(), this.getRequest(), null, "request", null, 1, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -667,10 +616,6 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		initEClass(lhsPatternEClass, LhsPattern.class, "LhsPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(rhsPatternEClass, RhsPattern.class, "RhsPattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(proxyEClass, Proxy.class, "Proxy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProxy_Type(), theEcorePackage.getEClass(), null, "type", null, 0, 1, Proxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getProxy_Package(), ecorePackage.getEString(), "package", null, 0, 1, Proxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(requestEClass, Request.class, "Request", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRequest_Expression(), ecorePackage.getEString(), "expression", null, 0, 1, Request.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

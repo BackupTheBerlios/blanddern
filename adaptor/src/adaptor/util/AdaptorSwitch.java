@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorSwitch.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
+ * $Id: AdaptorSwitch.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
  */
 package adaptor.util;
 
@@ -154,13 +154,6 @@ public class AdaptorSwitch<T> {
 				RhsPattern rhsPattern = (RhsPattern)theEObject;
 				T result = caseRhsPattern(rhsPattern);
 				if (result == null) result = casePattern(rhsPattern);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AdaptorPackage.PROXY: {
-				Proxy proxy = (Proxy)theEObject;
-				T result = caseProxy(proxy);
-				if (result == null) result = caseNamed(proxy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -336,21 +329,6 @@ public class AdaptorSwitch<T> {
 	 * @generated
 	 */
 	public T caseRhsPattern(RhsPattern object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Proxy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Proxy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProxy(Proxy object) {
 		return null;
 	}
 

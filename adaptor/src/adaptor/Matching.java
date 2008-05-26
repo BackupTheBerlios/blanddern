@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Matching.java,v 1.3 2008/05/26 09:25:12 scheerj Exp $
+ * $Id: Matching.java,v 1.4 2008/05/26 12:32:16 scheerj Exp $
  */
 package adaptor;
 

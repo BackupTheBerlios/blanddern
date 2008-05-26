@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackage.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
+ * $Id: AdaptorPackage.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
  */
 package adaptor;
 
@@ -339,22 +339,13 @@ public interface AdaptorPackage extends EPackage {
 	int QUERY = 6;
 
 	/**
-	 * The feature id for the '<em><b>Proxy</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUERY__PROXY = 0;
-
-	/**
 	 * The feature id for the '<em><b>Request</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY__REQUEST = 1;
+	int QUERY__REQUEST = 0;
 
 	/**
 	 * The number of structural features of the '<em>Query</em>' class.
@@ -363,7 +354,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_FEATURE_COUNT = 2;
+	int QUERY_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link adaptor.impl.ActionImpl <em>Action</em>}' class.
@@ -468,52 +459,6 @@ public interface AdaptorPackage extends EPackage {
 	int RHS_PATTERN_FEATURE_COUNT = PATTERN_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link adaptor.impl.ProxyImpl <em>Proxy</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see adaptor.impl.ProxyImpl
-	 * @see adaptor.impl.AdaptorPackageImpl#getProxy()
-	 * @generated
-	 */
-	int PROXY = 11;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROXY__NAME = NAMED__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROXY__TYPE = NAMED_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Package</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROXY__PACKAGE = NAMED_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Proxy</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROXY_FEATURE_COUNT = NAMED_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link adaptor.impl.RequestImpl <em>Request</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -521,7 +466,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @see adaptor.impl.AdaptorPackageImpl#getRequest()
 	 * @generated
 	 */
-	int REQUEST = 12;
+	int REQUEST = 11;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -558,7 +503,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @see adaptor.impl.AdaptorPackageImpl#getLangage()
 	 * @generated
 	 */
-	int LANGAGE = 13;
+	int LANGAGE = 12;
 
 
 	/**
@@ -764,17 +709,6 @@ public interface AdaptorPackage extends EPackage {
 	EClass getQuery();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link adaptor.Query#getProxy <em>Proxy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Proxy</em>'.
-	 * @see adaptor.Query#getProxy()
-	 * @see #getQuery()
-	 * @generated
-	 */
-	EReference getQuery_Proxy();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link adaptor.Query#getRequest <em>Request</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -846,38 +780,6 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getRhsPattern();
-
-	/**
-	 * Returns the meta object for class '{@link adaptor.Proxy <em>Proxy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Proxy</em>'.
-	 * @see adaptor.Proxy
-	 * @generated
-	 */
-	EClass getProxy();
-
-	/**
-	 * Returns the meta object for the reference '{@link adaptor.Proxy#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see adaptor.Proxy#getType()
-	 * @see #getProxy()
-	 * @generated
-	 */
-	EReference getProxy_Type();
-
-	/**
-	 * Returns the meta object for the attribute '{@link adaptor.Proxy#getPackage <em>Package</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Package</em>'.
-	 * @see adaptor.Proxy#getPackage()
-	 * @see #getProxy()
-	 * @generated
-	 */
-	EAttribute getProxy_Package();
 
 	/**
 	 * Returns the meta object for class '{@link adaptor.Request <em>Request</em>}'.
@@ -1110,14 +1012,6 @@ public interface AdaptorPackage extends EPackage {
 		EClass QUERY = eINSTANCE.getQuery();
 
 		/**
-		 * The meta object literal for the '<em><b>Proxy</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference QUERY__PROXY = eINSTANCE.getQuery_Proxy();
-
-		/**
 		 * The meta object literal for the '<em><b>Request</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1180,32 +1074,6 @@ public interface AdaptorPackage extends EPackage {
 		 * @generated
 		 */
 		EClass RHS_PATTERN = eINSTANCE.getRhsPattern();
-
-		/**
-		 * The meta object literal for the '{@link adaptor.impl.ProxyImpl <em>Proxy</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see adaptor.impl.ProxyImpl
-		 * @see adaptor.impl.AdaptorPackageImpl#getProxy()
-		 * @generated
-		 */
-		EClass PROXY = eINSTANCE.getProxy();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference PROXY__TYPE = eINSTANCE.getProxy_Type();
-
-		/**
-		 * The meta object literal for the '<em><b>Package</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute PROXY__PACKAGE = eINSTANCE.getProxy_Package();
 
 		/**
 		 * The meta object literal for the '{@link adaptor.impl.RequestImpl <em>Request</em>}' class.

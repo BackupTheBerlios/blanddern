@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorFactoryImpl.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
+ * $Id: AdaptorFactoryImpl.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -70,7 +70,6 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 			case AdaptorPackage.ACTION: return createAction();
 			case AdaptorPackage.LHS_PATTERN: return createLhsPattern();
 			case AdaptorPackage.RHS_PATTERN: return createRhsPattern();
-			case AdaptorPackage.PROXY: return createProxy();
 			case AdaptorPackage.REQUEST: return createRequest();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -195,16 +194,6 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 	public RhsPattern createRhsPattern() {
 		RhsPatternImpl rhsPattern = new RhsPatternImpl();
 		return rhsPattern;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Proxy createProxy() {
-		ProxyImpl proxy = new ProxyImpl();
-		return proxy;
 	}
 
 	/**

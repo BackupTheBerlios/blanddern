@@ -34,7 +34,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Property/getPart"/>
     </genClasses>
     <genClasses ecoreClass="adaptor.ecore#//Query">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Query/proxy"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Query/request"/>
     </genClasses>
     <genClasses ecoreClass="adaptor.ecore#//Action">
@@ -45,10 +44,6 @@
     </genClasses>
     <genClasses ecoreClass="adaptor.ecore#//LhsPattern"/>
     <genClasses ecoreClass="adaptor.ecore#//RhsPattern"/>
-    <genClasses ecoreClass="adaptor.ecore#//Proxy">
-      <genFeatures createChild="false" ecoreFeature="ecore:EReference adaptor.ecore#//Proxy/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Proxy/package"/>
-    </genClasses>
     <genClasses ecoreClass="adaptor.ecore#//Request">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Request/expression"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Request/langage"/>

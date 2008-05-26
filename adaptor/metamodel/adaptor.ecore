@@ -38,8 +38,6 @@
         eType="#//Query" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Query">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="proxy" eType="#//Proxy"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="request" lowerBound="1"
         eType="#//Request" containment="true"/>
   </eClassifiers>
@@ -52,10 +50,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LhsPattern" eSuperTypes="#//Pattern"/>
   <eClassifiers xsi:type="ecore:EClass" name="RhsPattern" eSuperTypes="#//Pattern"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Proxy" eSuperTypes="#//Named">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="package" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Request">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="langage" eType="#//Langage"/>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorFactory.java,v 1.4 2008/05/26 09:25:12 scheerj Exp $
+ * $Id: AdaptorFactory.java,v 1.5 2008/05/26 12:32:16 scheerj Exp $
  */
 package adaptor;
 
@@ -105,15 +105,6 @@ public interface AdaptorFactory extends EFactory {
 	 * @generated
 	 */
 	RhsPattern createRhsPattern();
-
-	/**
-	 * Returns a new object of class '<em>Proxy</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Proxy</em>'.
-	 * @generated
-	 */
-	Proxy createProxy();
 
 	/**
 	 * Returns a new object of class '<em>Request</em>'.
