@@ -65,10 +65,10 @@ public class Launch{
 				Tools.recursifDelete(ajDir);
 			}
 			if(plDir.exists()){
-				Tools.recursifDelete(plDir);
+				//Tools.recursifDelete(plDir);
 			}
 			ajDir.mkdir();
-			plDir.mkdir();
+			//plDir.mkdir();
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -91,8 +91,13 @@ public class Launch{
 		List testres = eng.executesProlog(null);
 		Iterator it = testres.iterator();
 		while(it.hasNext()){
-			String[] tmp = (String[])it.next();
-			System.out.println(tmp[0]+" "+tmp[1]);
+			List tmp = (List)it.next();
+			
+			Iterator it2 = tmp.iterator();
+			while(it2.hasNext()){
+				System.out.print(it2.next()+" ");
+			}
+			System.out.println("");
 		}
 		
 		
