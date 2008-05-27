@@ -34,7 +34,13 @@ public class ImplFinder {
 	public String implPackage() throws Exception{
 		Element root = parse(genFile);
 		
-		return walkGenFile(root);
+		return walkGenFile(root, true);
+	}
+	
+	public String factoryPackage() throws Exception{
+		Element root = parse(genFile);
+		
+		return walkGenFile(root, false);
 	}
 	
 	/* store the genmodel file in a XML document parser 
@@ -60,11 +66,14 @@ public class ImplFinder {
 		}
 	}
 	
-	/* parses the genmodel file */
-	public String walkGenFile(Node node){
+	/* parses the genmodel file and returns the impl
+	 * or the factory package*/
+	public String walkGenFile(Node node, boolean impl){
 		String implPack = "impl";
+		String basePackage = "";
 		String ecore = "";
 		String ecorePack = "";
+		String prefix = "";
 		NodeList childrens = node.getChildNodes();
 		Element ecoreRoot;
 		
@@ -83,9 +92,18 @@ public class ImplFinder {
 				 */
 				if(child.getNodeName().equals("genPackages")){
 					Node att = child.getAttributes().getNamedItem("classPackageSuffix");
-					
 					if(att!=null){
 						implPack = getText(att.getFirstChild());
+					}
+					
+					att = child.getAttributes().getNamedItem("basePackage");
+					if(att!=null){
+						basePackage = getText(att.getFirstChild())+".";
+					}
+					
+					att = child.getAttributes().getNamedItem("prefix");
+					if(att!=null){
+						prefix = getText(att.getFirstChild());
 					}
 				}
 			}
@@ -103,7 +121,11 @@ public class ImplFinder {
 			e.printStackTrace();
 		}
 		
-		return ecorePack+"."+implPack;
+		if(impl){
+			return basePackage+ecorePack+"."+implPack;
+		}else{
+			return basePackage+ecorePack+"."+prefix+"Factory";
+		}
 	}
 	
 	/* parses the ecore file to find the prefix of the package */
