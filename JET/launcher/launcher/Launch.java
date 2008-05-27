@@ -43,6 +43,7 @@ import filtering.ArgumentsRunQuery;
 import filtering.MyFilter;
 
 import translated.AdaptorGeneration;
+import translated.PatternFilterGeneration;
 import translated.RunQueryGeneration;
 import utils.Tools;
 
@@ -159,12 +160,17 @@ public class Launch{
 	
 	/* generates the classes that will filter the patterns */
 	public static void generateFilter(ItfPatternEngine eng, Adaptor a, String factPath){
+		/* generates the class that will run the different patterns : RunQuery */
 		ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath, eng);
-		
-		RunQueryGeneration genFile = new RunQueryGeneration();
-		String result = genFile.generate(args);
-		
+		RunQueryGeneration genRunQuery = new RunQueryGeneration();
+		String result = genRunQuery.generate(args);
 		File file = new File("launcher/filtering/RunQuery.java");
+		Tools.saveGenerated(result, file);
+		
+		/* generates the class that will filter the pattern of the source model : PatternFilter */
+		PatternFilterGeneration genPatternFilter = new PatternFilterGeneration();
+		result = genPatternFilter.generate(a);
+		file = new File("launcher/filtering/PatternFilter.java");
 		Tools.saveGenerated(result, file);
 	}
 	
