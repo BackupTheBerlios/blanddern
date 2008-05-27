@@ -2,6 +2,7 @@ package patternsEngine;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
@@ -22,5 +23,5 @@ public interface ItfPatternEngine {
 	 * Est-ce qu'on peut trouver la bonne requete à partir du moteur de patrons ?
 	 * Ou est-ce le filtre qui doit la construire à partir de la List retournée ?
 	 */
-	public List executesProlog(File queryFile);
+	public Map executesProlog(File queryFile);
 }
