@@ -26,8 +26,8 @@ public class PatternEngine implements ItfPatternEngine{
 		id2obj = null;
 	}
 
-	/* binds together the request and program prolog files to
-	 * return a list of EClass that correspond to the argument feature
+	/* binds together the query and program prolog files to
+	 * return a map matching element names with the corresponding EObject
 	 */
 	public Map executesProlog(File queryFile) {
 		if(id2obj!=null){
