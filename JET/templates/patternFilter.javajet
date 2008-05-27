@@ -1,0 +1,19 @@
+<%@ jet package="translated" imports="adaptor.* org.eclipse.emf.ecore.*" class="PatternFilterGeneration"%>
+<% Adaptor m = (Adaptor) argument; %>
+
+package filtering;
+import org.eclipse.emf.ecore.EObject;
+
+public class PatternFilter{
+	public EObject[] source2Target(EObject v){
+		EObject[] res;
+		RunQuery rq = new RunQuery();
+		
+		<% for(int i=0; i<m.getMatching().size(); i++){ %>
+			if((res=rq.runPattern<%=i+1%>())!=null){
+				return res;
+			}
+		<% } %>
+	}
+}
+	
