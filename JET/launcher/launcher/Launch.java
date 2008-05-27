@@ -39,9 +39,11 @@ import patternsEngine.ItfPatternEngine;
 import patternsEngine.PatternEngine;
 
 import emf2prolog.UML21ToPrologV6;
+import filtering.ArgumentsRunQuery;
 import filtering.MyFilter;
 
 import translated.AdaptorGeneration;
+import translated.RunQueryGeneration;
 import utils.Tools;
 
 import adaptor.*;
@@ -86,20 +88,6 @@ public class Launch{
 		//TODO demander chemin du modèle de vessie
 		File srcModel = new File("../Vessie/models/model1.vessie");
 		eng.generatesSrcMdlProlog(srcModel);
-		
-		//TODO just for tests !!!! à supprimer
-		List testres = eng.executesProlog(null);
-		Iterator it = testres.iterator();
-		while(it.hasNext()){
-			List tmp = (List)it.next();
-			
-			Iterator it2 = tmp.iterator();
-			while(it2.hasNext()){
-				System.out.print(it2.next()+" ");
-			}
-			System.out.println("");
-		}
-		
 		
 		/* FileChooser used for the choice of the genmodel file corresponding
 		 * to the target metamodel (filter on .genmodel extension)
@@ -147,7 +135,6 @@ public class Launch{
 					}
 				}
 			}
-			
 		
 			/* JET file used to generate as many .aj files as EClass */
 			AdaptorGeneration adapt = new AdaptorGeneration();
@@ -163,9 +150,22 @@ public class Launch{
 			}
 			
 			launchAspect();
+			
+			generateFilter(eng, a, implLoc.factoryPackage());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+	
+	/* generates the classes that will filter the patterns */
+	public static void generateFilter(ItfPatternEngine eng, Adaptor a, String factPath){
+		ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath, eng);
+		
+		RunQueryGeneration genFile = new RunQueryGeneration();
+		String result = genFile.generate(args);
+		
+		File file = new File("launcher/filtering/RunQuery.java");
+		Tools.saveGenerated(result, file);
 	}
 	
 	/* executes the class that will launch the aspectJ files */
