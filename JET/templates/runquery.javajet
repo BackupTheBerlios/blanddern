@@ -1,0 +1,70 @@
+<%@ jet package="translated" imports="launcher.* adaptor.* filtering.* java.io.*" class="RunQueryGeneration" %>
+<%ArgumentsRunQuery args = (ArgumentsRunQuery) argument; %>
+<% Adaptor adapt = args.getModel(); %>
+
+class RunQuery {
+
+	PatternEngine pe = new PatternEngine();
+
+<% for(int i=0;i<adapt.getMatching().size();i++) { %>
+	public EObject [] runPattern<%=i%>(EObject eo) {
+	<%Matching currentMatching = adapt.getMatching().get(i);%>
+	<%LhsPattern lhsPattern = currentMatching.getLhs();%>
+	boolean isLhsPattern = false;
+	
+	
+	//Parcours des instances de ce Lhs
+	<%for(int j=0;j<lhsPattern.getComposed().size();j++) { %>
+		<%Instance currentInstance = lhsPattern.getComposed().get(j);%>
+		
+	<% } %>
+	
+	//Si Lhs.instance.name == eo.name alors isLhsPattern = true
+	//fpour
+	
+	//si isLhsPattern == true
+	//on instancie les bons truc et on retourne l'objet crée
+	//sinon return false (en java)
+	
+	
+	//TEST POUR le nom de la Factory
+	//On restore le chemin du genmodel du fichier
+	<% ImplFinder impf = new ImplFinder(new File("D:\\ENSISA\\PROJET2A\\workspace\\Lanterne\\metamodel\\Lanterne.genmodel"));%>
+	//ECRIRE UNE METHODE DANS ImplFinder qui renvoie
+	//BasePackage+"."+Package+"."+Prefix+"Factory"
+	
+	<% String packageName = ""; %>
+	
+	
+	
+	
+	
+	//FIN BON
+	
+	<%for(int j=0;j<currentMatching.getRhs().size();j++) { %>
+		
+	
+	
+	
+	
+		<%RhsPattern currentRhs = currentMatching.getRhs().get(j);%>
+		Map res = pe.runQuery("prologFiles/rp<%=i%>.pl");
+		if(res != null) {
+			String tmp = res.get(eo.getName());
+			if(!tmp.equals(null)){
+				<% String factoryName = "LanterneFactory";%>//Parser le genmodel et concatener 
+				<%=factoryName%> f = <%=factoryName%>.eINSTANCE;
+				f.res = tmp;
+				return f;
+			}else{
+				return null;
+			}
+		}else{
+			return null;
+			
+		}	
+		<% } %>
+		
+	}
+<% } %>
+}
