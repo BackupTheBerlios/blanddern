@@ -31,11 +31,11 @@ public class PrologGeneratorv6 {
 	
 	
 	public static String makeCreate(String nodeName, UUID id,String typename, String TS){
-		return "create("+nodeName.toLowerCase()+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
+		return "create("+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
 	}
 	
 	public static String makeDelete(String nodeName, UUID id,String typename, String TS){
-		return "delNode("+nodeName.toLowerCase()+","+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
+		return "delNode("+printID(id)+"," + typename.toLowerCase() + "," + TS +")";
 	}
 	
 	public static String makeAddProperty(String nodeName, UUID id,String typename,String prop, String TS){

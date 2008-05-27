@@ -4,7 +4,7 @@
 <% for(int i=0; i<m.getLhs().getComposed().size(); i++){ %>
 	<% EClass concept = m.getLhs().getComposed().get(i).getConcept(); %>
 	
-	create(N1,Nodeid,<%=concept.getName().toLowerCase()%>,N2).
+	create(Nodeid,<%=concept.getName().toLowerCase()%>,N1).
 	addProperty(<%=concept.getName().toLowerCase()%>,N1,name,Value,N2).	
 <% } %>
 
