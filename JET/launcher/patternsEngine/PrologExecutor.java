@@ -77,16 +77,16 @@ public class PrologExecutor implements ItfPrologInterpret{
 					     * and the variable's value, to the results List
 					     */
 					    if(!result.equals("No.")){
+					    	List resLine = new ArrayList();
+					    	resLine.add(eng.getCall().getfunctor());
+					    	
 		        		   List pos = indexesOfVars(query);
 		        		   Iterator i = pos.iterator();
 		        		   while(i.hasNext()){
 		        			   int index = Integer.valueOf(i.next().toString());
-		        			   String [] tabTmp = new String [2];
-		        			   tabTmp[0] = eng.getCall().getfunctor();
-		        			   tabTmp[1] = eng.getCall().getarg(index)+"";
-		        			   
-		        			   results.add(tabTmp);
+		        			   resLine.add(eng.getCall().getarg(index)+"");
 		        		   }
+		        		   results.add(resLine);
 					    }
 		           } catch (Exception f) { 
 		                //System.out.println("Can't parse program!");

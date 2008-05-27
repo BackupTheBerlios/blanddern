@@ -22,5 +22,5 @@ public interface ItfPatternEngine {
 	 * Est-ce qu'on peut trouver la bonne requete à partir du moteur de patrons ?
 	 * Ou est-ce le filtre qui doit la construire à partir de la List retournée ?
 	 */
-	public List executesProlog(EStructuralFeature feature);
+	public List executesProlog(File queryFile);
 }

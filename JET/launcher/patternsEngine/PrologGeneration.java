@@ -22,6 +22,7 @@ import utils.Tools;
 
 import adaptor.Adaptor;
 import adaptor.AdaptorPackage;
+import adaptor.Matching;
 
 /**
  * 
@@ -39,21 +40,29 @@ public class PrologGeneration {
 		EObject [] objects = Tools.loadModel(adaptor);
 		
 		Adaptor a = (Adaptor)objects[0];
+		String result;
 		
-		/* generate the prolog and save it into a prolog file */
-		PatternsGeneration patterns = new PatternsGeneration();
-		String result = patterns.generate(a);
-		
-		result = result.replaceAll("\n", "");
-		result = result.replaceAll("\r", "");
-		result = result.replaceAll("\t", "");
-		result = result.replaceAll(" ", "");
-		
-		File file = new File("prologFiles/patterns.pl");
-		Tools.saveGenerated(result, file);
+		/* go through the matchings and generates for each a prolog file
+		 * that will represents the requests of this matching
+		 */
+		for(int i=0; i<a.getMatching().size(); i++){
+			Matching m = a.getMatching().get(i);
+			PatternsGeneration patterns = new PatternsGeneration();
+			result = patterns.generate(m);
+			
+			/* delete the gaps in the generated file */
+			result = result.replaceAll("\n", "");
+			result = result.replaceAll("\r", "");
+			result = result.replaceAll("\t", "");
+			result = result.replaceAll(" ", "");
+			
+			File file = new File("prologFiles/rp"+(i+1)+".pl");
+			Tools.saveGenerated(result, file);
+		}
 	}
 	
 	/* delete the jump lines in the Prolog requests */
+	// TODO fonction inutile
 	public void deleteGaps(File plFile){
 		File tmp = new File("prologFiles/tmp");
 		

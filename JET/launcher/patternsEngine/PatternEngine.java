@@ -1,9 +1,9 @@
 package patternsEngine;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.List;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
+import java.util.Map;
 
 import utils.Tools;
 import emf2prolog.UML21ToPrologV6;
@@ -16,16 +16,29 @@ import emf2prolog.UML21ToPrologV6;
 
 /* contains the methods to use properly patterns */
 public class PatternEngine implements ItfPatternEngine{
+	private Map id2obj;
+	
+	public PatternEngine(){
+		id2obj = null;
+	}
 
 	/* binds together the request and program prolog files to
 	 * return a list of EClass that correspond to the argument feature
 	 */
-	public List executesProlog(EStructuralFeature feature) {
-		File queryFile = new File("prologFiles/patterns.pl");
+	public List executesProlog(File queryFile) {
 		File programFile = new File("prologFiles/sourceModel.pl");
 		
 		ItfPrologInterpret pexec = new PrologExecutor();
-		return pexec.executePrologQuery(queryFile.getAbsolutePath(), programFile.getAbsolutePath());
+		List res = pexec.executePrologQuery(queryFile.getAbsolutePath(), programFile.getAbsolutePath());
+		
+		Iterator it = res.iterator();
+		Iterator it2;
+		String opPrec;
+		while(it.hasNext()){
+			
+		}
+		
+		return null;
 	}
 
 	/* generates the requests prolog file from the adaptor model */
@@ -43,8 +56,8 @@ public class PatternEngine implements ItfPatternEngine{
 		Tools.copyFile(srcModel, umlFile);
 		
 		//launch the transformation with the corrects arguments
-		String[] args = {umlModel, "prologFiles\\sourceModel.pl", "sourceModel"};
-		UML21ToPrologV6.main(args);
+		String[] args = {umlModel, /*"prologFiles\\sourceModel.pl"*/"prologFiles\\toto.pl", "sourceModel"};
+		id2obj = UML21ToPrologV6.translates(args);
 	
 		umlFile.delete();
 	}

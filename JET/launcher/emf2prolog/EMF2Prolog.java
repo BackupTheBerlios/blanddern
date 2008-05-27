@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.UUID;
 
 import org.eclipse.emf.common.util.EList;
@@ -28,12 +29,14 @@ public class EMF2Prolog {
 	private FileWriter fw;
 	private Hashtable<Integer, Pair<UUID,Boolean>> visited;
 	private HashMap<String, String> namemapping ;
+	private Map<String, EObject> id2obj;
 
 	public EMF2Prolog(EObject root,String sitename){
 		this.root = root;
 		namemapping = new HashMap<String, String>();
 		visited = new Hashtable<Integer, Pair<UUID,Boolean>>();
 		this.sitename = sitename; 
+		this.id2obj = new HashMap();
 	}
 	
 	
@@ -49,7 +52,7 @@ public class EMF2Prolog {
 			oos.close();
 			fos.flush();
 		
-}
+	}
 	
 
 	void absorb(EObject obj) throws IOException{
@@ -137,6 +140,8 @@ public class EMF2Prolog {
 	            mine = infos.fst();
 	        }
 	        
+	        id2obj.put(PrologGeneratorv6.printID(mine), obj);
+	        
 	        //writing the create action
 	        StringBuffer buff = new StringBuffer();
 	        buff.append(PrologGeneratorv6.makeCreate(obj.eClass().getName(), mine, obj.eClass().getName(),VirtualTimer.getTimeStamp(sitename)));
@@ -191,7 +196,9 @@ public class EMF2Prolog {
 
 	    }
 
-
+	 public Map getId2Obj(){
+		 return id2obj;
+	 }
 
  
 	

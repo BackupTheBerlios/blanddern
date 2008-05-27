@@ -23,13 +23,12 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  *
  */
 public class UML21ToPrologV6 {
-
 	/**
 	 * @param args [file.uml, file.pl]
 	 * 
 	 * You may want to increase the heap size using the VM argument -Xmx1024M
 	 */
-	public static void main(String[] args) {
+	public static Map translates(String[] args) {
 		
 		ResourceSet resourceSet = new ResourceSetImpl();
 		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE); 
@@ -68,11 +67,11 @@ public class UML21ToPrologV6 {
 
 			System.out.println("done ("+(end-deb)+" ms)");
 
+			return converter.getId2Obj();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-
+		return null;
 	}
-
 }
