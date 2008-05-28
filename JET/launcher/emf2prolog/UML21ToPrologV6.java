@@ -31,10 +31,7 @@ public class UML21ToPrologV6 {
 	public static Map translates(String[] args) {
 		
 		ResourceSet resourceSet = new ResourceSetImpl();
-		resourceSet.getPackageRegistry().put(UMLPackage.eNS_URI, UMLPackage.eINSTANCE); 
-		Map extensionToFactoryMap = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap(); 
-		extensionToFactoryMap.put(UMLResource.FILE_EXTENSION, UMLResource.Factory.INSTANCE); 
-		extensionToFactoryMap.put("ecore", new EcoreResourceFactoryImpl()); 
+		Map extensionToFactoryMap = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
 		extensionToFactoryMap.put(Resource.Factory.Registry.DEFAULT_EXTENSION, new XMIResourceFactoryImpl()); 
 
 
@@ -45,6 +42,8 @@ public class UML21ToPrologV6 {
 		
 		long d = System.currentTimeMillis();
 		String siteName = args[2];
+		
+		URI uri = URI.createFileURI(args[0]);
 		Resource resource = resourceSet.getResource(URI.createFileURI(args[0]), true);
 		// load resource 
 		try {

@@ -30,6 +30,7 @@ public class PatternEngine implements ItfPatternEngine{
 	 * return a map matching element names with the corresponding EObject
 	 */
 	public Map executesProlog(File queryFile) {
+		//id2obj is null if the generatesSrcModel method has not been run 
 		if(id2obj!=null){
 			File programFile = new File("prologFiles/sourceModel.pl");
 			
@@ -38,6 +39,10 @@ public class PatternEngine implements ItfPatternEngine{
 			
 			Map resultMap=new HashMap();
 			
+			/* go through result List of the prolog interpretation
+			 * check if each pattern has a name and match in a new map
+			 * the name of a pattern with the corresponding object
+			 */
 			Iterator it = res.iterator();
 			Iterator it2;
 			String opName="";
@@ -51,6 +56,9 @@ public class PatternEngine implements ItfPatternEngine{
 				while(it2.hasNext()){
 					if(isOpName){
 						opName = (String)it2.next(); 
+						
+						//check if a create operation is followed by an addProperty operation
+						//that defines a name
 						if(opPrec.equalsIgnoreCase("create")){
 							if(!opName.equalsIgnoreCase("addProperty")){
 								System.err.println("Each pattern of the source model must have a name");
@@ -59,6 +67,8 @@ public class PatternEngine implements ItfPatternEngine{
 						}
 						isOpName=false;
 					}else{
+						//in a create operation, get the node ID
+						//in an addProperty operation, match the name of the element with the object corresponding to the node ID
 						if(opName.equalsIgnoreCase("addProperty")){
 							resultMap.put((String)it2.next(), id2obj.get(nodeID));
 						}else{
@@ -91,16 +101,8 @@ public class PatternEngine implements ItfPatternEngine{
 		Tools.copyFile(srcModel, umlFile);
 		
 		//launch the transformation with the corrects arguments
-		//TODO enlever le nom toto !!! remettre sourceModel
-		String[] args = {umlModel, /*"prologFiles\\sourceModel.pl"*/"prologFiles\\toto.pl", "sourceModel"};
+		String[] args = {srcModel.getAbsolutePath(), "prologFiles\\sourceModel.pl", "sourceModel"};
 		id2obj = UML21ToPrologV6.translates(args);
-		
-		/* to delete : just for tests !!!! */
-		Set set = id2obj.keySet();
-		Iterator it = set.iterator();
-		EObject tmp = (EObject)id2obj.get(it.next());
-		id2obj.clear();
-		id2obj.put("node3716439359839749313u8066460216026826073", tmp);
 	
 		umlFile.delete();
 	}
