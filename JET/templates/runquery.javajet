@@ -2,6 +2,7 @@
 <%ArgumentsRunQuery args = (ArgumentsRunQuery) argument; %>
 <% Adaptor adapt = args.getModel(); %>
 <% String packFactoryName = args.getFactoryPath();%>
+<% String implPath = args.getImplPath();%>
 
 package filtering;
 
@@ -38,6 +39,8 @@ public RunQuery(ItfPatternEngine pe){
 	
 	if(isLhsPattern==true) {
 		int index = 0;
+		<% String objectName = "";%>
+		<% int indiceObject = 1;%>
 		<%for(int k=0;k<lhsPattern.getComposed().size();k++) { %>
 	<% String currentInstanceName = lhsPattern.getComposed().get(k).getName();%>	
 		if(eo.getClass().getName().equals("<%=currentInstanceName%>")) {
@@ -55,10 +58,14 @@ public RunQuery(ItfPatternEngine pe){
 								<% Instance instanceLhs = lhs.getComposed().get(u);%>
 								<% RhsPattern rhs = currentMatching.getRhs().get(0);%>
 								<% Instance instanceRhs = rhs.getComposed().get(0);%>
-								<% String objectType = instanceRhs.getConcept().getEPackage().getName()+"."+instanceRhs.getConcept().getName();%>
 								<% String createMethodName = "create"+instanceRhs.getConcept().getName()+"()";%>
-								<%=objectType%> o = objectInstanced.<%=createMethodName%>;
-								o.<%=instanceLhs.getName()%> = prologResult.get("<%=instanceLhs.getName()%>");
+								<% objectName = "o"+indiceObject;%>
+								<% indiceObject++;%>
+								<% String castPrologResult = "("+instanceLhs.getConcept().getEPackage().getName()+"."+instanceLhs.getConcept().getName()+")";%>
+								<% String objectType = implPath+"."+instanceRhs.getConcept().getName()+"Impl";%>
+								<% String castObjectCreate = "("+objectType+")";%>
+								<%=objectType%> <%=objectName%> = <%=castObjectCreate%>objectInstanced.<%=createMethodName%>;
+								<%=objectName%>.<%=instanceLhs.getName()%> = <%=castPrologResult%>prologResult.get("<%=instanceLhs.getName()%>");
 							<% } %>
 							<%oneRhsIsInstanciate = true;%>
 						}
@@ -73,10 +80,14 @@ public RunQuery(ItfPatternEngine pe){
 					<% Instance instanceLhs = lhs.getComposed().get(u);%>
 					<% RhsPattern rhs = currentMatching.getRhs().get(0);%>
 					<% Instance instanceRhs = rhs.getComposed().get(0);%>
-					<% String objectType = instanceRhs.getConcept().getEPackage().getName()+"."+instanceRhs.getConcept().getName();%>
 					<% String createMethodName = "create"+instanceRhs.getConcept().getName()+"()";%>
-					<%=objectType%> o = objectInstanced.<%=createMethodName%>;
-					o.<%=instanceLhs.getName()%> = prologResult.get("<%=instanceLhs.getName()%>");
+					<% objectName = "o"+indiceObject;%>
+					<% indiceObject++;%>
+					<% String castPrologResult = "("+instanceLhs.getConcept().getEPackage().getName()+"."+instanceLhs.getConcept().getName()+")";%>
+					<% String objectType = implPath+"."+instanceRhs.getConcept().getName()+"Impl";%>
+					<% String castObjectCreate = "("+objectType+")";%>
+					<%=objectType%> <%=objectName%> = <%=castObjectCreate%>objectInstanced.<%=createMethodName%>;
+					<%=objectName%>.<%=instanceLhs.getName()%> = <%=castPrologResult%>prologResult.get("<%=instanceLhs.getName()%>");
 				<% } %>
 				
 			<% } %>
