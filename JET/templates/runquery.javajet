@@ -1,70 +1,95 @@
-<%@ jet package="translated" imports="launcher.* adaptor.* filtering.* java.io.*" class="RunQueryGeneration" %>
+<%@ jet package="translated" imports="launcher.* adaptor.* filtering.*" class="RunQueryGeneration" %>
 <%ArgumentsRunQuery args = (ArgumentsRunQuery) argument; %>
 <% Adaptor adapt = args.getModel(); %>
+<% String packFactoryName = args.getFactoryPath();%>
+
+package filtering;
+
+import org.eclipse.emf.ecore.EObject;
+import java.util.*;
+import java.io.*;
+import patternsEngine.*;
 
 class RunQuery {
 
-	PatternEngine pe = new PatternEngine();
+private ItfPatternEngine pe;
+
+public RunQuery(ItfPatternEngine pe){
+ this.pe = pe;
+}
 
 <% for(int i=0;i<adapt.getMatching().size();i++) { %>
-	public EObject [] runPattern<%=i%>(EObject eo) {
+	public EObject [] runPattern<%=i+1%>(EObject eo) {
+	String prologFileName = "rp<%=i+1%>.pl";
+	File prologFile = new File(prologFileName);
+	Map prologResult = pe.executesProlog(prologFile);
 	<%Matching currentMatching = adapt.getMatching().get(i);%>
 	<%LhsPattern lhsPattern = currentMatching.getLhs();%>
 	boolean isLhsPattern = false;
-	
-	
-	//Parcours des instances de ce Lhs
+	EObject [] res = null;
+	List indices = new ArrayList();
 	<%for(int j=0;j<lhsPattern.getComposed().size();j++) { %>
-		<%Instance currentInstance = lhsPattern.getComposed().get(j);%>
-		
+	<% String currentInstanceName = lhsPattern.getComposed().get(j).getName();%>
+		if(eo.getClass().getName().equals("<%=currentInstanceName%>")) {
+			isLhsPattern = true;
+			indices.add("<%=currentInstanceName%>");
+		}
 	<% } %>
 	
-	//Si Lhs.instance.name == eo.name alors isLhsPattern = true
-	//fpour
-	
-	//si isLhsPattern == true
-	//on instancie les bons truc et on retourne l'objet crée
-	//sinon return false (en java)
-	
-	
-	//TEST POUR le nom de la Factory
-	//On restore le chemin du genmodel du fichier
-	<% ImplFinder impf = new ImplFinder(new File("D:\\ENSISA\\PROJET2A\\workspace\\Lanterne\\metamodel\\Lanterne.genmodel"));%>
-	//ECRIRE UNE METHODE DANS ImplFinder qui renvoie
-	//BasePackage+"."+Package+"."+Prefix+"Factory"
-	
-	<% String packageName = ""; %>
-	
-	
-	
-	
-	
-	//FIN BON
-	
-	<%for(int j=0;j<currentMatching.getRhs().size();j++) { %>
-		
-	
-	
-	
-	
-		<%RhsPattern currentRhs = currentMatching.getRhs().get(j);%>
-		Map res = pe.runQuery("prologFiles/rp<%=i%>.pl");
-		if(res != null) {
-			String tmp = res.get(eo.getName());
-			if(!tmp.equals(null)){
-				<% String factoryName = "LanterneFactory";%>//Parser le genmodel et concatener 
-				<%=factoryName%> f = <%=factoryName%>.eINSTANCE;
-				f.res = tmp;
-				return f;
-			}else{
-				return null;
-			}
-		}else{
-			return null;
+	if(isLhsPattern==true) {
+		int index = 0;
+		<%for(int k=0;k<lhsPattern.getComposed().size();k++) { %>
+	<% String currentInstanceName = lhsPattern.getComposed().get(k).getName();%>	
+		if(eo.getClass().getName().equals("<%=currentInstanceName%>")) {
+			<%=packFactoryName%> objectInstanced = <%=packFactoryName%>.eINSTANCE;
+			<% boolean oneRhsIsInstanciate = false; %>
+			<% int indice = 0; %>
+			<%while(oneRhsIsInstanciate==false && indice<currentMatching.getRhs().size()){%>
+				<%RhsPattern rhsPattern = currentMatching.getRhs().get(indice);%>
+				<%if(rhsPattern.getQuery() != null){%>
+					<%if(rhsPattern.getQuery().getRequest() != null) { %>
+						<% String rhsCondition = rhsPattern.getQuery().getRequest().toString(); %>
+						if(Boolean.parseBoolean(<%=rhsCondition%>)==true){
+							<% LhsPattern lhs = currentMatching.getLhs();%>
+							<% for(int u=0;u<currentMatching.getLhs().getComposed().size();u++) { %>
+								<% Instance instanceLhs = lhs.getComposed().get(u);%>
+								<% RhsPattern rhs = currentMatching.getRhs().get(0);%>
+								<% Instance instanceRhs = rhs.getComposed().get(0);%>
+								<% String objectType = instanceRhs.getConcept().getEPackage().getName()+"."+instanceRhs.getConcept().getName();%>
+								<% String createMethodName = "create"+instanceRhs.getConcept().getName()+"()";%>
+								<%=objectType%> o = objectInstanced.<%=createMethodName%>;
+								o.<%=instanceLhs.getName()%> = prologResult.get("<%=instanceLhs.getName()%>");
+							<% } %>
+							<%oneRhsIsInstanciate = true;%>
+						}
+					<% } %>
+				<% } %>
+				<% indice++; %>
+			<% } %>
 			
-		}	
-		<% } %>
-		
+			<% if(oneRhsIsInstanciate==false) { %>
+				<% LhsPattern lhs = currentMatching.getLhs();%>
+				<% for(int u=0;u<currentMatching.getLhs().getComposed().size();u++) { %>
+					<% Instance instanceLhs = lhs.getComposed().get(u);%>
+					<% RhsPattern rhs = currentMatching.getRhs().get(0);%>
+					<% Instance instanceRhs = rhs.getComposed().get(0);%>
+					<% String objectType = instanceRhs.getConcept().getEPackage().getName()+"."+instanceRhs.getConcept().getName();%>
+					<% String createMethodName = "create"+instanceRhs.getConcept().getName()+"()";%>
+					<%=objectType%> o = objectInstanced.<%=createMethodName%>;
+					o.<%=instanceLhs.getName()%> = prologResult.get("<%=instanceLhs.getName()%>");
+				<% } %>
+				
+			<% } %>
+			res[index] = o;
+			
+			index++;
+		}
+	<% } %>	
+		return res;
+	}else{
+		return null;
+	}
 	}
 <% } %>
+
 }
