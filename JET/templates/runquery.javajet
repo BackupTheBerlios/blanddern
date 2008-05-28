@@ -66,6 +66,8 @@ public RunQuery(ItfPatternEngine pe){
 								<% String castObjectCreate = "("+objectType+")";%>
 								<%=objectType%> <%=objectName%> = <%=castObjectCreate%>objectInstanced.<%=createMethodName%>;
 								<%=objectName%>.<%=instanceLhs.getName()%> = <%=castPrologResult%>prologResult.get("<%=instanceLhs.getName()%>");
+								res[index] = <%=objectName%>;
+								index++;
 							<% } %>
 							<%oneRhsIsInstanciate = true;%>
 						}
@@ -88,12 +90,11 @@ public RunQuery(ItfPatternEngine pe){
 					<% String castObjectCreate = "("+objectType+")";%>
 					<%=objectType%> <%=objectName%> = <%=castObjectCreate%>objectInstanced.<%=createMethodName%>;
 					<%=objectName%>.<%=instanceLhs.getName()%> = <%=castPrologResult%>prologResult.get("<%=instanceLhs.getName()%>");
+					res[index] = <%=objectName%>;
+					index++;
 				<% } %>
 				
 			<% } %>
-			res[index] = o;
-			
-			index++;
 		}
 	<% } %>	
 		return res;
