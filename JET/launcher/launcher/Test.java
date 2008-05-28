@@ -1,6 +1,13 @@
 package launcher;
 
+import interpretor.InterpretorFacade;
+import interpretor.InterpretorFactory;
+import interpretor.Result;
+import interpretor.Variable;
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -27,6 +34,41 @@ public class Test {
 	public static void main(String[] args) {
 		Launch l = new Launch();
 		AdaptedFactory fact = l.adapt();
+		
+		/*int toto=1;
+		
+		String language = "java";
+		InterpretorFacade interpreter = InterpretorFactory.createInterpretorFacade(language);
+		if (interpreter == null) {
+			System.err.println("The interpreter of the language "+ language +" is not implemented in this version.");
+		}
+
+		try {
+			String code = "toto==1";
+			if(language != null && code != null) {
+				
+				List<Variable> vars = new ArrayList<Variable>();
+				vars.add(new Variable() {
+
+						public String getName() {
+							return "toto";
+						}
+
+						public Object getValue() {
+							return 1;
+						}});
+				
+				
+				Result r = interpreter.interprete(null, vars, code);
+				
+				// handle the output variables
+				if (r != null) {
+					System.out.println(r.getResult());
+				}
+			}
+		} catch (Throwable x) {
+			System.err.println("Problems while executing script: " + x.getMessage());
+		}*/
 		
 		// TODO Auto-generated method stub
 		/*File srcModel = new File("../adaptor/models/model.adaptor");
