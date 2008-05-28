@@ -102,6 +102,7 @@ public class Launch{
 		EPackage.Registry.INSTANCE.put("http://"+URI.createFileURI(srcModel.getAbsolutePath()).fileExtension(), Tools.loadModel(URI.createFileURI("../Vessie/metamodel/vessie.ecore"))[0]);
 		eng.generatesSrcMdlProlog(srcModel);
 		
+
 		/* FileChooser used for the choice of the genmodel file corresponding
 		 * to the target metamodel (filter on .genmodel extension)
 		 */
@@ -135,6 +136,7 @@ public class Launch{
 		
 		/* the package where the Impl files are stored is sought */
 		ImplFinder implLoc = new ImplFinder(new File(/*genmodel*/"../Lanterne/metamodel/lanterne.genmodel"));
+		
 		
 		/* search in the adaptor model of all the target metamodel EClass */
 		try{
@@ -178,18 +180,18 @@ public class Launch{
 	/* generates the classes that will filter the patterns */
 	public void generateFilter(ItfPatternEngine eng, Adaptor a, String factPath){
 		/* generates the class that will run the different patterns : RunQuery */
-		
+
 		//TODO à décommenter : just for tests !!!!
-		/*ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath, eng);
+		ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath);
 		RunQueryGeneration genRunQuery = new RunQueryGeneration();
 		String result = genRunQuery.generate(args);
 		File file = new File("launcher/filtering/RunQuery.java");
-		Tools.saveGenerated(result, file);*/
+		Tools.saveGenerated(result, file);
 		
 		/* generates the class that will filter the pattern of the source model : PatternFilter */
 		PatternFilterGeneration genPatternFilter = new PatternFilterGeneration();
-		String result = genPatternFilter.generate(a);
-		File file = new File("launcher/filtering/PatternFilter.java");
+		result = genPatternFilter.generate(a);
+		file = new File("launcher/filtering/PatternFilter.java");
 		Tools.saveGenerated(result, file);
 	}
 	
@@ -222,4 +224,5 @@ public class Launch{
 		AspectLaunch al = new AspectLaunch();
 		al.launch(new File(srcDir).getAbsolutePath(), new File(targetDir).getAbsolutePath());
 	}
+	
 }
