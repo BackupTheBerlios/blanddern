@@ -77,10 +77,10 @@ public class Launch{
 				Tools.recursifDelete(ajDir);
 			}
 			if(plDir.exists()){
-				//Tools.recursifDelete(plDir);
+				Tools.recursifDelete(plDir);
 			}
 			ajDir.mkdir();
-			//plDir.mkdir();
+			plDir.mkdir();
 		}catch(IOException e){
 			e.printStackTrace();
 		}
@@ -166,7 +166,7 @@ public class Launch{
 			
 			launchAspect();
 			
-			generateFilter(eng, a, implLoc.factoryPackage());
+			generateFilter(a, implLoc.factoryPackage(), implLoc.implPackage());
 			
 			return new AdaptedFactory(eng);
 		}catch(Exception e){
@@ -178,11 +178,9 @@ public class Launch{
 	}
 	
 	/* generates the classes that will filter the patterns */
-	public void generateFilter(ItfPatternEngine eng, Adaptor a, String factPath){
+	public void generateFilter(Adaptor a, String factPath, String implPath){
 		/* generates the class that will run the different patterns : RunQuery */
-
-		//TODO à décommenter : just for tests !!!!
-		ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath);
+		ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath, implPath);
 		RunQueryGeneration genRunQuery = new RunQueryGeneration();
 		String result = genRunQuery.generate(args);
 		File file = new File("launcher/filtering/RunQuery.java");
