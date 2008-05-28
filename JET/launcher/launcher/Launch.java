@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JFileChooser;
@@ -25,6 +26,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -39,6 +41,7 @@ import patternsEngine.ItfPatternEngine;
 import patternsEngine.PatternEngine;
 
 import emf2prolog.UML21ToPrologV6;
+import filtering.AdaptedFactory;
 import filtering.ArgumentsRunQuery;
 import filtering.MyFilter;
 
@@ -57,7 +60,13 @@ import adaptor.*;
 
 /* launch the .aj files generation */
 public class Launch{
-	public static void main(String[] args){
+	/*generates the prolog program and request files from the 
+	 * adaptor and source models, generates the aspect files and 
+	 * executes them, generates the pattern filter files and finally
+	 * returns the factory that will adapt the source model into the 
+	 * target model
+	 */
+	public AdaptedFactory adapt(){
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 		
 		/* .aj and prolog files directories creation */
@@ -88,6 +97,9 @@ public class Launch{
 		//convert the source model into a prolog file
 		//TODO demander chemin du modèle de vessie
 		File srcModel = new File("../Vessie/models/model1.vessie");
+		
+		//TODO demander chemin du métamodèle de vessie
+		EPackage.Registry.INSTANCE.put("http://"+URI.createFileURI(srcModel.getAbsolutePath()).fileExtension(), Tools.loadModel(URI.createFileURI("../Vessie/metamodel/vessie.ecore"))[0]);
 		eng.generatesSrcMdlProlog(srcModel);
 		
 		/* FileChooser used for the choice of the genmodel file corresponding
@@ -153,29 +165,36 @@ public class Launch{
 			launchAspect();
 			
 			generateFilter(eng, a, implLoc.factoryPackage());
+			
+			return new AdaptedFactory(eng);
 		}catch(Exception e){
 			e.printStackTrace();
+			System.err.println("Error during the creation of the adapted factory");
+			System.exit(-1);
 		}
+		return null;
 	}
 	
 	/* generates the classes that will filter the patterns */
-	public static void generateFilter(ItfPatternEngine eng, Adaptor a, String factPath){
+	public void generateFilter(ItfPatternEngine eng, Adaptor a, String factPath){
 		/* generates the class that will run the different patterns : RunQuery */
-		ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath, eng);
+		
+		//TODO à décommenter : just for tests !!!!
+		/*ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath, eng);
 		RunQueryGeneration genRunQuery = new RunQueryGeneration();
 		String result = genRunQuery.generate(args);
 		File file = new File("launcher/filtering/RunQuery.java");
-		Tools.saveGenerated(result, file);
+		Tools.saveGenerated(result, file);*/
 		
 		/* generates the class that will filter the pattern of the source model : PatternFilter */
 		PatternFilterGeneration genPatternFilter = new PatternFilterGeneration();
-		result = genPatternFilter.generate(a);
-		file = new File("launcher/filtering/PatternFilter.java");
+		String result = genPatternFilter.generate(a);
+		File file = new File("launcher/filtering/PatternFilter.java");
 		Tools.saveGenerated(result, file);
 	}
 	
 	/* executes the class that will launch the aspectJ files */
-	public static void launchAspect(){
+	public void launchAspect(){
 		JFileChooser jfile = new JFileChooser();
 		jfile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		
