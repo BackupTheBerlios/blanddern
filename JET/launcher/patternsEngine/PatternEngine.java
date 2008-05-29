@@ -29,7 +29,7 @@ public class PatternEngine implements ItfPatternEngine{
 	/* binds together the query and program prolog files to
 	 * return a map matching element names with the corresponding EObject
 	 */
-	public Map executesProlog(File queryFile) {
+	public Set<Map> executesProlog(File queryFile) {
 		//id2obj is null if the generatesSrcModel method has not been run 
 		if(id2obj!=null){
 			File programFile = new File("prologFiles/sourceModel.pl");
@@ -43,7 +43,7 @@ public class PatternEngine implements ItfPatternEngine{
 			 * check if each pattern has a name and match in a new map
 			 * the name of a pattern with the corresponding object
 			 */
-			Iterator it = res.iterator();
+			/*Iterator it = res.iterator();
 			Iterator it2;
 			String opName="";
 			String opPrec="";
@@ -78,7 +78,7 @@ public class PatternEngine implements ItfPatternEngine{
 				}
 				opPrec = opName;
 			}
-			return resultMap;
+			return resultMap;*/
 		}else{
 			System.err.println("You must first run the generatesSrcModel method");
 			System.exit(-1);
