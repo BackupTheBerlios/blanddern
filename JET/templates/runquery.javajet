@@ -1,9 +1,8 @@
-<%@ jet package="translated" imports="launcher.* adaptor.* filtering.* interpretor.* java.util.*" class="RunQueryGeneration" %>
+<%@ jet package="translated" imports="launcher.* adaptor.* filtering.* java.util.*" class="RunQueryGeneration" %>
 <%ArgumentsRunQuery args = (ArgumentsRunQuery) argument; %>
 <% Adaptor adapt = args.getModel(); %>
 <% String packFactoryName = args.getFactoryPath();%>
 <% String implPath = args.getImplPath();%>
-<% Map map = args.getMap(); %>
 
 package filtering;
 
@@ -13,6 +12,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import java.util.*;
 import java.io.*;
 import patternsEngine.*;
+import interpretor.*;
 
 class RunQuery {
 
@@ -27,39 +27,78 @@ public RunQuery(ItfPatternEngine pe){
 	public EObject [] runPattern<%=i+1%>(EObject eo) {
 		String prologFileName = "rp<%=i+1%>.pl";
 		File prologFile = new File(prologFileName);
-		Map prologResult = pe.executesProlog(prologFile);
+		Set<Map> prologResult = pe.executesProlog(prologFile);
 		<%Matching currentMatching = adapt.getMatching().get(i);%>
 		<%LhsPattern lhsPattern = currentMatching.getLhs();%>
 		boolean isLhsPattern = false;
 		EObject [] res = null;
 		
 			<% for(int j=0; j<lhsPattern.getComposed().size(); j++){ %>
-				if(eo.eClass().getName().equalsIgnoreCase("<%=lhsPattern.getComposed().get(j).getConcept().getName()%>")){
-					isLhsPattern = true;
-				}
+				<% if(lhsPattern.getComposed().get(j).isIsMain()){ %>
+					if(eo.eClass().getName().equalsIgnoreCase("<%=lhsPattern.getComposed().get(j).getConcept().getName()%>")){
+						isLhsPattern = true;
+					}
+				<% } %>
 			<% } %>
 		
 		if(isLhsPattern==true) {
-			<%=packFactoryName%> objectInstanced = <%=packFactoryName%>.eINSTANCE;
-			<% boolean instanced = false; %>
+			boolean isMapped = false;
+			Map correctMap = null;
 			
-			<% Interpretor interpret = new Interpretor(); %>
-			<% for(int w=0; w<currentMatching.getLhs().getComposed().size(); w++){ %>
-				<% String lhsName = currentMatching.getLhs().getComposed().get(w).getName(); %>
-				<% interpret.addVar(lhsName, map.get(lhsName)); %>
+			<% int firstMain = -1; %>
+			<% int a=0; %>
+			<% while(firstMain==-1 &&  a<currentMatching.getLhs().getComposed().size()){ %>
+				<% if(currentMatching.getLhs().getComposed().get(a).isIsMain()){ %>
+					<% firstMain = a; %>
+				<% } %>
+				<% a++; %>
 			<% } %>
 			
-			<% int k=0; %>
-			<% while(!instanced && k<currentMatching.getRhs().size()){ %>
-					<% if(currentMatching.getRhs().get(k).getQuery()==null){ %>
-						<% instanced = true; %>
-					<% }else{ %>	
-							<% if(interpret.getInterpretorResult(currentMatching.getRhs().get(k).getQuery().getRequest().getLangage().toString().toLowerCase(), currentMatching.getRhs().get(k).getQuery().getRequest().getExpression()).getResult().toString().equalsIgnoreCase("true")){ %>
-								<% instanced = true; %>
-							<% } %>
+			<% if(firstMain==-1){ %>
+				return null;
+			<% } %>
+			
+			Iterator it = prologResult.iterator();
+			while(it.hasNext()){
+				Map tmp = (Map)it.next();
+
+				if(tmp.get("Var<%=currentMatching.getLhs().getComposed().get(firstMain).getName()%>")==eo){
+					if(isMapped){
+						System.err.println("There can be only one map matching the EObject parameter");
+						System.exit(-1);
+					}else{
+						correctMap = tmp;
+						isMapped = true;
+					}
+				}
+			}
+		
+			<%=packFactoryName%> objectInstanced = <%=packFactoryName%>.eINSTANCE;
+			 boolean instanced = false;
+			
+			Interpretor interpret = new Interpretor();
+			<% for(int w=0; w<currentMatching.getLhs().getComposed().size(); w++){ %>
+				<% if(currentMatching.getLhs().getComposed().get(w).isIsMain()){ %>
+					<% String lhsName = currentMatching.getLhs().getComposed().get(w).getName(); %>
+					 interpret.addVar("<%=lhsName%>", correctMap.get("Var<%=lhsName%>"));
+				<% } %>
+			<% } %>
+			
+			
+			<% for(int k=0; k<currentMatching.getRhs().size(); k++){ %>
+					 if(<%=currentMatching.getRhs().get(k).getQuery()%>==null){
+						instanced = true;
+					}
+					
+					<% if(currentMatching.getRhs().get(k).getQuery()!=null){ %>
+						else{	
+								 if(interpret.getInterpretorResult("<%=currentMatching.getRhs().get(k).getQuery().getRequest().getLangage().toString().toLowerCase()%>", "<%=currentMatching.getRhs().get(k).getQuery().getRequest().getExpression()%>").getResult().toString().equalsIgnoreCase("true")){
+									 instanced = true;
+								}
+						}
 					<% } %>
 					
-					<% if(instanced){ %>
+					if(instanced){
 						<% for(int l=0; l<currentMatching.getRhs().get(k).getComposed().size(); l++){ %>
 							<% Instance rhsInst = currentMatching.getRhs().get(k).getComposed().get(l); %>
 							<% String objectType = implPath+"."+rhsInst.getConcept().getName()+"Impl";%>
@@ -73,21 +112,20 @@ public RunQuery(ItfPatternEngine pe){
 								
 								<% if(lhsInst.isIsMain()){ %>
 									<% String castPrologResult = "("+lhsInst.getConcept().getEPackage().getName()+"."+lhsInst.getConcept().getName()+")";%>
-									<%=objectName%>.<%=lhsInst.getName()%> = <%=castPrologResult%>prologResult.get("<%=lhsInst.getName()%>");
+									<%=objectName%>.<%=lhsInst.getName()%> = <%=castPrologResult%>correctMap.get("Var<%=lhsInst.getName()%>");
 								<% } %>
 							<% } %>
 							
 							res[<%=l%>]=<%=objectName%>;
 						<% } %>
-					<% } %>
-					<% k++; %>
+					 }
 			<% } %>
 			
-			<% if(!instanced){ %>
+			 if(!instanced){
 				return null;
-			<% }else{ %>
+			 }else{
 				return res;
-			<% } %>
+			 }
 		}else{
 			return null;
 		}
