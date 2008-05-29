@@ -11,10 +11,14 @@ import java.util.List;
 public class Interpretor {
 	
 	//this attribute contains all the variables that the expression must have to run correctly
-	private static List<Variable> vars = new ArrayList<Variable>();
+	private List<Variable> vars;
+	
+	public Interpretor(){
+		vars = new ArrayList<Variable>();
+	}
 	
 	//This method return a result which is the result of the code express in the language
-	public static Result getInterpretorResult(String language, String code){
+	public Result getInterpretorResult(String language, String code){
 		InterpretorFacade interpreter = InterpretorFactory.createInterpretorFacade(language);
 		if (interpreter == null) {
 			System.err.println("The interpreter of the language "+ language +" is not implemented in this version.");
@@ -38,7 +42,7 @@ public class Interpretor {
 	
 	
 	//This method add a var called "name" with a value "value" into the list vars
-	public static void addVar(final String name , final Object value){		
+	public void addVar(final String name , final Object value){		
 		vars.add(new Variable() {
 
 			public String getName() {
