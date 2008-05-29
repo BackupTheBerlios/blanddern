@@ -14,7 +14,7 @@ public class AdaptedFactory {
 		this.pe = pe;
 	}
 	
-	List loadModel(EObject[] srcModel){
+	public List loadModel(EObject[] srcModel){
 		List ret = new ArrayList();
 		PatternFilter pf = new PatternFilter(pe);
 		
