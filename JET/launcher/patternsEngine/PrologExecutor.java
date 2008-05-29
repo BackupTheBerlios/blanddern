@@ -20,7 +20,6 @@ public class PrologExecutor implements ItfPrologInterpret{
 	
 	/* Execute prolog query */
 	public List executePrologQuery(String fileNameQueries , String fileNameProgram){
-		List results = new ArrayList();
 		List queries = getLstQuery(fileNameQueries);
 		Iterator it = queries.iterator();
 		ArrayList prologProgramIntoTab = new ArrayList();
@@ -51,9 +50,13 @@ public class PrologExecutor implements ItfPrologInterpret{
 			System.out.println("Can't open: " + fileNameProgram);
 		}
 		
+		List resultats = new ArrayList();
+		
 		//We go through the queries list and execute query with the file called fileNameProgram which contains prolog program
 		while(it.hasNext()){
 			String query = (String) it.next();
+			
+			List lstReq = new ArrayList();
 			
 			Iterator itPrologProg = prologProgramIntoTab.iterator();
 			while(itPrologProg.hasNext()){
@@ -78,25 +81,37 @@ public class PrologExecutor implements ItfPrologInterpret{
 					     */
 					    if(!result.equals("No.")){
 					    	List resLine = new ArrayList();
-					    	resLine.add(eng.getCall().getfunctor());
+					    	//resLine.add(eng.getCall().getfunctor());
+					    	List resProg = new ArrayList();
 					    	
 		        		   List pos = indexesOfVars(query);
 		        		   Iterator i = pos.iterator();
+		        		
+	        			   List lstProgr = new ArrayList();
 		        		   while(i.hasNext()){
+		        			   
+		        			   
+		        			   String [] varProperty = new String[2];
 		        			   int index = Integer.valueOf(i.next().toString());
-		        			   resLine.add(eng.getCall().getarg(index)+"");
+		        			   
+		        			   varProperty[0] = valueOfVar(query);
+		        			   varProperty[1] = eng.getCall().getarg(index)+"";
+		        			   
+		        			   lstProgr.add(varProperty);
 		        		   }
-		        		   results.add(resLine);
+		        		   //results.add(resLine);
+		        		   lstReq.add(lstProgr);
 					    }
 		           } catch (Exception f) { 
-		                //System.out.println("Can't parse program!");
+		                
 		           }
 		       } catch (Exception f) {
 		    	   System.out.println("Can't parse query!");
 		       }
 			}
+			resultats.add(lstReq);
 		}
-		return results;
+		return resultats;
 	}
 	
 	/* Return the list of queries that the file called fileName contains */
@@ -152,7 +167,7 @@ public class PrologExecutor implements ItfPrologInterpret{
 			}
 			
 			if(Character.isUpperCase(tmp.charAt(0))){
-				if(tmp.charAt(0)!='N' || !Character.isDigit(tmp.charAt(1))){				
+				if(tmp.charAt(0)!='N' || !Character.isDigit(tmp.charAt(1))){
 					result.add(posCount);
 				}
 			}
@@ -166,6 +181,42 @@ public class PrologExecutor implements ItfPrologInterpret{
 		}
 		
 		return result;
+	}
+	
+	
+	/* Returns  the name of the variable which is present in the query */
+	public static String valueOfVar(String query){
+		
+		List result = new ArrayList();
+		String tmp = query;
+		
+		tmp = tmp.substring(tmp.indexOf('(')+1);
+		String [] resultat = tmp.split(",");
+		
+		return resultat[0];
+	}
+	
+	
+	public static void main(String [] args){
+		PrologExecutor pe = new PrologExecutor();
+		List l1 = pe.executePrologQuery("D:\\ENSISA\\PROJET2A\\workspace\\Blanddern\\prologFiles\\rp1.pl", "D:\\ENSISA\\PROJET2A\\workspace\\Blanddern\\prologFiles\\sourceModel.pl");
+		Iterator i1 = l1.iterator();
+		while(i1.hasNext()){
+			List l2 = (List)i1.next();
+			Iterator i2 = l2.iterator();
+			
+			while(i2.hasNext()){
+				List l3 = (List)i2.next();
+				Iterator i3 = l3.iterator();
+				
+				while(i3.hasNext()){
+					String [] tabRes = (String[]) i3.next();
+					System.out.println("["+tabRes[0]+" , "+tabRes[1]+"]");
+				}
+				
+			}
+			
+		}
 	}
 	
 }
