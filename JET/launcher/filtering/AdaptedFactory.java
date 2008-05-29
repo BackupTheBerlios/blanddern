@@ -14,7 +14,7 @@ public class AdaptedFactory {
 		this.pe = pe;
 	}
 	
-	EObject[] loadModel(EObject[] srcModel){
+	List loadModel(EObject[] srcModel){
 		List ret = new ArrayList();
 		PatternFilter pf = new PatternFilter(pe);
 		
@@ -22,6 +22,6 @@ public class AdaptedFactory {
 			ret.add(pf.source2Target(srcModel[i]));
 		}
 		
-		return (EObject[])ret.toArray();
+		return ret;
 	}
 }
