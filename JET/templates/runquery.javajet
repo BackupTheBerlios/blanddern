@@ -1,8 +1,9 @@
-<%@ jet package="translated" imports="launcher.* adaptor.* filtering.*" class="RunQueryGeneration" %>
+<%@ jet package="translated" imports="launcher.* adaptor.* filtering.* interpretor.* java.util.*" class="RunQueryGeneration" %>
 <%ArgumentsRunQuery args = (ArgumentsRunQuery) argument; %>
 <% Adaptor adapt = args.getModel(); %>
 <% String packFactoryName = args.getFactoryPath();%>
 <% String implPath = args.getImplPath();%>
+<% Map map = args.getMap(); %>
 
 package filtering;
 
@@ -32,42 +33,30 @@ public RunQuery(ItfPatternEngine pe){
 		boolean isLhsPattern = false;
 		EObject [] res = null;
 		
-			 EList<EAttribute>ttref = eo.eClass().getEAllAttributes();
-			 Iterator it = ttref.iterator();
-			 boolean hasName = false;
-			while(it.hasNext() && !hasName) {
-					EAttribute currentAttribute = (EAttribute)it.next();
-		           Object values = eo.eGet(currentAttribute);
-		           
-		            if(currentAttribute.getName().equalsIgnoreCase("name") ){
-		            	
-		            	<%for(int j=0;j<lhsPattern.getComposed().size();j++) { %>
-		            		<% String currentInstanceName = lhsPattern.getComposed().get(j).getName();%>
-							if(values.toString().equals("<%=currentInstanceName%>")) {
-								isLhsPattern = true;
-							}
-						<% } %>
-						hasName = true;
-					}
-			}
-			
-			if(!hasName){
-				System.err.println("Each instance in the source model must have a name attribute");
-				System.exit(-1);
-			}
+			<% for(int j=0; j<lhsPattern.getComposed().size(); j++){ %>
+				if(eo.eClass().getName().equalsIgnoreCase("<%=lhsPattern.getComposed().get(j).getConcept().getName()%>")){
+					isLhsPattern = true;
+				}
+			<% } %>
 		
 		if(isLhsPattern==true) {
 			<%=packFactoryName%> objectInstanced = <%=packFactoryName%>.eINSTANCE;
 			<% boolean instanced = false; %>
 			
+			<% Interpretor interpret = new Interpretor(); %>
+			<% for(int w=0; w<currentMatching.getLhs().getComposed().size(); w++){ %>
+				<% String lhsName = currentMatching.getLhs().getComposed().get(w).getName(); %>
+				<% interpret.addVar(lhsName, map.get(lhsName)); %>
+			<% } %>
+			
 			<% int k=0; %>
 			<% while(!instanced && k<currentMatching.getRhs().size()){ %>
 					<% if(currentMatching.getRhs().get(k).getQuery()==null){ %>
 						<% instanced = true; %>
-					<% }else{ %>
-						<% if(Boolean.parseBoolean(currentMatching.getRhs().get(k).getQuery().getRequest().getExpression())){ %>
-							<% instanced = true; %>
-						<% } %>
+					<% }else{ %>	
+							<% if(interpret.getInterpretorResult(currentMatching.getRhs().get(k).getQuery().getRequest().getLangage().toString().toLowerCase(), currentMatching.getRhs().get(k).getQuery().getRequest().getExpression()).getResult().toString().equalsIgnoreCase("true")){ %>
+								<% instanced = true; %>
+							<% } %>
 					<% } %>
 					
 					<% if(instanced){ %>
