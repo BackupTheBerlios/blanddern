@@ -107,4 +107,7 @@ public class PatternEngine implements ItfPatternEngine{
 		umlFile.delete();
 	}
 
+	public Map getMap(){
+		return id2obj;
+	}
 }

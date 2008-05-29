@@ -166,7 +166,7 @@ public class Launch{
 			
 			launchAspect();
 			
-			generateFilter(a, implLoc.factoryPackage(), implLoc.implPackage());
+			generateFilter(a, implLoc.factoryPackage(), implLoc.implPackage(), ((PatternEngine)eng).getMap());
 			
 			return new AdaptedFactory(eng);
 		}catch(Exception e){
@@ -178,9 +178,9 @@ public class Launch{
 	}
 	
 	/* generates the classes that will filter the patterns */
-	public void generateFilter(Adaptor a, String factPath, String implPath){
+	public void generateFilter(Adaptor a, String factPath, String implPath, Map map){
 		/* generates the class that will run the different patterns : RunQuery */
-		ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath, implPath);
+		ArgumentsRunQuery args = new ArgumentsRunQuery(a, factPath, implPath, map);
 		RunQueryGeneration genRunQuery = new RunQueryGeneration();
 		String result = genRunQuery.generate(args);
 		File file = new File("launcher/filtering/RunQuery.java");
