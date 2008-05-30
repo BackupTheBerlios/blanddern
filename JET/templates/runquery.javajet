@@ -93,16 +93,12 @@ public RunQuery(ItfPatternEngine pe){
 			
 			
 			<% for(int k=0; k<currentMatching.getRhs().size(); k++){ %>
-					 if(<%=currentMatching.getRhs().get(k).getQuery()%>==null){
+					<% if(currentMatching.getRhs().get(k).getQuery()==null){ %>
 						instanced = true;
-					}
-					
-					<% if(currentMatching.getRhs().get(k).getQuery()!=null){ %>
-						else{	
-								 if(interpret.getInterpretorResult("<%=currentMatching.getRhs().get(k).getQuery().getRequest().getLangage().toString().toLowerCase()%>", "<%=currentMatching.getRhs().get(k).getQuery().getRequest().getExpression()%>").getResult().toString().equalsIgnoreCase("true")){
-									 instanced = true;
-								}
-						}
+					<% }else{ %>
+							 if(interpret.getInterpretorResult("<%=currentMatching.getRhs().get(k).getQuery().getRequest().getLangage().toString().toLowerCase()%>", "<%=currentMatching.getRhs().get(k).getQuery().getRequest().getExpression()%>").getResult().toString().equalsIgnoreCase("true")){
+								 instanced = true;
+							}
 					<% } %>
 					
 					if(instanced){
