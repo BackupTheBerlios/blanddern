@@ -56,80 +56,81 @@ public RunQuery(ItfPatternEngine pe){
 			
 			<% if(firstMain==-1){ %>
 				return null;
-			<% } %>
+			<% }else{ %>
 			
-			Iterator it = prologResult.iterator();
-			while(it.hasNext()){
-				Map tmp = (Map)it.next();
-
-				if(tmp.get("Var<%=currentMatching.getLhs().getComposed().get(firstMain).getName()%>")==eo){
-					if(isMapped){
-						System.err.println("There can be only one map matching the EObject parameter");
-						System.exit(-1);
-					}else{
-						correctMap = tmp;
-						isMapped = true;
+				Iterator it = prologResult.iterator();
+				while(it.hasNext()){
+					Map tmp = (Map)it.next();
+	
+					if(tmp.get("Var<%=currentMatching.getLhs().getComposed().get(firstMain).getName()%>")==eo){
+						if(isMapped){
+							System.err.println("There can be only one map matching the EObject parameter");
+							System.exit(-1);
+						}else{
+							correctMap = tmp;
+							isMapped = true;
+						}
 					}
 				}
-			}
+				
+				if(correctMap==null){
+					return null;
+				}
 			
-			if(correctMap==null){
-				return null;
-			}
-		
-			<%=packFactoryName%> objectInstanced = <%=packFactoryName%>.eINSTANCE;
-			 boolean instanced = false;
-			
-			Interpretor interpret = new Interpretor();
-			<% for(int w=0; w<currentMatching.getLhs().getComposed().size(); w++){ %>
-				<% if(currentMatching.getLhs().getComposed().get(w).isIsMain()){ %>
-					<% Instance lhsInstInterpret = currentMatching.getLhs().getComposed().get(w); %>
-					<% String castForInterpret = "("+lhsInstInterpret.getConcept().getEPackage().getName()+"."+lhsInstInterpret.getConcept().getName()+")";%>
-					<% String lhsName = currentMatching.getLhs().getComposed().get(w).getName(); %>
-					
-					 interpret.addVar("<%=lhsName%>", <%=castForInterpret%>correctMap.get("Var<%=lhsName%>"));
-				<% } %>
-			<% } %>
-			
-			
-			<% for(int k=0; k<currentMatching.getRhs().size(); k++){ %>
-					<% if(currentMatching.getRhs().get(k).getQuery()==null){ %>
-						instanced = true;
-					<% }else{ %>
-							 if(interpret.getInterpretorResult("<%=currentMatching.getRhs().get(k).getQuery().getRequest().getLangage().toString().toLowerCase()%>", "<%=currentMatching.getRhs().get(k).getQuery().getRequest().getExpression()%>").getResult().toString().equalsIgnoreCase("true")){
-								 instanced = true;
-							}
+				<%=packFactoryName%> objectInstanced = <%=packFactoryName%>.eINSTANCE;
+				 boolean instanced = false;
+				
+				Interpretor interpret = new Interpretor();
+				<% for(int w=0; w<currentMatching.getLhs().getComposed().size(); w++){ %>
+					<% if(currentMatching.getLhs().getComposed().get(w).isIsMain()){ %>
+						<% Instance lhsInstInterpret = currentMatching.getLhs().getComposed().get(w); %>
+						<% String castForInterpret = "("+lhsInstInterpret.getConcept().getEPackage().getName()+"."+lhsInstInterpret.getConcept().getName()+")";%>
+						<% String lhsName = currentMatching.getLhs().getComposed().get(w).getName(); %>
+						
+						 interpret.addVar("<%=lhsName%>", <%=castForInterpret%>correctMap.get("Var<%=lhsName%>"));
 					<% } %>
-					
-					if(instanced){
-						res = new EObject[<%=currentMatching.getRhs().get(k).getComposed().size()%>];
-						<% for(int l=0; l<currentMatching.getRhs().get(k).getComposed().size(); l++){ %>
-							<% Instance rhsInst = currentMatching.getRhs().get(k).getComposed().get(l); %>
-							<% String objectType = implPath+"."+rhsInst.getConcept().getName()+"Impl";%>
-							<% String objectName = "o"+l; %>
-							<% String createMethodName = "create"+rhsInst.getConcept().getName()+"()";%>
-							
-							<%=objectType%> <%=objectName%> = (<%=objectType%>)objectInstanced.<%=createMethodName%>;
-							
-							<% for(int z=0; z<currentMatching.getLhs().getComposed().size(); z++){ %>
-								<% Instance lhsInst = currentMatching.getLhs().getComposed().get(z); %>
-								
-								<% if(lhsInst.isIsMain()){ %>
-									<% String castPrologResult = "("+lhsInst.getConcept().getEPackage().getName()+"."+lhsInst.getConcept().getName()+")";%>
-									<%=objectName%>.<%=lhsInst.getName()%> = <%=castPrologResult%>correctMap.get("Var<%=lhsInst.getName()%>");
-								<% } %>
-							<% } %>
-							
-							res[<%=l%>]=<%=objectName%>;
+				<% } %>
+				
+				
+				<% for(int k=0; k<currentMatching.getRhs().size(); k++){ %>
+						<% if(currentMatching.getRhs().get(k).getQuery()==null){ %>
+							instanced = true;
+						<% }else{ %>
+								 if(interpret.getInterpretorResult("<%=currentMatching.getRhs().get(k).getQuery().getRequest().getLangage().toString().toLowerCase()%>", "<%=currentMatching.getRhs().get(k).getQuery().getRequest().getExpression()%>").getResult().toString().equalsIgnoreCase("true")){
+									 instanced = true;
+								}
 						<% } %>
-					 }
+						
+						if(instanced){
+							res = new EObject[<%=currentMatching.getRhs().get(k).getComposed().size()%>];
+							<% for(int l=0; l<currentMatching.getRhs().get(k).getComposed().size(); l++){ %>
+								<% Instance rhsInst = currentMatching.getRhs().get(k).getComposed().get(l); %>
+								<% String objectType = implPath+"."+rhsInst.getConcept().getName()+"Impl";%>
+								<% String objectName = "o"+l; %>
+								<% String createMethodName = "create"+rhsInst.getConcept().getName()+"()";%>
+								
+								<%=objectType%> <%=objectName%> = (<%=objectType%>)objectInstanced.<%=createMethodName%>;
+								
+								<% for(int z=0; z<currentMatching.getLhs().getComposed().size(); z++){ %>
+									<% Instance lhsInst = currentMatching.getLhs().getComposed().get(z); %>
+									
+									<% if(lhsInst.isIsMain()){ %>
+										<% String castPrologResult = "("+lhsInst.getConcept().getEPackage().getName()+"."+lhsInst.getConcept().getName()+")";%>
+										<%=objectName%>.<%=lhsInst.getName()%> = <%=castPrologResult%>correctMap.get("Var<%=lhsInst.getName()%>");
+									<% } %>
+								<% } %>
+								
+								res[<%=l%>]=<%=objectName%>;
+							<% } %>
+						 }
+				<% } %>
+				
+				 if(!instanced){
+					return null;
+				 }else{
+					return res;
+				 }
 			<% } %>
-			
-			 if(!instanced){
-				return null;
-			 }else{
-				return res;
-			 }
 		}else{
 			return null;
 		}
