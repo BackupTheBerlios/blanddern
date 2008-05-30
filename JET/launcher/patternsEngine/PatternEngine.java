@@ -130,8 +130,4 @@ public class PatternEngine implements ItfPatternEngine{
 		
 		return trans.getModel();
 	}
-
-	public Map getMap(){
-		return id2obj;
-	}
 }
