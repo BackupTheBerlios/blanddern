@@ -97,8 +97,8 @@ public RunQuery(ItfPatternEngine pe){
 							instanced = true;
 						<% }else{ %>
 								 if(interpret.getInterpretorResult("<%=currentMatching.getRhs().get(k).getQuery().getRequest().getLangage().toString().toLowerCase()%>", "<%=currentMatching.getRhs().get(k).getQuery().getRequest().getExpression()%>").getResult().toString().equalsIgnoreCase("true")){
-									 instanced = true;
-								}
+									instanced = true;
+								 }
 						<% } %>
 						
 						if(instanced){
@@ -122,14 +122,10 @@ public RunQuery(ItfPatternEngine pe){
 								
 								res[<%=l%>]=<%=objectName%>;
 							<% } %>
+							return res;
 						 }
 				<% } %>
-				
-				 if(!instanced){
-					return null;
-				 }else{
-					return res;
-				 }
+				return null;
 			<% } %>
 		}else{
 			return null;
