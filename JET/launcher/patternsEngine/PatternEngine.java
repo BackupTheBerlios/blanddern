@@ -84,6 +84,8 @@ public class PatternEngine implements ItfPatternEngine{
 				resultSet.add((Map)lstIt.next());
 			}
 			
+			return resultSet;
+			
 			/* go through result List of the prolog interpretation
 			 * check if each pattern has a name and match in a new map
 			 * the name of a pattern with the corresponding object
@@ -138,7 +140,7 @@ public class PatternEngine implements ItfPatternEngine{
 	}
 
 	/* uses the PraxisEMF2Prolog project to convert the adaptor model file into a program prolog file */
-	public void generatesSrcMdlProlog(File srcModel) {
+	public EObject[] generatesSrcMdlProlog(File srcModel) {
 		// transforms the extension of the model into a .uml file and copy the original file
 		String umlModel = srcModel.getAbsolutePath().substring(srcModel.getAbsolutePath().lastIndexOf('\\'), srcModel.getAbsolutePath().lastIndexOf('.'));
 		umlModel = "prologFiles\\"+umlModel+".uml";
@@ -147,9 +149,12 @@ public class PatternEngine implements ItfPatternEngine{
 		
 		//launch the transformation with the corrects arguments
 		String[] args = {srcModel.getAbsolutePath(), "prologFiles\\sourceModel.pl", "sourceModel"};
-		id2obj = UML21ToPrologV6.translates(args);
+		UML21ToPrologV6 trans = new UML21ToPrologV6();
+		id2obj = trans.translates(args);
 	
 		umlFile.delete();
+		
+		return trans.getModel();
 	}
 
 	public Map getMap(){
