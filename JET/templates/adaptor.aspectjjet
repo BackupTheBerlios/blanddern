@@ -3,6 +3,8 @@
 <% String className = args.getEClass(); %>
 <% String ePackageName = args.getEPackage(); %>
 
+<% int numMethod = 0; %>
+
 privileged aspect <%=className%>Aspect {
 <% for(int i=0; i<args.getModel().getMatching().size(); i++){ %>
 	<% for(int j=0; j<args.getModel().getMatching().get(i).getRhs().size(); j++){ %>
@@ -17,26 +19,28 @@ privileged aspect <%=className%>Aspect {
 					<% } %>
 				<% } %>	
 				
-				<% for(int l=0;l<args.getModel().getMatching().get(k).getCorrespondanceRule().size();l++){ %>
-					<% String methodeName = args.getModel().getMatching().get(k).getCorrespondanceRule().get(l).getFeature().getName(); %>
-					<% CorrespondanceRule correspondanceRule = args.getModel().getMatching().get(k).getCorrespondanceRule().get(l); %>
+				<% for(int l=0;l<args.getModel().getMatching().get(i).getCorrespondanceRule().size();l++){ %>
+					<% String methodeName = args.getModel().getMatching().get(i).getCorrespondanceRule().get(l).getFeature().getName(); %>
+					<% CorrespondanceRule correspondanceRule = args.getModel().getMatching().get(i).getCorrespondanceRule().get(l); %>
 					
 					<% if(correspondanceRule.getFeature().getEContainingClass().getName().equalsIgnoreCase(className)){ %>
 					
-						pointcut getter<%=l%>(<%=ePackageName%> self) : target(self) && execution(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= ePackageName %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
+						pointcut getter<%=numMethod%>(<%=ePackageName%> self) : target(self) && execution(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= ePackageName %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
 						<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
-						pointcut setter<%=l%>(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : target(self) && execution(void <%= ePackageName %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*)) && args(newValue);
+						pointcut setter<%=numMethod%>(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : target(self) && execution(void <%= ePackageName %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*)) && args(newValue);
 						<% } %>
 						
-						<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around (<%=ePackageName%> self) : getter<%=l%>(self){
+						<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around (<%=ePackageName%> self) : getter<%=numMethod%>(self){
 							return self.<%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>;
 						}
 						
 						<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
-						void around(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : setter<%=l%>(self, newValue){
+						void around(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : setter<%=numMethod%>(self, newValue){
 							self.<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>;
 						}
 						<% } %>
+						
+						<% numMethod++; %>
 					<% } %>
 			<% } %>
 	<% } %>
