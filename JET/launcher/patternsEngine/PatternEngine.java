@@ -44,6 +44,7 @@ public class PatternEngine implements ItfPatternEngine{
 			List<Map> tmpLst = new ArrayList<Map>();
 			int numMap;
 			boolean firstQuery = true;
+			int nbMapMax = 0;
 			
 			/*go through the List of results in order to generate
 			 * a List that will contain one map for each possibilities
@@ -54,28 +55,43 @@ public class PatternEngine implements ItfPatternEngine{
 				//There is one List per request that are analyzed
 				List query = (List)it1.next();
 				
-				Iterator it2 = query.iterator();
+				/* if the query has not enough result to complete all the maps already
+				 * created, it returns automatically to the beginning of the predicate results
+				 * for this query in order to complete
+				 */
+				/*TODO si les premieres query ont moins de predicats résultats
+				 * que les dernieres, les premieres ne complèteront pas les map
+				 * --> seulement l'inverse qui fonctionne
+				 */
 				numMap = 0;
-				while(it2.hasNext()){
-					//One list per predicates that returns some results
-					Map map;
-					List predicate = (List)it2.next();
-					
-					Iterator it3 = predicate.iterator();
-					String[] matchVars = (String[])it3.next();
-					
-					//creation of one map per predicates
-					if(firstQuery){
-						map = new HashMap();
-					}else{
-						map = tmpLst.get(numMap);
+				boolean firstIter = true;
+				while(firstQuery || (!firstQuery && numMap<nbMapMax)){
+					Iterator it2 = query.iterator();
+					while(it2.hasNext() && (firstIter || (!firstQuery && numMap<nbMapMax))){/*(firstQuery && it2.hasNext()) || (!firstQuery && numMap<nbMapMax && it2.hasNext())){*/
+						//One list per predicates that returns some results
+						Map map;
+						List predicate = (List)it2.next();
+						
+						Iterator it3 = predicate.iterator();
+						String[] matchVars = (String[])it3.next();
+						
+						//creation of one map per predicates
+						if(firstQuery){
+							map = new HashMap();
+						}else{
+							map = tmpLst.get(numMap);
+						}
+						map.put(matchVars[0], id2obj.get(matchVars[1]));
+						tmpLst.add(numMap, map);
+						
+						numMap++;
 					}
-					map.put(matchVars[0], id2obj.get(matchVars[1]));
-					tmpLst.add(numMap, map);
-					
-					numMap++;
+					firstQuery = false;
+					firstIter = false;
 				}
-				firstQuery = false;
+				if(numMap>nbMapMax){
+					nbMapMax = numMap;
+				}
 			}
 			
 			/* the set of maps is created from the temporary list of maps */
@@ -83,49 +99,7 @@ public class PatternEngine implements ItfPatternEngine{
 			while(lstIt.hasNext()){
 				resultSet.add((Map)lstIt.next());
 			}
-			
 			return resultSet;
-			
-			/* go through result List of the prolog interpretation
-			 * check if each pattern has a name and match in a new map
-			 * the name of a pattern with the corresponding object
-			 */
-			/*Iterator it = res.iterator();
-			Iterator it2;
-			String opName="";
-			String opPrec="";
-			String nodeID = "";
-			while(it.hasNext()){
-				List resLine = (List)it.next();
-				it2 = resLine.iterator();
-				
-				boolean isOpName=true;
-				while(it2.hasNext()){
-					if(isOpName){
-						opName = (String)it2.next(); 
-						
-						//check if a create operation is followed by an addProperty operation
-						//that defines a name
-						if(opPrec.equalsIgnoreCase("create")){
-							if(!opName.equalsIgnoreCase("addProperty")){
-								System.err.println("Each pattern of the source model must have a name");
-								System.exit(-1);
-							}
-						}
-						isOpName=false;
-					}else{
-						//in a create operation, get the node ID
-						//in an addProperty operation, match the name of the element with the object corresponding to the node ID
-						if(opName.equalsIgnoreCase("addProperty")){
-							resultMap.put((String)it2.next(), id2obj.get(nodeID));
-						}else{
-							nodeID=(String)it2.next();
-						}
-					}
-				}
-				opPrec = opName;
-			}
-			return resultMap;*/
 		}else{
 			System.err.println("You must first run the generatesSrcModel method");
 			System.exit(-1);
