@@ -7,44 +7,48 @@
 
 privileged aspect <%=className%>Aspect {
 <% for(int i=0; i<args.getModel().getMatching().size(); i++){ %>
+	<% boolean alreadyVisited = false; %>
+	
 	<% for(int j=0; j<args.getModel().getMatching().get(i).getRhs().size(); j++){ %>
 		<% for(int k=0; k<args.getModel().getMatching().get(i).getRhs().get(j).getComposed().size(); k++){ %>
 			<% if(args.getModel().getMatching().get(i).getRhs().get(j).getComposed().get(k).getConcept().getName().equalsIgnoreCase(className)){ %>
-			
-				<% for(int z=0; z<args.getModel().getMatching().get(i).getLhs().getComposed().size(); z++){ %>
-					<% Instance proxy = args.getModel().getMatching().get(i).getLhs().getComposed().get(z); %>
-					
-					<% if(proxy.isIsMain()){ %>
-						public <%=proxy.getConcept().getEPackage().getName()%>.<%=proxy.getConcept().getName()%> <%=ePackageName%>.<%=proxy.getName()%>;
-					<% } %>
-				<% } %>	
 				
-				<% for(int l=0;l<args.getModel().getMatching().get(i).getCorrespondanceRule().size();l++){ %>
-					<% String methodeName = args.getModel().getMatching().get(i).getCorrespondanceRule().get(l).getFeature().getName(); %>
-					<% CorrespondanceRule correspondanceRule = args.getModel().getMatching().get(i).getCorrespondanceRule().get(l); %>
-					
-					<% if(correspondanceRule.getFeature().getEContainingClass().getName().equalsIgnoreCase(className)){ %>
-					
-						pointcut getter<%=numMethod%>(<%=ePackageName%> self) : target(self) && execution(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= ePackageName %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
-						<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
-						pointcut setter<%=numMethod%>(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : target(self) && execution(void <%= ePackageName %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*)) && args(newValue);
+				<% if(!alreadyVisited){ %>
+					<% for(int z=0; z<args.getModel().getMatching().get(i).getLhs().getComposed().size(); z++){ %>
+						<% Instance proxy = args.getModel().getMatching().get(i).getLhs().getComposed().get(z); %>
+						
+						<% if(proxy.isIsMain()){ %>
+							public <%=proxy.getConcept().getEPackage().getName()%>.<%=proxy.getConcept().getName()%> <%=ePackageName%>.<%=proxy.getName()%>;
 						<% } %>
+					<% } %>	
+					
+					<% for(int l=0;l<args.getModel().getMatching().get(i).getCorrespondanceRule().size();l++){ %>
+						<% String methodeName = args.getModel().getMatching().get(i).getCorrespondanceRule().get(l).getFeature().getName(); %>
+						<% CorrespondanceRule correspondanceRule = args.getModel().getMatching().get(i).getCorrespondanceRule().get(l); %>
 						
-						<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around (<%=ePackageName%> self) : getter<%=numMethod%>(self){
-							return self.<%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>;
-						}
+						<% if(correspondanceRule.getFeature().getEContainingClass().getName().equalsIgnoreCase(className)){ %>
 						
-						<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
-						void around(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : setter<%=numMethod%>(self, newValue){
-							self.<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>;
-						}
-						<% } %>
-						
-						<% numMethod++; %>
+							pointcut getter<%=numMethod%>(<%=ePackageName%> self) : target(self) && execution(<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> <%= ePackageName %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
+							<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
+							pointcut setter<%=numMethod%>(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : target(self) && execution(void <%= ePackageName %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*)) && args(newValue);
+							<% } %>
+							
+							<%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> around (<%=ePackageName%> self) : getter<%=numMethod%>(self){
+								return self.<%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>;
+							}
+							
+							<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
+							void around(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : setter<%=numMethod%>(self, newValue){
+								self.<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>;
+							}
+							<% } %>
+							
+							<% numMethod++; %>
+						<% } %>		
 					<% } %>
+					<% alreadyVisited = true; %>
+				<% } %>
 			<% } %>
-	<% } %>
-	
 		<% } %>
 	<% } %>
 <% } %>	
