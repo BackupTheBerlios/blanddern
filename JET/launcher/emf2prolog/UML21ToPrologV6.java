@@ -48,7 +48,6 @@ public class UML21ToPrologV6 {
 		
 		URI uri = URI.createFileURI(args[0]);
 		
-		vessie.VessiePackage libraryPackage = vessie.VessiePackage.eINSTANCE;
 		Resource resource = resourceSet.getResource(URI.createFileURI(args[0]), true);
 		// load resource 
 		try {
