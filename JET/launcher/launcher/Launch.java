@@ -49,6 +49,8 @@ import translated.AdaptorGeneration;
 import translated.PatternFilterGeneration;
 import translated.RunQueryGeneration;
 import utils.Tools;
+import vessie.Vessie;
+import vessie.VessiePackage;
 
 import adaptor.*;
 
@@ -60,6 +62,8 @@ import adaptor.*;
 
 /* launch the .aj files generation */
 public class Launch{
+	EObject[] model = null;
+	
 	/*generates the prolog program and request files from the 
 	 * adaptor and source models, generates the aspect files and 
 	 * executes them, generates the pattern filter files and finally
@@ -99,10 +103,9 @@ public class Launch{
 		File srcModel = new File("../Vessie/models/model1.vessie");
 		
 		//TODO demander chemin du métamodèle de vessie
-		EPackage.Registry.INSTANCE.put("http://"+URI.createFileURI(srcModel.getAbsolutePath()).fileExtension(), Tools.loadModel(URI.createFileURI("../Vessie/metamodel/vessie.ecore"))[0]);
-		eng.generatesSrcMdlProlog(srcModel);
+		//EPackage.Registry.INSTANCE.put("http://"+URI.createFileURI(srcModel.getAbsolutePath()).fileExtension(), Tools.loadModel(URI.createFileURI("../Vessie/metamodel/vessie.ecore"))[0]);
+		model = eng.generatesSrcMdlProlog(srcModel);
 		
-
 		/* FileChooser used for the choice of the genmodel file corresponding
 		 * to the target metamodel (filter on .genmodel extension)
 		 */
@@ -221,6 +224,16 @@ public class Launch{
 		//execute the compiler
 		AspectLaunch al = new AspectLaunch();
 		al.launch(new File(srcDir).getAbsolutePath(), new File(targetDir).getAbsolutePath());
+	}
+	
+	public EObject[] getModel(){
+		if(model==null){
+			System.err.println("You must first run the adapt method");
+			System.exit(-1);
+		}else{
+			return model;
+		}
+		return null;
 	}
 	
 }

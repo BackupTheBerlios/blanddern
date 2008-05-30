@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
+import adaptor.AdaptorPackage;
+
 
 
 /**
@@ -23,12 +25,13 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  *
  */
 public class UML21ToPrologV6 {
+	EObject[] model = null;
 	/**
 	 * @param args [file.uml, file.pl]
 	 * 
 	 * You may want to increase the heap size using the VM argument -Xmx1024M
 	 */
-	public static Map translates(String[] args) {
+	public Map translates(String[] args) {
 		
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Map extensionToFactoryMap = resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap();
@@ -44,10 +47,12 @@ public class UML21ToPrologV6 {
 		String siteName = args[2];
 		
 		URI uri = URI.createFileURI(args[0]);
+		
+		vessie.VessiePackage libraryPackage = vessie.VessiePackage.eINSTANCE;
 		Resource resource = resourceSet.getResource(URI.createFileURI(args[0]), true);
 		// load resource 
 		try {
-
+			model = resource.getContents().toArray(new EObject [resource.getContents().size()]);
 
 			resource.load(null);
 			//org.eclipse.uml2.uml.Package pack = new ;
@@ -72,5 +77,9 @@ public class UML21ToPrologV6 {
 		}
 
 		return null;
+	}
+	
+	public EObject[] getModel(){
+		return model;
 	}
 }

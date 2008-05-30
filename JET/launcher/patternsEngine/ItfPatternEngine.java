@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
@@ -15,7 +16,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 /* provides an interface for the patterns engine */
 public interface ItfPatternEngine {
-	public void generatesSrcMdlProlog(File srcModel);
+	public EObject[] generatesSrcMdlProlog(File srcModel);
 	
 	public void generatesAdaptorMdlProlog(File adaptorModel);
 	
