@@ -20,6 +20,8 @@ public class GraphicalInterface extends javax.swing.JDialog {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JFileChooser jFileChooser3;
@@ -40,6 +42,7 @@ public class GraphicalInterface extends javax.swing.JDialog {
   
     private String workspaceDirectory;
     private List paths;
+    private int currentLoad;
 	
     /** Creates new form Adaptor */
     public GraphicalInterface(String workspaceDirectory) {
@@ -52,6 +55,9 @@ public class GraphicalInterface extends javax.swing.JDialog {
         jButton4.setEnabled(false);
         jButton5.setEnabled(false);
         jButton6.setEnabled(false);
+        jButton8.setEnabled(false);
+        jButton9.setEnabled(true);
+        currentLoad = 0;
     }
     
     
@@ -82,6 +88,8 @@ public class GraphicalInterface extends javax.swing.JDialog {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         jFileChooser1.setAcceptAllFileFilterUsed(false);
         jFileChooser1.setDialogTitle("Adaptor model path");
@@ -182,6 +190,20 @@ public class GraphicalInterface extends javax.swing.JDialog {
         jLabel7.setForeground(java.awt.Color.red);
         jLabel7.setText(" ");
 
+        jButton8.setText("Previous load");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        
+        jButton9.setText("Next load");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -225,6 +247,10 @@ public class GraphicalInterface extends javax.swing.JDialog {
                         .addComponent(jLabel5)
                         .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton9)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton8)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jButton7)
@@ -267,7 +293,9 @@ public class GraphicalInterface extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
+                    .addComponent(jButton7)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
                 .addContainerGap())
         );
 
@@ -286,7 +314,9 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
             jLabel7.setText(" "); 
             jTextField1.setText(path);
             jButton2.setEnabled(true);
+            jButton8.setEnabled(true);
             jButton1.setEnabled(false);
+            currentLoad++;
             paths.add(0, path);
         }else{
             jLabel7.setText("The file " + path + " does not exists !");
@@ -305,7 +335,9 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
             jLabel7.setText(" ");
             jTextField2.setText(path);
             jButton3.setEnabled(true);
+            jButton8.setEnabled(true);
             jButton2.setEnabled(false);
+            currentLoad++;
             paths.add(1,path);
         }else{
             jLabel7.setText("The file " + path + " does not exists !");
@@ -324,7 +356,9 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
 	            jLabel7.setText(" ");
 	            jTextField3.setText(path);
 	            jButton4.setEnabled(true);
+	            jButton8.setEnabled(true);
 	            jButton3.setEnabled(false);
+	            currentLoad++;
 	            paths.add(2,path);
 	        }else{
 	           jLabel7.setText("The file " + path + " does not exists !");
@@ -343,7 +377,9 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
             jLabel7.setText(" ");
             jTextField4.setText(path);
             jButton5.setEnabled(true);
+            jButton8.setEnabled(true);
             jButton4.setEnabled(false);
+            currentLoad++;
             paths.add(3,path);
         }else{
             jLabel7.setText("The folder " + path + " does not exists !");
@@ -362,7 +398,9 @@ private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
             jLabel7.setText(" ");
             jTextField5.setText(path);
             jButton6.setEnabled(true);
+            jButton8.setEnabled(true);
             jButton5.setEnabled(false);
+            currentLoad++;
             paths.add(4,path);
         }else{
             jLabel7.setText("The folder " + path + " does not exists !");
@@ -372,14 +410,40 @@ private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
 
 //This method is called when a click is detected on the ok button
 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
-	this.dispose();
+	if(!jTextField1.getText().equals("") && !jTextField2.getText().equals("") && !jTextField3.getText().equals("") && !jTextField4.getText().equals("") && !jTextField5.getText().equals("")){
+		this.dispose();
+	}else{
+		jLabel7.setText("All the field must be filled");
+	}	
 }
 
 //This method is called when a click is detected on the cancel button
 private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     paths = new ArrayList();
     this.dispose();
-}                                        
+}
+
+//This method is called when a click is detected on the previous load button
+private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {
+	switch(currentLoad){
+	case 1:jButton2.setEnabled(false);jButton1.setEnabled(true);jButton8.setEnabled(false);currentLoad--;break;
+	case 2:jButton3.setEnabled(false);jButton2.setEnabled(true);currentLoad--;break;
+	case 3:jButton4.setEnabled(false);jButton3.setEnabled(true);currentLoad--;break;
+	case 4:jButton5.setEnabled(false);jButton4.setEnabled(true);jButton9.setEnabled(true);currentLoad--;break;
+	case 5:jButton5.setEnabled(true);currentLoad--;break;
+	}
+	
+}
+
+//This method is called when a click is detected on the next load button
+private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {
+	switch(currentLoad){
+	case 0:jButton1.setEnabled(false);jButton2.setEnabled(true);jButton8.setEnabled(true);currentLoad++;break;
+	case 1:jButton2.setEnabled(false);jButton3.setEnabled(true);currentLoad++;break;
+	case 2:jButton3.setEnabled(false);jButton4.setEnabled(true);currentLoad++;break;
+	case 3:jButton4.setEnabled(false);jButton5.setEnabled(true);jButton6.setEnabled(true);jButton9.setEnabled(false);currentLoad++;break;
+	}
+}
 
 public List getPaths(){
     return this.paths;
