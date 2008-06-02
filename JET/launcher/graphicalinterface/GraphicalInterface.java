@@ -372,13 +372,12 @@ private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
 
 //This method is called when a click is detected on the ok button
 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
-	    System.exit(0);
+	this.dispose();
 }
 
 //This method is called when a click is detected on the cancel button
 private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     paths = new ArrayList();
-    //System.exit(0);
     this.dispose();
 }                                        
 
