@@ -5,7 +5,7 @@
 
 <% int numMethod = 0; %>
 
-import org.eclipse.emf.common.util.*;
+import org.eclipse.emf.common.util.EList;
 
 privileged aspect <%=className%>Aspect {
 <% for(int i=0; i<args.getModel().getMatching().size(); i++){ %>
@@ -31,13 +31,17 @@ privileged aspect <%=className%>Aspect {
 						<% if(correspondanceRule.getFeature().getEContainingClass().getName().equalsIgnoreCase(className)){ %>	
 							<% String type = ""; %>			
 							<% if(correspondanceRule.getFeature() instanceof EReference){ %>
-								<% type = "EList"; %>
+								<% if(correspondanceRule.getFeature().getUpperBound()==1){ %>
+									<% type = correspondanceRule.getFeature().getEType().getEPackage().getName()+"."+correspondanceRule.getFeature().getEType().getName(); %>
+								<% }else{ %>
+									<% type = "EList"; %>
+								<% } %>
 							<% }else{ %>
 								<% type = correspondanceRule.getFeature().getEType().getInstanceTypeName(); %>
 							<% } %>
 						
 							pointcut getter<%=numMethod%>(<%=ePackageName%> self) : target(self) && execution(<%=type%> <%= ePackageName %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
-							<% if(correspondanceRule.getProperty().getSetPart() != null && (correspondanceRule.getFeature() instanceof EAttribute)) { %>
+							<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
 							pointcut setter<%=numMethod%>(<%=ePackageName%> self, <%=type%> newValue) : target(self) && execution(void <%= ePackageName %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*)) && args(newValue);
 							<% } %>
 							
@@ -45,7 +49,7 @@ privileged aspect <%=className%>Aspect {
 								<%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>
 							}
 							
-							<% if(correspondanceRule.getProperty().getSetPart() != null && (correspondanceRule.getFeature() instanceof EAttribute)) { %>
+							<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
 							void around(<%=ePackageName%> self, <%=type%> newValue) : setter<%=numMethod%>(self, newValue){
 								<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>
 							}
