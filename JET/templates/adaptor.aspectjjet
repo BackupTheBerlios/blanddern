@@ -28,20 +28,24 @@ privileged aspect <%=className%>Aspect {
 						<% String methodeName = args.getModel().getMatching().get(i).getCorrespondanceRule().get(l).getFeature().getName(); %>
 						<% CorrespondanceRule correspondanceRule = args.getModel().getMatching().get(i).getCorrespondanceRule().get(l); %>
 						
+						<% boolean setAble = true; %>
 						<% if(correspondanceRule.getFeature().getEContainingClass().getName().equalsIgnoreCase(className)){ %>	
 							<% String type = ""; %>			
 							<% if(correspondanceRule.getFeature() instanceof EReference){ %>
 								<% if(correspondanceRule.getFeature().getUpperBound()==1){ %>
 									<% type = correspondanceRule.getFeature().getEType().getEPackage().getName()+"."+correspondanceRule.getFeature().getEType().getName(); %>
+									<% setAble = true; %>
 								<% }else{ %>
 									<% type = "EList"; %>
+									<% setAble = false; %>
 								<% } %>
 							<% }else{ %>
 								<% type = correspondanceRule.getFeature().getEType().getInstanceTypeName(); %>
+								<% setAble = true; %>
 							<% } %>
 						
 							pointcut getter<%=numMethod%>(<%=ePackageName%> self) : target(self) && execution(<%=type%> <%= ePackageName %>.get<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase()) %>());
-							<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
+							<% if(correspondanceRule.getProperty().getSetPart() != null && setAble) { %>
 							pointcut setter<%=numMethod%>(<%=ePackageName%> self, <%=type%> newValue) : target(self) && execution(void <%= ePackageName %>.set<%=methodeName.replaceFirst(".",(methodeName.charAt(0)+"").toUpperCase())%>(*)) && args(newValue);
 							<% } %>
 							
@@ -49,7 +53,7 @@ privileged aspect <%=className%>Aspect {
 								<%=correspondanceRule.getProperty().getGetPart().getRequest().getExpression()%>
 							}
 							
-							<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
+							<% if(correspondanceRule.getProperty().getSetPart() != null && setAble) { %>
 							void around(<%=ePackageName%> self, <%=type%> newValue) : setter<%=numMethod%>(self, newValue){
 								<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>
 							}
