@@ -39,7 +39,7 @@ privileged aspect <%=className%>Aspect {
 							
 							<% if(correspondanceRule.getProperty().getSetPart() != null) { %>
 							void around(<%=ePackageName%> self, <%=correspondanceRule.getFeature().getEType().getInstanceTypeName()%> newValue) : setter<%=numMethod%>(self, newValue){
-								self.<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>;
+								<%=correspondanceRule.getProperty().getSetPart().getRequest().getExpression()%>
 							}
 							<% } %>
 							
