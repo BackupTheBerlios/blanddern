@@ -105,7 +105,7 @@ public class Tools {
 	/* saves the result string in the File file */
 	public static void saveGenerated(String result, File file){
 		try {
-			FileWriter fw = new FileWriter(file);
+			FileWriter fw = new FileWriter(file.getAbsolutePath());
 			fw.write(result);
 			fw.close();
 		} catch (IOException e) {
