@@ -1,5 +1,6 @@
 package graphicalinterface;
 
+import java.awt.Frame;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,7 @@ import javax.swing.JFileChooser;
  * @author Jérémie SCHEER & Loïc SUTTER
  *
  */
-public class GraphicalInterface extends javax.swing.JFrame {
+public class GraphicalInterface extends javax.swing.JDialog {
     
 	private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -42,6 +43,7 @@ public class GraphicalInterface extends javax.swing.JFrame {
 	
     /** Creates new form Adaptor */
     public GraphicalInterface(String workspaceDirectory) {
+    	super((Frame)null,"",true);
         this.workspaceDirectory = workspaceDirectory;
         paths = new ArrayList();
         initComponents();
@@ -97,7 +99,7 @@ public class GraphicalInterface extends javax.swing.JFrame {
         jFileChooser5.setDialogTitle("Bin directory of the target metamodel");
         jFileChooser5.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Initialize variables");
         setResizable(false);
 
@@ -376,7 +378,8 @@ private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {
 //This method is called when a click is detected on the cancel button
 private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {                                         
     paths = new ArrayList();
-    System.exit(0);
+    //System.exit(0);
+    this.dispose();
 }                                        
 
 public List getPaths(){
