@@ -44,6 +44,7 @@ import emf2prolog.UML21ToPrologV6;
 import filtering.AdaptedFactory;
 import filtering.ArgumentsRunQuery;
 import filtering.MyFilter;
+import graphicalinterface.GraphicalInterface;
 
 import translated.AdaptorGeneration;
 import translated.PatternFilterGeneration;
@@ -73,6 +74,8 @@ public class Launch{
 	public AdaptedFactory adapt(){
 		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 		
+		List paths = launchIhm();
+		
 		/* .aj and prolog files directories creation */
 		File ajDir = new File("src-gen/");
 		File plDir = new File("prologFiles/");
@@ -91,54 +94,18 @@ public class Launch{
 		
 		ItfPatternEngine eng = new PatternEngine();
 		
-		// TODO Demander le chemin du modèle d'adaptateur
 		// load the adaptor model and convert it into a prolog file
-		File adaptModel = new File("../adaptor/models/model.adaptor");
+		File adaptModel = new File((String)paths.get(0));
 		URI adaptor = URI.createFileURI(adaptModel.getAbsolutePath());
 		EObject [] objects = Tools.loadModel(adaptor);
 		eng.generatesAdaptorMdlProlog(adaptModel);
 		
 		//convert the source model into a prolog file
-		//TODO demander chemin du modèle de vessie
-		File srcModel = new File("../Vessie/models/model1.vessie");
-		
-		//TODO demander chemin du métamodèle de vessie
-		//EPackage.Registry.INSTANCE.put("http://"+URI.createFileURI(srcModel.getAbsolutePath()).fileExtension(), Tools.loadModel(URI.createFileURI("../Vessie/metamodel/vessie.ecore"))[0]);
+		File srcModel = new File((String)paths.get(1));
 		model = eng.generatesSrcMdlProlog(srcModel);
 		
-		/* FileChooser used for the choice of the genmodel file corresponding
-		 * to the target metamodel (filter on .genmodel extension)
-		 */
-		/*TODO voir s'il est possible d'enlever le filtre acceptAll
-		 */
-		//FileFilter acceptAll = choix.getAcceptAllFileFilter();
-		//choix.removeChoosableFileFilter(acceptAll);
-		/*String genmodel = "";
-		JFileChooser choix = new JFileChooser();
-		choix.setFileFilter(new MyFilter(new String[]{"genmodel"}, "*.genmodel"));
-		
-		JOptionPane.showMessageDialog(null, "Indiquez le fichier genModel du métamodèle cible");
-		int retour = choix.showOpenDialog(null);
-		if(retour == JFileChooser.APPROVE_OPTION) {
-			genmodel = choix.getSelectedFile().getAbsolutePath();
-			
-			if(!genmodel.substring(genmodel.lastIndexOf('.')+1).equalsIgnoreCase("genmodel")){
-				System.err.println("Le fichier sélectionné doit être de type .genmodel");
-				System.exit(-1);
-			}
-		}else{
-			JOptionPane.showMessageDialog(null, "Pas de fichier genModel choisi");
-			System.exit(-1);
-		}
-		
-		File genFile = new File(genmodel);
-		if(!genFile.exists()){
-			System.err.println("Le fichier genmodel n'existe pas");
-			System.exit(-1);
-		}*/
-		
 		/* the package where the Impl files are stored is sought */
-		ImplFinder implLoc = new ImplFinder(new File(/*genmodel*/"../Lanterne/metamodel/lanterne.genmodel"));
+		ImplFinder implLoc = new ImplFinder(new File((String)paths.get(2)));
 		
 		
 		/* search in the adaptor model of all the target metamodel EClass */
@@ -167,7 +134,7 @@ public class Launch{
 				Tools.saveGenerated(result, file);
 			}
 			
-			launchAspect();
+			launchAspect((String)paths.get(3), (String)paths.get(4));
 			
 			generateFilter(a, implLoc.factoryPackage(), implLoc.implPackage());
 			
@@ -197,29 +164,9 @@ public class Launch{
 	}
 	
 	/* executes the class that will launch the aspectJ files */
-	public void launchAspect(){
+	public void launchAspect(String srcDir, String targetDir){
 		JFileChooser jfile = new JFileChooser();
 		jfile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		
-		String srcDir="..\\Vessie\\bin";
-		String targetDir="..\\Lanterne\\bin";
-		
-		/* asks the user for the directories of the source and target metamodel binaries */
-		/*JOptionPane.showMessageDialog(null, "Directory of the source metamodel binaries : ");
-		if(jfile.showOpenDialog(null)==JFileChooser.APPROVE_OPTION){
-			srcDir = jfile.getSelectedFile().getAbsolutePath();
-		}else{
-			System.err.println("No source metamodel directory chosen");
-			System.exit(-1);
-		}
-		
-		JOptionPane.showMessageDialog(null, "Directory of the target metamodel binaries");
-		if(jfile.showOpenDialog(null)==JFileChooser.APPROVE_OPTION){
-			targetDir = jfile.getSelectedFile().getAbsolutePath();
-		}else{
-			System.err.println("No target metamodel directory chosen");
-			System.exit(-1);
-		}*/
 		
 		//execute the compiler
 		AspectLaunch al = new AspectLaunch();
@@ -234,6 +181,26 @@ public class Launch{
 			return model;
 		}
 		return null;
+	}
+	
+	/* launch the graphical interface in order to get the path needed
+	 * by the program to run
+	 */
+	public List launchIhm(){
+		String tmp = new File("..").getAbsolutePath();
+		String workspace = tmp.substring(0, tmp.indexOf("Blanddern"));
+		List res;
+		
+		GraphicalInterface ihm = new GraphicalInterface(workspace);
+		ihm.setVisible(true);
+		res = ihm.getPaths();
+		
+		/* tests if all the needed paths exist */
+		if(res.size()<5){
+        	System.err.println("Paths are not correct");
+        	System.exit(-1);
+        }
+		return res;
 	}
 	
 }
