@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/BdD/src"
+    modelPluginID="BdD" modelName="Bdd" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>bdd.ecore</foreignModel>
+  <genPackages prefix="Bdd" disposableProviderFactory="true" ecorePackage="bdd.ecore#/">
+    <genClasses ecoreClass="bdd.ecore#//BaseDeDonnees">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bdd.ecore#//BaseDeDonnees/d"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bdd.ecore#//BaseDeDonnees/name"/>
+    </genClasses>
+    <genClasses ecoreClass="bdd.ecore#//Table">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference bdd.ecore#//Table/s"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bdd.ecore#//Table/name"/>
+    </genClasses>
+    <genClasses ecoreClass="bdd.ecore#//Colonne">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bdd.ecore#//Colonne/isPrimary"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bdd.ecore#//Colonne/fk"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute bdd.ecore#//Colonne/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference bdd.ecore#//Colonne/table"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

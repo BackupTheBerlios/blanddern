@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bdd:BaseDeDonnees xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:bdd="http://bdd" name="Toto">
+  <d name="Personne">
+    <s isPrimary="true" name="nom" table="//@d.0"/>
+    <s name="prenom" table="//@d.0"/>
+    <s fk="//@d.1/@s.0" name="adresse" table="//@d.0"/>
+  </d>
+  <d name="Adresse">
+    <s isPrimary="true" name="rue" table="//@d.1"/>
+    <s name="cp" table="//@d.1"/>
+    <s name="ville" table="//@d.1"/>
+  </d>
+</bdd:BaseDeDonnees>
