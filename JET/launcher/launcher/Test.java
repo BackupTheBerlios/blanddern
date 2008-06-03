@@ -7,6 +7,7 @@ import interpretor.Variable;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -14,6 +15,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -25,6 +27,8 @@ import adaptor.Adaptor;
 import adaptor.AdaptorPackage;
 
 import utils.Tools;
+import vessie.Vessie;
+import vessie.VessieContainer;
 
 public class Test {
 
@@ -32,68 +36,23 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		//bdd.BddPackage  libraryPackage = bdd.BddPackage.eINSTANCE;
+		vessie.VessiePackage libraryPackage = vessie.VessiePackage.eINSTANCE;
 		Launch l = new Launch();
 		AdaptedFactory fact = l.adapt();
 		
-		/*int toto=1;
+		EObject[] objects = l.getModel();
 		
-		String language = "java";
-		InterpretorFacade interpreter = InterpretorFactory.createInterpretorFacade(language);
-		if (interpreter == null) {
-			System.err.println("The interpreter of the language "+ language +" is not implemented in this version.");
-		}
-
-		try {
-			String code = "toto==1";
-			if(language != null && code != null) {
-				
-				List<Variable> vars = new ArrayList<Variable>();
-				vars.add(new Variable() {
-
-						public String getName() {
-							return "toto";
-						}
-
-						public Object getValue() {
-							return 1;
-						}});
-				
-				
-				Result r = interpreter.interprete(null, vars, code);
-				
-				// handle the output variables
-				if (r != null) {
-					System.out.println(r.getResult());
-				}
-			}
-		} catch (Throwable x) {
-			System.err.println("Problems while executing script: " + x.getMessage());
-		}*/
+		List res = fact.loadModel(new EObject[]{((VessieContainer)objects[0]).getVessies().get(0)});
+		//List res = fact.loadModel(new EObject[]{((bdd.BaseDeDonnees)objects[0]).getD().get(0)});
 		
-		// TODO Auto-generated method stub
-		/*File srcModel = new File("../adaptor/models/model.adaptor");
+		System.out.println("toto");
 		
-		URI ada = URI.createFileURI(srcModel.getAbsolutePath());
-		EObject [] obj = Tools.loadModel(ada);
-		Adaptor a = (Adaptor)obj[0];
-		
-		EClass c = a.getMatching().get(0).getLhs().getComposed().get(0).getConcept();
-		
-		System.out.println(a.getMatching().get(0).getLhs().getComposed().get(0).getConcept().getEPackage().getName());
-		System.out.println(a.getMatching().get(0).getLhs().getComposed().get(0).getConcept().getName());
-		
-		int toto=1;
-		if(Boolean.parseBoolean("true")){
-			System.out.println("test ok");
-		}else{
-			System.out.println("test pas ok");
-		}*/
-		//a.getMatching().get(0).getLhs().getComposed().get(0).getConcept().
-		
-		/*EList<EAttribute>ttref = c.eClass().getEAllAttributes();
-        for (EAttribute currentAttribute : ttref) {
-            Object values = c.eGet(currentAttribute);
-            System.out.println(currentAttribute.getName()+"\n"+values);
-        }*/
+		Iterator it = res.iterator();
+		EObject[] objres = (EObject[])it.next();
+		//lanterne.Lanterne lant= (lanterne.Lanterne)objres[0];
+		//objet.Classe cl = (objet.Classe)objres[0];
+		//System.out.println(cl.getA());
+		//System.out.println(lant.getLuminosite());
 	}
 }
