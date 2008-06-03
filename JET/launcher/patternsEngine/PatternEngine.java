@@ -59,10 +59,6 @@ public class PatternEngine implements ItfPatternEngine{
 				 * created, it returns automatically to the beginning of the predicate results
 				 * for this query in order to complete
 				 */
-				/*TODO si les premieres query ont moins de predicats résultats
-				 * que les dernieres, les premieres ne complèteront pas les map
-				 * --> seulement l'inverse qui fonctionne
-				 */
 				numMap = 0;
 				boolean firstIter = true;
 				while(firstQuery || (!firstQuery && numMap<nbMapMax)){
@@ -115,18 +111,10 @@ public class PatternEngine implements ItfPatternEngine{
 
 	/* uses the PraxisEMF2Prolog project to convert the adaptor model file into a program prolog file */
 	public EObject[] generatesSrcMdlProlog(File srcModel) {
-		// transforms the extension of the model into a .uml file and copy the original file
-		String umlModel = srcModel.getAbsolutePath().substring(srcModel.getAbsolutePath().lastIndexOf('\\'), srcModel.getAbsolutePath().lastIndexOf('.'));
-		umlModel = "prologFiles\\"+umlModel+".uml";
-		File umlFile = new File(umlModel);
-		Tools.copyFile(srcModel, umlFile);
-		
 		//launch the transformation with the corrects arguments
 		String[] args = {srcModel.getAbsolutePath(), "prologFiles\\sourceModel.pl", "sourceModel"};
 		UML21ToPrologV6 trans = new UML21ToPrologV6();
 		id2obj = trans.translates(args);
-	
-		umlFile.delete();
 		
 		return trans.getModel();
 	}

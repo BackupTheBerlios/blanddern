@@ -7,7 +7,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
@@ -117,8 +116,8 @@ public class ImplFinder {
 			ecoreRoot = parse(new File(ecore));
 			ecorePack = walkEcoreFile(ecoreRoot);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.err.println("The ecore file can't be parsed");
+			System.exit(-1);
 		}
 		
 		if(impl){

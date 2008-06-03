@@ -3,19 +3,14 @@
  */
 package interpretor;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 import koala.dynamicjava.interpreter.Interpreter;
 import koala.dynamicjava.interpreter.InterpreterException;
@@ -101,10 +96,10 @@ public class InterpretorFacadeKoala implements InterpretorFacade {
 			}
 		    return ret;
 		} catch (InterpreterException e) {
-		    e.printStackTrace();
+		    System.err.println("The script has not been correctly interpreted");
 		    return null;
 		} catch (Throwable e) {
-		    e.printStackTrace();
+			System.err.println("The script has not been correctly interpreted");
 		    return null;
 		}
 	}

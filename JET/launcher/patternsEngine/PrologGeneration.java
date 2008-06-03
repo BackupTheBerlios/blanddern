@@ -60,37 +60,4 @@ public class PrologGeneration {
 			Tools.saveGenerated(result, file);
 		}
 	}
-	
-	/* delete the jump lines in the Prolog requests */
-	// TODO fonction inutile
-	public void deleteGaps(File plFile){
-		File tmp = new File("prologFiles/tmp");
-		
-		try {
-			
-			
-			BufferedReader br = new BufferedReader(new FileReader(plFile));
-			BufferedWriter bw = new BufferedWriter(new FileWriter(tmp));
-			
-			String ret;
-			
-			/* copy the file into a tmp file without the \n, except after the .
-			 * that marks the end of a rule
-			 */
-			while((ret = br.readLine())!=null){
-				if(ret.contains(").")){
-					ret = ret.substring(0, ret.indexOf(").")+2)+"\n"+ret.substring(ret.indexOf(").")+2);
-				}
-				bw.write(ret);
-			}
-			br.close();
-			bw.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		Tools.copyFile(tmp, plFile);
-		tmp.delete();
-	}
 }

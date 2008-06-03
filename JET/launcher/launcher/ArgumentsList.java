@@ -1,8 +1,5 @@
 package launcher;
 
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-
 import adaptor.Adaptor;
 
 /**
@@ -11,8 +8,9 @@ import adaptor.Adaptor;
  *
  */
 
-/* store an adaptor model and the package of an EClass
- * (for instance : lanterne.impl.LanterneImpl)
+/* store an adaptor model, the package of an EClass
+ * (for instance : lanterne.impl.LanterneImpl), and the
+ * name of the eClass
  */
 public class ArgumentsList {
 	private Adaptor model;
