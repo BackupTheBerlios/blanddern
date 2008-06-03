@@ -5,7 +5,6 @@ import org.aspectj.bridge.*;
 import org.aspectj.tools.ajc.Main;
 
 import java.io.File;
-import java.util.Arrays;
 
 /**
  * 
@@ -36,9 +35,14 @@ public class AspectLaunch {
 		
 		Main compiler = new Main();
 	    MessageHandler m = new MessageHandler();
+	    
 	    compiler.run(args, m);
-	    IMessage[] ms = m.getMessages(null, true);
-	    System.out.println("messages: " + Arrays.asList(ms));
+	    IMessage[] ms = m.getErrors();
+	    m.clearMessages();
+	    if(ms.length>0){
+	    	System.err.println("L'AspectJ n'a pas pu s'éxecuter correctement --> Modèle d'adaptateur incorrect");
+	    	System.exit(-1);
+	    }
 	}
 
 }
