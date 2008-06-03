@@ -1,57 +1,29 @@
 package launcher;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileFilter;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-
-import org.eclipse.emf.codegen.jet.JETEmitter;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
 
 import patternsEngine.ItfPatternEngine;
 import patternsEngine.PatternEngine;
 
-import emf2prolog.UML21ToPrologV6;
 import filtering.AdaptedFactory;
 import filtering.ArgumentsRunQuery;
-import filtering.MyFilter;
 import graphicalinterface.GraphicalInterface;
 
 import translated.AdaptorGeneration;
 import translated.PatternFilterGeneration;
 import translated.RunQueryGeneration;
 import utils.Tools;
-import vessie.Vessie;
-import vessie.VessiePackage;
 
 import adaptor.*;
 
@@ -72,8 +44,6 @@ public class Launch{
 	 * target model
 	 */
 	public AdaptedFactory adapt(){
-		BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
-		
 		List paths = launchIhm();
 		
 		/* .aj and prolog files directories creation */
@@ -89,7 +59,8 @@ public class Launch{
 			ajDir.mkdir();
 			plDir.mkdir();
 		}catch(IOException e){
-			e.printStackTrace();
+			System.err.println(e.getMessage());
+			System.exit(-1);
 		}
 		
 		ItfPatternEngine eng = new PatternEngine();
@@ -112,6 +83,8 @@ public class Launch{
 		try{
 			Adaptor a = (Adaptor)objects[0];
 			Set eclasses = new HashSet();
+			
+			checkLhsInstanceName(a);
 			
 			for(int i=0; i<a.getMatching().size(); i++){
 				for(int j=0; j<a.getMatching().get(i).getRhs().size(); j++){
@@ -140,7 +113,6 @@ public class Launch{
 			
 			return new AdaptedFactory(eng);
 		}catch(Exception e){
-			e.printStackTrace();
 			System.err.println("Error during the creation of the adapted factory");
 			System.exit(-1);
 		}
@@ -203,4 +175,31 @@ public class Launch{
 		return res;
 	}
 	
+	/* check if every main lhs instance has a name */
+	public void checkLhsInstanceName(Adaptor a){
+		Instance lhsInst;
+		boolean hasName=true;
+		
+		for(int i=0; i<a.getMatching().size(); i++){
+			for(int j=0; j<a.getMatching().get(i).getLhs().getComposed().size(); j++){
+				lhsInst = a.getMatching().get(i).getLhs().getComposed().get(j);
+				
+				hasName=true;
+				if(lhsInst.isIsMain()){
+					if(lhsInst.getName()!=null){
+						if(lhsInst.getName().equalsIgnoreCase("")){
+							hasName=false;
+						}
+					}else{
+						hasName=false;
+					}
+				}
+					
+				if(!hasName){
+					System.err.println("Each main instance of a lhs pattern must have a name");
+					System.exit(-1);
+				}
+			}
+		}
+	}
 }
