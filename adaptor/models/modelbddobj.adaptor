@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adaptor:Adaptor xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adaptor="http://adaptor" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bddobj">
+  <matching>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EReference" href="file:/D:/User/ProjetIMM/workspace/Objet/metamodel/objet.ecore#//Classe/a"/>
+      <property>
+        <getPart>
+          <request expression="if(self.t.getS() != null){ return self.t.getS();}else{return null;}"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <lhs>
+      <composed name="t" isMain="true">
+        <concept href="../../BdD/metamodel/bdd.ecore#//Table"/>
+      </composed>
+    </lhs>
+    <rhs>
+      <composed name="cl">
+        <concept href="file:/D:/User/ProjetIMM/workspace/Objet/metamodel/objet.ecore#//Classe"/>
+      </composed>
+    </rhs>
+  </matching>
+  <matching>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EReference" href="file:/D:/User/ProjetIMM/workspace/Objet/metamodel/objet.ecore#//Relation/type"/>
+      <property>
+        <getPart>
+          <request expression="return null;"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <lhs>
+      <composed name="col" isMain="true">
+        <concept href="../../BdD/metamodel/bdd.ecore#//Colonne"/>
+      </composed>
+    </lhs>
+    <rhs>
+      <composed name="rel">
+        <concept href="file:/D:/User/ProjetIMM/workspace/Objet/metamodel/objet.ecore#//Relation"/>
+      </composed>
+      <query>
+        <request expression="col.getFk()!=null;"/>
+      </query>
+    </rhs>
+    <rhs>
+      <composed name="att">
+        <concept href="file:/D:/User/ProjetIMM/workspace/Objet/metamodel/objet.ecore#//Attribut"/>
+      </composed>
+      <query>
+        <request expression="col.isIsPrimary();"/>
+      </query>
+    </rhs>
+  </matching>
+</adaptor:Adaptor>

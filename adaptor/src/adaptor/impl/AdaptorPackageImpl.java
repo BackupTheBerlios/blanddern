@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackageImpl.java,v 1.6 2008/05/26 14:38:45 scheerj Exp $
+ * $Id: AdaptorPackageImpl.java,v 1.7 2008/06/04 11:48:40 scheerj Exp $
  */
 package adaptor.impl;
 

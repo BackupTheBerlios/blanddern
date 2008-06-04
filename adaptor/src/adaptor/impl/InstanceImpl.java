@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InstanceImpl.java,v 1.6 2008/05/26 14:38:45 scheerj Exp $
+ * $Id: InstanceImpl.java,v 1.7 2008/06/04 11:48:40 scheerj Exp $
  */
 package adaptor.impl;
 
@@ -50,6 +50,7 @@ public class InstanceImpl extends NamedImpl implements Instance {
 	 * @ordered
 	 */
 	protected static final boolean IS_MAIN_EDEFAULT = false;
+
 	/**
 	 * The cached value of the '{@link #isIsMain() <em>Is Main</em>}' attribute.
 	 * <!-- begin-user-doc -->

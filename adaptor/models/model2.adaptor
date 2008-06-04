@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adaptor:Adaptor xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adaptor="http://adaptor" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="adaptateur">
+  <matching>
+    <lhs>
+      <composed name="v" isMain="true">
+        <concept href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
+      </composed>
+      <composed name="w" isMain="true">
+        <concept href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
+      </composed>
+    </lhs>
+    <rhs>
+      <composed name="lanterne">
+        <concept href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne"/>
+      </composed>
+      <query>
+        <request expression="v.getContenance()==50;"/>
+      </query>
+    </rhs>
+  </matching>
+  <matching>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EAttribute" href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne/luminosite"/>
+      <property>
+        <getPart>
+          <request expression="return self.toto.getName()+&quot;toto&quot;;"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <lhs>
+      <composed name="toto" isMain="true">
+        <concept href="../../Vessie/metamodel/vessie.ecore#//Vessie"/>
+      </composed>
+    </lhs>
+    <rhs>
+      <composed name="tata">
+        <concept href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne"/>
+      </composed>
+      <composed name="tutu">
+        <concept href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne"/>
+      </composed>
+      <query>
+        <request expression="toto.getName().equalsIgnoreCase(\&quot;trente\&quot;);"/>
+      </query>
+    </rhs>
+  </matching>
+</adaptor:Adaptor>

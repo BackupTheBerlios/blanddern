@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PropertyValidator.java,v 1.5 2008/05/26 14:38:45 scheerj Exp $
+ * $Id: PropertyValidator.java,v 1.6 2008/06/04 11:48:40 scheerj Exp $
  */
 package adaptor.validation;
 

@@ -5,10 +5,10 @@
       <feature xsi:type="ecore:EAttribute" href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne/intensite"/>
       <property>
         <setPart>
-          <request expression="intensite=newValue"/>
+          <request expression="self.intensite=newValue;"/>
         </setPart>
         <getPart>
-          <request expression="v.getContenance()*2*(int)3.14"/>
+          <request expression="return self.v.getContenance()*2*(int)3.14;"/>
         </getPart>
       </property>
     </correspondanceRule>
@@ -16,7 +16,7 @@
       <feature xsi:type="ecore:EAttribute" href="../../Lanterne/metamodel/Lanterne.ecore#//Lanterne/luminosite"/>
       <property>
         <getPart>
-          <request expression="v.getContenance()-1+&quot;&quot;"/>
+          <request expression="return self.v.getContenance()-1+&quot;&quot;;"/>
         </getPart>
       </property>
     </correspondanceRule>

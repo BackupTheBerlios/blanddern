@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InstanceValidator.java,v 1.6 2008/05/26 14:38:45 scheerj Exp $
+ * $Id: InstanceValidator.java,v 1.7 2008/06/04 11:48:40 scheerj Exp $
  */
 package adaptor.validation;
 
@@ -18,6 +18,5 @@ public interface InstanceValidator {
 	boolean validate();
 
 	boolean validateConcept(EClass value);
-
 	boolean validateIsMain(boolean value);
 }
