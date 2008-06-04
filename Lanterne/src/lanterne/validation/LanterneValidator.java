@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LanterneValidator.java,v 1.1 2008/05/16 06:59:56 scheerj Exp $
+ * $Id: LanterneValidator.java,v 1.2 2008/06/04 11:50:10 scheerj Exp $
  */
 package lanterne.validation;
 
@@ -17,6 +17,5 @@ public interface LanterneValidator {
 	boolean validate();
 
 	boolean validateIntensite(int value);
-
 	boolean validateLuminosite(String value);
 }
