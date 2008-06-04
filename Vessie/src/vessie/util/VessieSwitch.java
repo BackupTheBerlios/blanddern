@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessieSwitch.java,v 1.1 2008/05/16 07:01:05 scheerj Exp $
+ * $Id: VessieSwitch.java,v 1.2 2008/06/04 11:49:44 scheerj Exp $
  */
 package vessie.util;
 
@@ -93,6 +93,12 @@ public class VessieSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case VessiePackage.VESSIE_CONTAINER: {
+				VessieContainer vessieContainer = (VessieContainer)theEObject;
+				T result = caseVessieContainer(vessieContainer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -109,6 +115,21 @@ public class VessieSwitch<T> {
 	 * @generated
 	 */
 	public T caseVessie(Vessie object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Container</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVessieContainer(VessieContainer object) {
 		return null;
 	}
 

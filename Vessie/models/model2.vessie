@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vessie:VessieContainer xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:vessie="http://vessie">
+  <vessies contenance="30" name="trente"/>
+  <vessies contenance="40" name="quarante"/>
+  <vessies contenance="50" name="cinquante"/>
+</vessie:VessieContainer>

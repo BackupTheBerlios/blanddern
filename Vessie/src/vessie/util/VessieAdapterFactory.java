@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessieAdapterFactory.java,v 1.1 2008/05/16 07:01:05 scheerj Exp $
+ * $Id: VessieAdapterFactory.java,v 1.2 2008/06/04 11:49:44 scheerj Exp $
  */
 package vessie.util;
 
@@ -76,6 +76,10 @@ public class VessieAdapterFactory extends AdapterFactoryImpl {
 				return createVessieAdapter();
 			}
 			@Override
+			public Adapter caseVessieContainer(VessieContainer object) {
+				return createVessieContainerAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -106,6 +110,20 @@ public class VessieAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createVessieAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link vessie.VessieContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see vessie.VessieContainer
+	 * @generated
+	 */
+	public Adapter createVessieContainerAdapter() {
 		return null;
 	}
 

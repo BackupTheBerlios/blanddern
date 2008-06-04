@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessiePackageImpl.java,v 1.2 2008/05/26 13:48:28 scheerj Exp $
+ * $Id: VessiePackageImpl.java,v 1.3 2008/06/04 11:49:44 scheerj Exp $
  */
 package vessie.impl;
 
@@ -10,9 +10,11 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import vessie.Vessie;
+import vessie.VessieContainer;
 import vessie.VessieFactory;
 import vessie.VessiePackage;
 
@@ -29,6 +31,13 @@ public class VessiePackageImpl extends EPackageImpl implements VessiePackage {
 	 * @generated
 	 */
 	private EClass vessieEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass vessieContainerEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -130,6 +139,24 @@ public class VessiePackageImpl extends EPackageImpl implements VessiePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getVessieContainer() {
+		return vessieContainerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getVessieContainer_Vessies() {
+		return (EReference)vessieContainerEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public VessieFactory getVessieFactory() {
 		return (VessieFactory)getEFactoryInstance();
 	}
@@ -156,6 +183,9 @@ public class VessiePackageImpl extends EPackageImpl implements VessiePackage {
 		vessieEClass = createEClass(VESSIE);
 		createEAttribute(vessieEClass, VESSIE__CONTENANCE);
 		createEAttribute(vessieEClass, VESSIE__NAME);
+
+		vessieContainerEClass = createEClass(VESSIE_CONTAINER);
+		createEReference(vessieContainerEClass, VESSIE_CONTAINER__VESSIES);
 	}
 
 	/**
@@ -191,6 +221,9 @@ public class VessiePackageImpl extends EPackageImpl implements VessiePackage {
 		initEClass(vessieEClass, Vessie.class, "Vessie", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getVessie_Contenance(), ecorePackage.getEInt(), "contenance", null, 0, 1, Vessie.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVessie_Name(), ecorePackage.getEString(), "name", null, 0, 1, Vessie.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(vessieContainerEClass, VessieContainer.class, "VessieContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getVessieContainer_Vessies(), this.getVessie(), null, "vessies", null, 0, -1, VessieContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

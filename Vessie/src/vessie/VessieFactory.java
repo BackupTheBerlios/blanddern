@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessieFactory.java,v 1.1 2008/05/16 07:01:05 scheerj Exp $
+ * $Id: VessieFactory.java,v 1.2 2008/06/04 11:49:44 scheerj Exp $
  */
 package vessie;
 
@@ -33,6 +33,15 @@ public interface VessieFactory extends EFactory {
 	 * @generated
 	 */
 	Vessie createVessie();
+
+	/**
+	 * Returns a new object of class '<em>Container</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Container</em>'.
+	 * @generated
+	 */
+	VessieContainer createVessieContainer();
 
 	/**
 	 * Returns the package supported by this factory.

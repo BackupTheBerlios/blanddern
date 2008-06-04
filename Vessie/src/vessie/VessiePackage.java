@@ -2,13 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessiePackage.java,v 1.2 2008/05/26 13:48:28 scheerj Exp $
+ * $Id: VessiePackage.java,v 1.3 2008/06/04 11:49:44 scheerj Exp $
  */
 package vessie;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -97,6 +98,35 @@ public interface VessiePackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link vessie.impl.VessieContainerImpl <em>Container</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see vessie.impl.VessieContainerImpl
+	 * @see vessie.impl.VessiePackageImpl#getVessieContainer()
+	 * @generated
+	 */
+	int VESSIE_CONTAINER = 1;
+
+	/**
+	 * The feature id for the '<em><b>Vessies</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VESSIE_CONTAINER__VESSIES = 0;
+
+	/**
+	 * The number of structural features of the '<em>Container</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VESSIE_CONTAINER_FEATURE_COUNT = 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link vessie.Vessie <em>Vessie</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -127,6 +157,27 @@ public interface VessiePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getVessie_Name();
+
+	/**
+	 * Returns the meta object for class '{@link vessie.VessieContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Container</em>'.
+	 * @see vessie.VessieContainer
+	 * @generated
+	 */
+	EClass getVessieContainer();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link vessie.VessieContainer#getVessies <em>Vessies</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Vessies</em>'.
+	 * @see vessie.VessieContainer#getVessies()
+	 * @see #getVessieContainer()
+	 * @generated
+	 */
+	EReference getVessieContainer_Vessies();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -175,6 +226,24 @@ public interface VessiePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute VESSIE__NAME = eINSTANCE.getVessie_Name();
+
+		/**
+		 * The meta object literal for the '{@link vessie.impl.VessieContainerImpl <em>Container</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see vessie.impl.VessieContainerImpl
+		 * @see vessie.impl.VessiePackageImpl#getVessieContainer()
+		 * @generated
+		 */
+		EClass VESSIE_CONTAINER = eINSTANCE.getVessieContainer();
+
+		/**
+		 * The meta object literal for the '<em><b>Vessies</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference VESSIE_CONTAINER__VESSIES = eINSTANCE.getVessieContainer_Vessies();
 
 	}
 

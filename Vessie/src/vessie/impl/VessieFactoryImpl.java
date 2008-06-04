@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: VessieFactoryImpl.java,v 1.1 2008/05/16 07:01:05 scheerj Exp $
+ * $Id: VessieFactoryImpl.java,v 1.2 2008/06/04 11:49:44 scheerj Exp $
  */
 package vessie.impl;
 
@@ -61,6 +61,7 @@ public class VessieFactoryImpl extends EFactoryImpl implements VessieFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case VessiePackage.VESSIE: return createVessie();
+			case VessiePackage.VESSIE_CONTAINER: return createVessieContainer();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -74,6 +75,16 @@ public class VessieFactoryImpl extends EFactoryImpl implements VessieFactory {
 	public Vessie createVessie() {
 		VessieImpl vessie = new VessieImpl();
 		return vessie;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public VessieContainer createVessieContainer() {
+		VessieContainerImpl vessieContainer = new VessieContainerImpl();
+		return vessieContainer;
 	}
 
 	/**

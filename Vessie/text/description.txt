@@ -10,3 +10,6 @@ Package vessie <http://vessie>
   Class Vessie
     Attribute contenance : EInt
     Attribute name : EString
+
+  Class VessieContainer
+    Reference vessies : Vessie<<0..*>>

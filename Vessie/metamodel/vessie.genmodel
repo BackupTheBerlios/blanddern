@@ -10,5 +10,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vessie.ecore#//Vessie/contenance"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute vessie.ecore#//Vessie/name"/>
     </genClasses>
+    <genClasses ecoreClass="vessie.ecore#//VessieContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference vessie.ecore#//VessieContainer/vessies"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

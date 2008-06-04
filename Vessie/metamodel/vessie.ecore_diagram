@@ -29,6 +29,41 @@
     <element xmi:type="ecore:EClass" href="vessie.ecore#//Vessie"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_45GA0hqBEd2jJaGs-4dczA" x="168" y="96" width="106" height="85"/>
   </children>
+  <children xmi:type="notation:Node" xmi:id="_pSYI0C5EEd2JadxaWDRsPA" type="2001">
+    <children xmi:type="notation:Node" xmi:id="_pSh50C5EEd2JadxaWDRsPA" type="5001"/>
+    <children xmi:type="notation:Node" xmi:id="_pSh50S5EEd2JadxaWDRsPA" type="7001">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_pSh50i5EEd2JadxaWDRsPA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_pSh50y5EEd2JadxaWDRsPA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_pSh51C5EEd2JadxaWDRsPA"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_pSh51S5EEd2JadxaWDRsPA" type="7002">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_pSh51i5EEd2JadxaWDRsPA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_pSh51y5EEd2JadxaWDRsPA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_pSh52C5EEd2JadxaWDRsPA"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_pSh52S5EEd2JadxaWDRsPA" type="7003">
+      <styles xmi:type="notation:DrawerStyle" xmi:id="_pSh52i5EEd2JadxaWDRsPA"/>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_pSh52y5EEd2JadxaWDRsPA"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_pSh53C5EEd2JadxaWDRsPA"/>
+    </children>
+    <styles xmi:type="notation:ShapeStyle" xmi:id="_pSYI0S5EEd2JadxaWDRsPA"/>
+    <element xmi:type="ecore:EClass" href="vessie.ecore#//VessieContainer"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pSYI0i5EEd2JadxaWDRsPA" x="39" y="50"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_EYSdcRqBEd2jJaGs-4dczA"/>
   <element xmi:type="ecore:EPackage" href="vessie.ecore#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_rEXq4C5EEd2JadxaWDRsPA" type="4003" source="_pSYI0C5EEd2JadxaWDRsPA" target="_45GA0BqBEd2jJaGs-4dczA">
+    <children xmi:type="notation:Node" xmi:id="_rEhb4C5EEd2JadxaWDRsPA" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_rEhb4S5EEd2JadxaWDRsPA" x="3" y="-12"/>
+    </children>
+    <children xmi:type="notation:Node" xmi:id="_rEhb4i5EEd2JadxaWDRsPA" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_rEhb4y5EEd2JadxaWDRsPA" x="-5" y="18"/>
+    </children>
+    <styles xmi:type="notation:ConnectorStyle" xmi:id="_rEXq4S5EEd2JadxaWDRsPA"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_rEXq4i5EEd2JadxaWDRsPA"/>
+    <element xmi:type="ecore:EReference" href="vessie.ecore#//VessieContainer/vessies"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rEXq4y5EEd2JadxaWDRsPA" points="[14, 10, -105, -76]$[119, 89, 0, 3]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rGdVkC5EEd2JadxaWDRsPA" id="(0.54285717,0.8076923)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rGdVkS5EEd2JadxaWDRsPA" id="(0.44339624,0.9647059)"/>
+  </edges>
 </notation:Diagram>
