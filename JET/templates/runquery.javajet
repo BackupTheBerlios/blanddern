@@ -122,6 +122,8 @@ public RunQuery(ItfPatternEngine pe){
 								
 								res[<%=l%>]=<%=objectName%>;
 							<% } %>
+							
+							System.out.println("Proxies initialized");
 							return res;
 						 }
 				<% } %>

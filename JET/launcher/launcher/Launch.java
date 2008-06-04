@@ -63,6 +63,8 @@ public class Launch{
 			System.exit(-1);
 		}
 		
+		System.out.println("Temporary directories regenerated");
+		
 		ItfPatternEngine eng = new PatternEngine();
 		
 		// load the adaptor model and convert it into a prolog file
@@ -71,9 +73,13 @@ public class Launch{
 		EObject [] objects = Tools.loadModel(adaptor);
 		eng.generatesAdaptorMdlProlog(adaptModel);
 		
+		System.out.println("Prolog requests generated from the adaptor model");
+		
 		//convert the source model into a prolog file
 		File srcModel = new File((String)paths.get(1));
 		model = eng.generatesSrcMdlProlog(srcModel);
+		
+		System.out.println("Prolog program generated from the source model");
 		
 		/* the package where the Impl files are stored is sought */
 		ImplFinder implLoc = new ImplFinder(new File((String)paths.get(2)));
@@ -85,6 +91,8 @@ public class Launch{
 			Set eclasses = new HashSet();
 			
 			checkLhsInstanceName(a);
+			
+			System.out.println("Lhs-pattern main-instance name of the adaptor model checked");
 			
 			for(int i=0; i<a.getMatching().size(); i++){
 				for(int j=0; j<a.getMatching().get(i).getRhs().size(); j++){
@@ -105,11 +113,18 @@ public class Launch{
 				
 				File file = new File("src-gen/"+c.getName()+".aj");
 				Tools.saveGenerated(result, file);
+				
+				System.out.println("AspectJ files generated from the adaptor model");
 			}
 			
+			System.out.println("AspectJ files are being executed");
 			launchAspect((String)paths.get(3), (String)paths.get(4));
+			System.out.println("Target metamodel implementations edited in accordance with the adaptor model");
 			
 			generateFilter(a, implLoc.factoryPackage(), implLoc.implPackage());
+			
+			System.out.println("Pattern filter generated from the adaptor model");
+			System.out.println("Adaptation factory ready to be used");
 			
 			return new AdaptedFactory(eng);
 		}catch(Exception e){
