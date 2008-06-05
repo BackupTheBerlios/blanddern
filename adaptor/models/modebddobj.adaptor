@@ -25,7 +25,7 @@
       <feature xsi:type="ecore:EReference" href="../../Objet/metamodel/objet.ecore#//Relation/type"/>
       <property>
         <getPart>
-          <request expression="objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE; objet.Classe o = (objet.Classe)objectInstanced.createClasse(); java.util.Iterator it = self.col.getTable().getS().iterator(); while(it.hasNext()){o.getA().add((bdd.Colonne)it.next());}return o;"/>
+          <request expression="objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE; objet.impl.ClasseImpl o = (objet.impl.ClasseImpl)objectInstanced.createClasse(); o.t=self.col.getTable(); return o;"/>
         </getPart>
       </property>
     </correspondanceRule>
