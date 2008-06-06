@@ -28,6 +28,16 @@ public class Test3 {
 		objet.Classe cl = (objet.Classe)objres[0];
 		System.out.println("New Proprietes in Classe : "+cl.getA());
 		
+		Iterator it2 = cl.getA().iterator();
+		while(it2.hasNext()){
+			objet.Propriete p = (objet.Propriete)it2.next();
+		
+			System.out.println(p);
+			if(p instanceof objet.Relation){
+				System.out.println(((objet.Relation)p).getType().getA());
+			}
+		}
+		
 		EObject[] objres2 = (EObject[])it.next();
 		objet.Relation rel = (objet.Relation)objres2[0];
 		System.out.println("New Classe in Relation : "+rel.getType().getA());
