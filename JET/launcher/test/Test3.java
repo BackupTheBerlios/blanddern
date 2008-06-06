@@ -21,11 +21,15 @@ public class Test3 {
 		
 		EObject[] objects = l.getModel();
 		
-		List res = fact.loadModel(new EObject[]{((bdd.BaseDeDonnees)objects[0]).getD().get(0)});
+		List res = fact.loadModel(new EObject[]{((bdd.BaseDeDonnees)objects[0]).getD().get(0), ((bdd.BaseDeDonnees)objects[0]).getD().get(0).getS().get(2)});
 		
 		Iterator it = res.iterator();
 		EObject[] objres = (EObject[])it.next();
 		objet.Classe cl = (objet.Classe)objres[0];
-		System.out.println("New colonnes : "+cl.getA());
+		System.out.println("New Proprietes in Classe : "+cl.getA());
+		
+		EObject[] objres2 = (EObject[])it.next();
+		objet.Relation rel = (objet.Relation)objres2[0];
+		System.out.println("New Classe in Relation : "+rel.getType().getA());
 	}
 }
