@@ -1,4 +1,4 @@
-<%@ jet package="translated" imports="filtering.* adaptor.* launcher.* org.eclipse.emf.ecore.*" class="AdaptorGeneration"%>
+<%@ jet package="translated" imports="filtering.* adaptor.* launcher.* org.eclipse.emf.ecore.* java.util.*" class="AdaptorGeneration"%>
 <% ArgumentsList args = (ArgumentsList) argument; %>
 <% String className = args.getEClass(); %>
 <% String ePackageName = args.getEPackage(); %>
@@ -13,14 +13,34 @@ privileged aspect <%=className%>Aspect {
 	
 	<% for(int j=0; j<args.getModel().getMatching().get(i).getRhs().size(); j++){ %>
 		<% for(int k=0; k<args.getModel().getMatching().get(i).getRhs().get(j).getComposed().size(); k++){ %>
-			<% if(args.getModel().getMatching().get(i).getRhs().get(j).getComposed().get(k).getConcept().getName().equalsIgnoreCase(className)){ %>
+		
+			<% boolean isFirstSuperClass = false; %>
+			<% boolean hasSuperClass = false; %>
+			<% List superClass = args.getModel().getMatching().get(i).getRhs().get(j).getComposed().get(k).getConcept().getEAllSuperTypes(); %>
+			<% Iterator it = superClass.iterator(); %>
+			<% boolean isSuperClass = false; %>
+			<% while(it.hasNext() && !isSuperClass){ %>
+				<% hasSuperClass = true; %>
+				<% EClass cl = (EClass)it.next(); %>
+				
+				<% if(cl.getName().equalsIgnoreCase(className)){ %>
+					<% isSuperClass = true; %>
+					<% if(cl.getEAllSuperTypes().size()==0){ %>
+						<% isFirstSuperClass = true; %>
+					<% } %>
+				<% } %>
+			<% } %>
+		
+			<% if(args.getModel().getMatching().get(i).getRhs().get(j).getComposed().get(k).getConcept().getName().equalsIgnoreCase(className) || isSuperClass){ %>
 				
 				<% if(!alreadyVisited){ %>
-					<% for(int z=0; z<args.getModel().getMatching().get(i).getLhs().getComposed().size(); z++){ %>
-						<% Instance proxy = args.getModel().getMatching().get(i).getLhs().getComposed().get(z); %>
-						
-						<% if(proxy.isIsMain()){ %>
-							public <%=proxy.getConcept().getEPackage().getName()%>.<%=proxy.getConcept().getName()%> <%=ePackageName%>.<%=proxy.getName()%>;
+					<% if(!hasSuperClass || isFirstSuperClass){ %>
+						<% for(int z=0; z<args.getModel().getMatching().get(i).getLhs().getComposed().size(); z++){ %>
+							<% Instance proxy = args.getModel().getMatching().get(i).getLhs().getComposed().get(z); %>
+							
+							<% if(proxy.isIsMain()){ %>
+								public <%=proxy.getConcept().getEPackage().getName()%>.<%=proxy.getConcept().getName()%> <%=ePackageName%>.<%=proxy.getName()%>;
+							<% } %>
 						<% } %>
 					<% } %>	
 					
