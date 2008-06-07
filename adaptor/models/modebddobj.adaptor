@@ -5,7 +5,15 @@
       <feature xsi:type="ecore:EReference" href="../../Objet/metamodel/objet.ecore#//Classe/a"/>
       <property>
         <getPart>
-          <request expression="org.eclipse.emf.common.util.EList l = new org.eclipse.emf.common.util.BasicEList(); java.util.Iterator it = self.t.getS().iterator(); objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE; while(it.hasNext()){ bdd.Colonne tmp = (bdd.Colonne)it.next(); if(tmp.getFk()!=null){ objet.impl.RelationImpl rel = (objet.impl.RelationImpl)objectInstanced.createRelation(); rel.col=tmp; l.add(rel);} if(tmp.isIsPrimary()){ objet.impl.AttributImpl att = (objet.impl.AttributImpl)objectInstanced.createAttribut(); att.col = tmp; l.add(att); }} return l;"/>
+          <request expression="org.eclipse.emf.common.util.EList l = new org.eclipse.emf.common.util.BasicEList(); java.util.Iterator it = self.t.getS().iterator(); objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE; while(it.hasNext()){ bdd.Colonne tmp = (bdd.Colonne)it.next(); if(tmp.getFk()!=null){ objet.impl.RelationImpl rel = (objet.impl.RelationImpl)objectInstanced.createRelation(); rel.col=tmp; l.add(rel);}else{ objet.impl.AttributImpl att = (objet.impl.AttributImpl)objectInstanced.createAttribut(); att.col = tmp; l.add(att); }} return l;"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EAttribute" href="../../Objet/metamodel/objet.ecore#//Classe/name"/>
+      <property>
+        <getPart>
+          <request expression="return self.t.getName();"/>
         </getPart>
       </property>
     </correspondanceRule>
@@ -25,7 +33,15 @@
       <feature xsi:type="ecore:EReference" href="../../Objet/metamodel/objet.ecore#//Relation/type"/>
       <property>
         <getPart>
-          <request expression="objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE; objet.impl.ClasseImpl o = (objet.impl.ClasseImpl)objectInstanced.createClasse(); o.t=self.col.getTable(); return o;"/>
+          <request expression="objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE; objet.impl.ClasseImpl o = (objet.impl.ClasseImpl)objectInstanced.createClasse(); o.t=self.col.getFk().getTable(); return o;"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EAttribute" href="../../Objet/metamodel/objet.ecore#//Propriete/name"/>
+      <property>
+        <getPart>
+          <request expression="return self.col.getName();"/>
         </getPart>
       </property>
     </correspondanceRule>
@@ -46,9 +62,6 @@
       <composed name="att">
         <concept href="../../Objet/metamodel/objet.ecore#//Attribut"/>
       </composed>
-      <query>
-        <request expression="col.isIsPrimary();"/>
-      </query>
     </rhs>
   </matching>
 </adaptor:Adaptor>
