@@ -26,20 +26,23 @@ public class Test3 {
 		Iterator it = res.iterator();
 		EObject[] objres = (EObject[])it.next();
 		objet.Classe cl = (objet.Classe)objres[0];
-		System.out.println("New Proprietes in Classe : "+cl.getA());
+		System.out.println("New Proprietes in adapted Classe "+ cl.getName() + " : ");
 		
 		Iterator it2 = cl.getA().iterator();
 		while(it2.hasNext()){
 			objet.Propriete p = (objet.Propriete)it2.next();
 		
-			System.out.println(p);
-			if(p instanceof objet.Relation){
-				System.out.println(((objet.Relation)p).getType().getA());
-			}
+			System.out.println(p+" Name : "+p.getName());
 		}
 		
 		EObject[] objres2 = (EObject[])it.next();
 		objet.Relation rel = (objet.Relation)objres2[0];
-		System.out.println("New Classe in Relation : "+rel.getType().getA());
+		System.out.println("New Classe in adapted Relation " + rel.getName() + " : "+rel.getType().getName());
+		
+		Iterator it3 = rel.getType().getA().iterator();
+		while(it3.hasNext()){
+			objet.Propriete p = (objet.Propriete)it3.next();
+			System.out.println(p+" Name : "+p.getName());
+		}
 	}
 }
