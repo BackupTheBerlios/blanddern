@@ -2,6 +2,7 @@ package launcher;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -98,6 +99,13 @@ public class Launch{
 				for(int j=0; j<a.getMatching().get(i).getRhs().size(); j++){
 					for(int k=0; k<a.getMatching().get(i).getRhs().get(j).getComposed().size(); k++){
 						eclasses.add(a.getMatching().get(i).getRhs().get(j).getComposed().get(k).getConcept());
+						
+						List superClass = a.getMatching().get(i).getRhs().get(j).getComposed().get(k).getConcept().getEAllSuperTypes();
+						Iterator it = superClass.iterator();
+						while(it.hasNext()){
+							EClass cl = (EClass)it.next();
+							eclasses.add(cl);
+						}
 					}
 				}
 			}
@@ -109,13 +117,13 @@ public class Launch{
 				EClass c = (EClass)i.next();
 			
 				ArgumentsList arg = new ArgumentsList(a, c.getName(), implLoc.implPackage()+"."+c.getName()+"Impl");
+				
 				String result = adapt.generate(arg);
 				
 				File file = new File("src-gen/"+c.getName()+".aj");
 				Tools.saveGenerated(result, file);
-				
-				System.out.println("AspectJ files generated from the adaptor model");
 			}
+			System.out.println("AspectJ files generated from the adaptor model");
 			
 			System.out.println("AspectJ files are being executed");
 			launchAspect((String)paths.get(3), (String)paths.get(4));
@@ -128,6 +136,7 @@ public class Launch{
 			
 			return new AdaptedFactory(eng);
 		}catch(Exception e){
+			e.printStackTrace();
 			System.err.println("Error during the creation of the adapted factory");
 			System.exit(-1);
 		}
