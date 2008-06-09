@@ -134,7 +134,7 @@ public class ImplFinder {
 		if(att!=null){
 			return getText(att.getFirstChild());
 		}else{
-			throw new Exception("Pas de nom pour le package ecore");
+			throw new Exception("No name for ecore package");
 		}
 	}
 }
