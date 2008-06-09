@@ -18,5 +18,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.aspectj.runtime,
  org.aspectj.weaver,
  org.aspectj.ajde,
- org.eclipse.uml2.uml
+ org.eclipse.uml2.uml,
+ BdD,
+ Vessie
 Eclipse-LazyStart: true
