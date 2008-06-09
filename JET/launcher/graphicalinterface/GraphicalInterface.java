@@ -93,13 +93,13 @@ public class GraphicalInterface extends javax.swing.JDialog {
 
         jFileChooser1.setAcceptAllFileFilterUsed(false);
         jFileChooser1.setDialogTitle("Adaptor model path");
-        jFileChooser1.setFileFilter(new FileFilterSelection(new String[]{"adaptor"},"Fichiers adaptor (*.adaptor)"));
+        jFileChooser1.setFileFilter(new FileFilterSelection(new String[]{"adaptor"},"Adaptor file (*.adaptor)"));
 
         jFileChooser2.setDialogTitle("Source model path");
 
         jFileChooser3.setAcceptAllFileFilterUsed(false);
         jFileChooser3.setDialogTitle("Genmodel path of the target metamodel");
-        jFileChooser3.setFileFilter(new FileFilterSelection(new String[]{"genmodel"},"File genmodel (*.genmodel)"));
+        jFileChooser3.setFileFilter(new FileFilterSelection(new String[]{"genmodel"},"Genmodel file (*.genmodel)"));
 
         jFileChooser4.setDialogTitle("Binary directory of the metamodel source");
         jFileChooser4.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
