@@ -9,6 +9,12 @@ import org.eclipse.emf.ecore.EObject;
 
 import filtering.AdaptedFactory;
 
+/**
+ * 
+ * @author Jérémie SCHEER & Loïc SUTTER
+ *
+ */
+
 public class Test1 {
 
 	/**

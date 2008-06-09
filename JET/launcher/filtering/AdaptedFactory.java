@@ -7,6 +7,12 @@ import org.eclipse.emf.ecore.EObject;
 
 import patternsEngine.ItfPatternEngine;
 
+/**
+ * 
+ * @author Jérémie SCHEER & Loïc SUTTER
+ *
+ */
+
 public class AdaptedFactory {
 	ItfPatternEngine pe;
 	

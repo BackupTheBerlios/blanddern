@@ -6,6 +6,12 @@ package filtering;
 import org.eclipse.emf.ecore.EObject;
 import patternsEngine.ItfPatternEngine;
 
+/**
+ * 
+ * @author Jeremie SCHEER & Loic SUTTER
+ *
+ */
+
 public class PatternFilter{
 	ItfPatternEngine pe;
 	

@@ -7,6 +7,12 @@
 
 import org.eclipse.emf.common.util.EList;
 
+/**
+ * 
+ * @author Jeremie SCHEER & Loic SUTTER
+ *
+ */
+
 privileged aspect <%=className%>Aspect {
 <% for(int i=0; i<args.getModel().getMatching().size(); i++){ %>
 	<% boolean alreadyVisited = false; %>

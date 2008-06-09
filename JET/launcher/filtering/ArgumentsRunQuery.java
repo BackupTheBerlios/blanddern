@@ -5,6 +5,12 @@ import java.util.Map;
 
 import adaptor.Adaptor;
 
+/**
+ * 
+ * @author Jérémie SCHEER & Loïc SUTTER
+ *
+ */
+
 public class ArgumentsRunQuery {
 	private Adaptor model;
 	private String factoryPath;

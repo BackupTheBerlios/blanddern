@@ -11,6 +11,12 @@ import filtering.AdaptedFactory;
 
 import vessie.VessieContainer;
 
+/**
+ * 
+ * @author Jérémie SCHEER & Loïc SUTTER
+ *
+ */
+
 public class Test2 {
 
 	/**
