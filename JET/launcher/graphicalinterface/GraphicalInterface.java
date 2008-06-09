@@ -101,10 +101,10 @@ public class GraphicalInterface extends javax.swing.JDialog {
         jFileChooser3.setDialogTitle("Genmodel path of the target metamodel");
         jFileChooser3.setFileFilter(new FileFilterSelection(new String[]{"genmodel"},"File genmodel (*.genmodel)"));
 
-        jFileChooser4.setDialogTitle("Bin directory of the metamodel source");
+        jFileChooser4.setDialogTitle("Binary directory of the metamodel source");
         jFileChooser4.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
 
-        jFileChooser5.setDialogTitle("Bin directory of the target metamodel");
+        jFileChooser5.setDialogTitle("Binary directory of the target metamodel");
         jFileChooser5.setFileSelectionMode(javax.swing.JFileChooser.DIRECTORIES_ONLY);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -179,7 +179,7 @@ public class GraphicalInterface extends javax.swing.JDialog {
             }
         });
 
-        jButton7.setText("Annuler");
+        jButton7.setText("Cancel");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
