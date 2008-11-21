@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Action.java,v 1.7 2008/11/21 00:18:44 fondemen Exp $
+ * $Id: Action.java,v 1.8 2008/11/21 00:23:22 fondemen Exp $
  */
 package adaptor;
 
@@ -51,6 +51,4 @@ public interface Action extends EObject {
 	 */
 	void setRequest(Request value);
 	
-	void uneNouvelleMéthode();
-
 } // Action
