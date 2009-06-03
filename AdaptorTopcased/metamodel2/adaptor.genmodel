@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Adaptor/src"
+    modelPluginID="Adaptor" modelName="Adaptor" importerID="org.eclipse.emf.importer.ecore"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>file:/D:/PROJET_BLANDDERN/adaptor/metamodel/adaptor.ecore</foreignModel>
+  <genPackages prefix="Adaptor" disposableProviderFactory="true" ecorePackage="adaptor.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="adaptor.ecore#//Langage">
+      <genEnumLiterals ecoreEnumLiteral="adaptor.ecore#//Langage/Java"/>
+    </genEnums>
+    <genClasses ecoreClass="adaptor.ecore#//Adaptor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Adaptor/matching"/>
+    </genClasses>
+    <genClasses ecoreClass="adaptor.ecore#//Matching">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Matching/correspondanceRule"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Matching/composed"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Matching/lhs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Matching/rhs"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="adaptor.ecore#//Pattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Pattern/composed"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Pattern/query"/>
+    </genClasses>
+    <genClasses ecoreClass="adaptor.ecore#//Instance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference adaptor.ecore#//Instance/concept"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Instance/isMain"/>
+    </genClasses>
+    <genClasses ecoreClass="adaptor.ecore#//CorrespondanceRule">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference adaptor.ecore#//CorrespondanceRule/feature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//CorrespondanceRule/property"/>
+    </genClasses>
+    <genClasses ecoreClass="adaptor.ecore#//Property">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Property/setPart"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Property/getPart"/>
+    </genClasses>
+    <genClasses ecoreClass="adaptor.ecore#//Query">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Query/request"/>
+    </genClasses>
+    <genClasses ecoreClass="adaptor.ecore#//Action">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Action/request"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="adaptor.ecore#//Named">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Named/name"/>
+    </genClasses>
+    <genClasses ecoreClass="adaptor.ecore#//LhsPattern"/>
+    <genClasses ecoreClass="adaptor.ecore#//RhsPattern"/>
+    <genClasses ecoreClass="adaptor.ecore#//Request">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Request/expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Request/langage"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

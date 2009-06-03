@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2009/06/03 07:34:00 bcoppe Exp $
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://adaptor" 
+       class = "adaptor.AdaptorPackage"
+       genModel = "metaModel/adaptor.genmodel" /> 
+  </extension>
+
+</plugin>

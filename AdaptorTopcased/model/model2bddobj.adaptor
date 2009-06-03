@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adaptor:Adaptor xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:adaptor="http://adaptor" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="bddobj">
+  <matching>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EReference" href="file:/D:/PROJET_BLANDDERN/Objet/metamodel/objet.ecore#//Classe/a"/>
+      <property>
+        <getPart>
+          <request expression="org.eclipse.emf.common.util.EList l = new org.eclipse.emf.common.util.BasicEList(); java.util.Iterator it = self.t.getS().iterator(); objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE; while(it.hasNext()){ bdd.Colonne tmp = (bdd.Colonne)it.next(); if(tmp.getFk()!=null){ objet.impl.RelationImpl rel = (objet.impl.RelationImpl)objectInstanced.createRelation(); rel.col=tmp; l.add(rel);}else{ objet.impl.AttributImpl att = (objet.impl.AttributImpl)objectInstanced.createAttribut(); att.col = tmp; l.add(att); }} return l;"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EAttribute" href="file:/D:/PROJET_BLANDDERN/Objet/metamodel/objet.ecore#//Classe/name"/>
+      <property>
+        <setPart>
+          <request expression="self.t.setName(newName);"/>
+        </setPart>
+        <getPart>
+          <request expression="return self.t.getName();"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <lhs>
+      <composed name="t" isMain="true">
+        <concept href="../../BdD/metamodel/bdd.ecore#//Table"/>
+      </composed>
+    </lhs>
+    <rhs>
+      <composed name="c">
+        <concept href="file:/D:/PROJET_BLANDDERN/Objet/metamodel/objet.ecore#//Classe"/>
+      </composed>
+    </rhs>
+  </matching>
+  <matching>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EReference" href="file:/D:/PROJET_BLANDDERN/Objet/metamodel/objet.ecore#//Relation/type"/>
+      <property>
+        <getPart>
+          <request expression="objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE; objet.impl.ClasseImpl o = (objet.impl.ClasseImpl)objectInstanced.createClasse(); o.t=self.col.getFk().getTable(); return o;"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <correspondanceRule>
+      <feature xsi:type="ecore:EAttribute" href="file:/D:/PROJET_BLANDDERN/Objet/metamodel/objet.ecore#//Propriete/name"/>
+      <property>
+        <setPart>
+          <request expression="self.col.setName(newValue);"/>
+        </setPart>
+        <getPart>
+          <request expression="return self.col.getName();"/>
+        </getPart>
+      </property>
+    </correspondanceRule>
+    <lhs>
+      <composed name="col" isMain="true">
+        <concept href="../../BdD/metamodel/bdd.ecore#//Colonne"/>
+      </composed>
+    </lhs>
+    <rhs>
+      <composed name="rel">
+        <concept href="file:/D:/PROJET_BLANDDERN/Objet/metamodel/objet.ecore#//Relation"/>
+      </composed>
+      <query>
+        <request expression="col.getFk()!=null;"/>
+      </query>
+    </rhs>
+    <rhs>
+      <composed name="att">
+        <concept href="file:/D:/PROJET_BLANDDERN/Objet/metamodel/objet.ecore#//Attribut"/>
+      </composed>
+    </rhs>
+  </matching>
+</adaptor:Adaptor>
