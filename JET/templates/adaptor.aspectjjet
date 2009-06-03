@@ -7,6 +7,10 @@
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
 /**
  * 
  * @author Jeremie SCHEER & Loic SUTTER
@@ -46,6 +50,11 @@ privileged aspect <%=className%>Aspect {
 							
 							<% if(proxy.isIsMain()){ %>
 								public <%=proxy.getConcept().getEPackage().getName()%>.<%=proxy.getConcept().getName()%> <%=ePackageName%>.<%=proxy.getName()%>;
+								
+								public void <%=ePackageName%>.throwNotification(Notification msg){
+									if (eNotificationRequired())
+										eNotify(new ENotificationImpl(this, msg.getEventType(), 0, msg.getOldValue(), msg.getNewValue()));
+								}
 							<% } %>
 						<% } %>
 					<% } %>	

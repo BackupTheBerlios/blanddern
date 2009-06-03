@@ -8,6 +8,13 @@ import java.util.*;
 import java.io.*;
 import patternsEngine.*;
 import interpretor.*;
+import utils.AdapterRelay;
+
+/**
+ * 
+ * @author Jeremie SCHEER & Loic SUTTER
+ *
+ */
 
 class RunQuery {
 
@@ -29,7 +36,7 @@ public RunQuery(ItfPatternEngine pe){
 		
 			
 				
-					if(eo.eClass().getName().equalsIgnoreCase("Vessie")){
+					if(eo.eClass().getName().equalsIgnoreCase("Table")){
 						isLhsPattern = true;
 					}
 				
@@ -54,7 +61,7 @@ public RunQuery(ItfPatternEngine pe){
 				while(it.hasNext()){
 					Map tmp = (Map)it.next();
 	
-					if(tmp.get("Varv")==eo){
+					if(tmp.get("Vart")==eo){
 						if(isMapped){
 							System.err.println("There can be only one map matching the EObject parameter");
 							System.exit(-1);
@@ -69,7 +76,7 @@ public RunQuery(ItfPatternEngine pe){
 					return null;
 				}
 			
-				lanterne.LanterneFactory objectInstanced = lanterne.LanterneFactory.eINSTANCE;
+				objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE;
 				 boolean instanced = false;
 				
 				Interpretor interpret = new Interpretor();
@@ -79,7 +86,7 @@ public RunQuery(ItfPatternEngine pe){
 						
 						
 						
-						 interpret.addVar("v", (vessie.Vessie)correctMap.get("Varv"));
+						 interpret.addVar("t", (bdd.Table)correctMap.get("Vart"));
 					
 				
 				
@@ -97,19 +104,160 @@ public RunQuery(ItfPatternEngine pe){
 								
 								
 								
-								lanterne.impl.LanterneImpl o0 = (lanterne.impl.LanterneImpl)objectInstanced.createLanterne();
+								objet.impl.ClasseImpl o0 = (objet.impl.ClasseImpl)objectInstanced.createClasse();
 								
 								
 									
 									
 									
 										
-										o0.v = (vessie.Vessie)correctMap.get("Varv");
+										o0.t = (bdd.Table)correctMap.get("Vart");
+										o0.t.eAdapters().add(new AdapterRelay(o0));
 									
 								
 								
 								res[0]=o0;
 							
+							
+							System.out.println("Proxies initialized");
+							return res;
+						 }
+				
+				return null;
+			
+		}else{
+			return null;
+		}
+	}
+
+	public EObject [] runPattern2(EObject eo) {
+		String prologFileName = "prologFiles/rp2.pl";
+		File prologFile = new File(prologFileName);
+		Set<Map> prologResult = pe.executesProlog(prologFile);
+		
+		
+		boolean isLhsPattern = false;
+		EObject[] res = null;
+		
+			
+				
+					if(eo.eClass().getName().equalsIgnoreCase("Colonne")){
+						isLhsPattern = true;
+					}
+				
+			
+		
+		if(isLhsPattern==true) {
+			boolean isMapped = false;
+			Map correctMap = null;
+			
+			
+			
+			
+				
+					
+				
+				
+			
+			
+			
+			
+				Iterator it = prologResult.iterator();
+				while(it.hasNext()){
+					Map tmp = (Map)it.next();
+	
+					if(tmp.get("Varcol")==eo){
+						if(isMapped){
+							System.err.println("There can be only one map matching the EObject parameter");
+							System.exit(-1);
+						}else{
+							correctMap = tmp;
+							isMapped = true;
+						}
+					}
+				}
+				
+				if(correctMap==null){
+					return null;
+				}
+			
+				objet.ObjetFactory objectInstanced = objet.ObjetFactory.eINSTANCE;
+				 boolean instanced = false;
+				
+				Interpretor interpret = new Interpretor();
+				
+					
+						
+						
+						
+						
+						 interpret.addVar("col", (bdd.Colonne)correctMap.get("Varcol"));
+					
+				
+				
+				
+				
+						
+								 if(interpret.getInterpretorResult("java", "col.getFk()!=null;").getResult().toString().equalsIgnoreCase("true")){
+									instanced = true;
+								 }
+						
+						
+						if(instanced){
+							res = new EObject[1];
+							
+								
+								
+								
+								
+								
+								objet.impl.RelationImpl o0 = (objet.impl.RelationImpl)objectInstanced.createRelation();
+								
+								
+									
+									
+									
+										
+										o0.col = (bdd.Colonne)correctMap.get("Varcol");
+										o0.col.eAdapters().add(new AdapterRelay(o0));
+									
+								
+								
+								res[0]=o0;
+							
+							
+							System.out.println("Proxies initialized");
+							return res;
+						 }
+				
+						
+							instanced = true;
+						
+						
+						if(instanced){
+							res = new EObject[1];
+							
+								
+								
+								
+								
+								
+								objet.impl.AttributImpl o0 = (objet.impl.AttributImpl)objectInstanced.createAttribut();
+								
+								
+									
+									
+									
+										
+										o0.col = (bdd.Colonne)correctMap.get("Varcol");
+										o0.col.eAdapters().add(new AdapterRelay(o0));
+									
+								
+								
+								res[0]=o0;
+							
+							
+							System.out.println("Proxies initialized");
 							return res;
 						 }
 				

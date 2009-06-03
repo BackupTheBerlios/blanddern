@@ -2,6 +2,7 @@ package launcher;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +21,7 @@ import filtering.AdaptedFactory;
 import filtering.ArgumentsRunQuery;
 import graphicalinterface.GraphicalInterface;
 
+import translated.AdapterRelayGeneration;
 import translated.AdaptorGeneration;
 import translated.PatternFilterGeneration;
 import translated.RunQueryGeneration;
@@ -44,7 +46,19 @@ public class Launch{
 	 * target model
 	 */
 	public AdaptedFactory adapt(){
-		List paths = launchIhm();
+//		List paths = launchIhm();
+		List paths = new ArrayList();
+//		paths.add("D:\\PROJET_BLANDDERN\\adaptor\\models\\model.adaptor");
+//		paths.add("D:\\PROJET_BLANDDERN\\Vessie\\models\\model2.vessie");
+//		paths.add("D:\\PROJET_BLANDDERN\\Lanterne\\metamodel\\Lanterne.genmodel");
+//		paths.add("D:\\PROJET_BLANDDERN\\Vessie\bin");
+//		paths.add("D:\\PROJET_BLANDDERN\\Lanterne\\bin");
+		
+		paths.add("D:\\PROJET_BLANDDERN\\adaptor\\models\\model2bddobj.adaptor");
+		paths.add("D:\\PROJET_BLANDDERN\\BdD\\models\\model1.bdd");
+		paths.add("D:\\PROJET_BLANDDERN\\Objet\\metamodel\\obj.genmodel");
+		paths.add("D:\\PROJET_BLANDDERN\\BdD\bin");
+		paths.add("D:\\PROJET_BLANDDERN\\Objet\\bin");
 		
 		/* .aj and prolog files directories creation */
 		File ajDir = new File("src-gen/");
@@ -156,6 +170,12 @@ public class Launch{
 		result = genPatternFilter.generate(a);
 		file = new File("launcher/filtering/PatternFilter.java");
 		Tools.saveGenerated(result, file);
+		
+		/* generates the class that will listen the source model for the target model */
+		AdapterRelayGeneration genAdapterRelay = new AdapterRelayGeneration();
+		result = genAdapterRelay.generate(args);
+		file = new File("launcher/utils/AdapterRelay.java");
+		Tools.saveGenerated(result, file);
 	}
 	
 	/* executes the class that will launch the aspectJ files */
@@ -183,7 +203,7 @@ public class Launch{
 	 */
 	public List launchIhm(){
 		String tmp = new File("..").getAbsolutePath();
-		String workspace = tmp.substring(0, tmp.indexOf("Blanddern"));
+		String workspace = tmp.substring(0, tmp.indexOf("JET"));
 		List res;
 		
 		GraphicalInterface ihm = new GraphicalInterface(workspace);

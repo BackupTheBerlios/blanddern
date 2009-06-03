@@ -10,5 +10,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="adapted/VessieLanterneAdapted.jar"/>
+	<classpathentry kind="lib" path="launcher/interpretor/dynamicjava.jar"/>
+	<classpathentry kind="lib" path="/Objet/bin"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,63 @@
+<%@ jet package="translated" imports="adaptor.* filtering.*" class="AdapterRelayGeneration" %>
+<%ArgumentsRunQuery args = (ArgumentsRunQuery) argument; %>
+<% String implPath = args.getImplPath();%>
+<% Adaptor adapt = args.getModel(); %>
+
+package utils;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+
+public class AdapterRelay extends AdapterImpl {
+
+
+<% for(int i=0;i<adapt.getMatching().size();i++) { %>
+	<%Matching currentMatching = adapt.getMatching().get(i);%>
+	<% for(int k=0; k<currentMatching.getRhs().size(); k++){ %>
+		<% for(int l=0; l<currentMatching.getRhs().get(k).getComposed().size(); l++){ %>
+			<% Instance rhsInst = currentMatching.getRhs().get(k).getComposed().get(l); %>
+			<% String objectType = implPath+"."+rhsInst.getConcept().getName()+"Impl";%>
+			<% String objectName = "o"+i+k+l; %>
+
+	private <%=objectType%> <%=objectName%>;
+	
+	public AdapterRelay(<%=objectType%> <%=objectName%>){
+		super();
+		this.<%=objectName%> = <%=objectName%>;
+	}
+		<% } %>
+	<% } %>
+<% } %>
+
+	public void notifyChanged(Notification msg) {
+<% for(int i=0;i<adapt.getMatching().size();i++) { %>
+	<%Matching currentMatching = adapt.getMatching().get(i);%>
+	<% for(int k=0; k<currentMatching.getRhs().size(); k++){ %>
+		<% for(int l=0; l<currentMatching.getRhs().get(k).getComposed().size(); l++){ %>
+			<% Instance rhsInst = currentMatching.getRhs().get(k).getComposed().get(l); %>
+			<% String objectType = implPath+"."+rhsInst.getConcept().getName()+"Impl";%>
+			<% String objectName = "o"+i+k+l; %>
+		if(<%=objectName%> != null) <%=objectName%>.throwNotification(msg);
+		
+		<% } %>
+	<% } %>
+<% } %>
+	}
+	
+	public Notifier getOwner() {
+<% for(int i=0;i<adapt.getMatching().size();i++) { %>
+	<%Matching currentMatching = adapt.getMatching().get(i);%>
+	<% for(int k=0; k<currentMatching.getRhs().size(); k++){ %>
+		<% for(int l=0; l<currentMatching.getRhs().get(k).getComposed().size(); l++){ %>
+			<% Instance rhsInst = currentMatching.getRhs().get(k).getComposed().get(l); %>
+			<% String objectType = implPath+"."+rhsInst.getConcept().getName()+"Impl";%>
+			<% String objectName = "o"+i+k+l; %>
+		if(<%=objectName%> != null) return <%=objectName%>;
+		
+		<% } %>
+	<% } %>
+<% } %>
+		return null;
+	}
+}

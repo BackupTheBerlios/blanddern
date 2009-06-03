@@ -4,6 +4,12 @@ package filtering;
 import org.eclipse.emf.ecore.EObject;
 import patternsEngine.ItfPatternEngine;
 
+/**
+ * 
+ * @author Jeremie SCHEER & Loic SUTTER
+ *
+ */
+
 public class PatternFilter{
 	ItfPatternEngine pe;
 	
@@ -17,6 +23,10 @@ public class PatternFilter{
 		
 		
 			if((res=rq.runPattern1(o))!=null){
+				return res;
+			}
+		
+			if((res=rq.runPattern2(o))!=null){
 				return res;
 			}
 		

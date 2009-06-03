@@ -70,6 +70,7 @@ public class Tools {
 			fw.close();
 		} catch (IOException e) {
 			System.err.println("The file "+file.getAbsolutePath()+" has not been correctly generated");
+			e.printStackTrace();
 			System.exit(-1);
 		}
 	}

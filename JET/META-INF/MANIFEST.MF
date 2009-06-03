@@ -20,5 +20,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.aspectj.ajde,
  org.eclipse.uml2.uml,
  BdD,
- Vessie
+ Vessie,
+ BC_Cube,
+ BC_Sphere
 Eclipse-LazyStart: true

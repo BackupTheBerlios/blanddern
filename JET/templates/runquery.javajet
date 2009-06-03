@@ -13,6 +13,7 @@ import java.util.*;
 import java.io.*;
 import patternsEngine.*;
 import interpretor.*;
+import utils.AdapterRelay;
 
 /**
  * 
@@ -123,6 +124,7 @@ public RunQuery(ItfPatternEngine pe){
 									<% if(lhsInst.isIsMain()){ %>
 										<% String castPrologResult = "("+lhsInst.getConcept().getEPackage().getName()+"."+lhsInst.getConcept().getName()+")";%>
 										<%=objectName%>.<%=lhsInst.getName()%> = <%=castPrologResult%>correctMap.get("Var<%=lhsInst.getName()%>");
+										<%=objectName%>.<%=lhsInst.getName()%>.eAdapters().add(new AdapterRelay(<%=objectName%>));
 									<% } %>
 								<% } %>
 								

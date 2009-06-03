@@ -20,6 +20,7 @@ public class AdaptedFactory {
 		this.pe = pe;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List loadModel(EObject[] srcModel){
 		List ret = new ArrayList();
 		PatternFilter pf = new PatternFilter(pe);
