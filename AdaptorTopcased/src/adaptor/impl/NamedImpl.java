@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: NamedImpl.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: NamedImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.impl;
 
@@ -64,6 +64,7 @@ public abstract class NamedImpl extends EObjectImpl implements Named {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return AdaptorPackage.Literals.NAMED;
 	}
@@ -94,6 +95,7 @@ public abstract class NamedImpl extends EObjectImpl implements Named {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case AdaptorPackage.NAMED__NAME:
@@ -107,6 +109,7 @@ public abstract class NamedImpl extends EObjectImpl implements Named {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AdaptorPackage.NAMED__NAME:
@@ -121,6 +124,7 @@ public abstract class NamedImpl extends EObjectImpl implements Named {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.NAMED__NAME:
@@ -135,6 +139,7 @@ public abstract class NamedImpl extends EObjectImpl implements Named {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.NAMED__NAME:
@@ -148,6 +153,7 @@ public abstract class NamedImpl extends EObjectImpl implements Named {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

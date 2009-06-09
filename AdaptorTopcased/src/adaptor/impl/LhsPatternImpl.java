@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LhsPatternImpl.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: LhsPatternImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.impl;
 
@@ -35,6 +35,7 @@ public class LhsPatternImpl extends PatternImpl implements LhsPattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return AdaptorPackage.Literals.LHS_PATTERN;
 	}

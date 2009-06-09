@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<editorconfigurator:EditorConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:editorconfigurator="http://www.topcased.org/editorconfigurator/0.10" xmi:id="_I2GBAU-JEd6J9ZmYKn4wWg" name="Test Editor" projectName="org.topcased.modeler.test" forceOverwrite="true">
-  <genModel href="../metaModel/adaptor.genmodel#/"/>
-</editorconfigurator:EditorConfiguration>

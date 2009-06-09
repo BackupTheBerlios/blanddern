@@ -2,9 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorValidator.java,v 1.1 2009/06/03 07:36:40 bcoppe Exp $
+ * $Id: AdaptorValidator.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.validation;
+
+import adaptor.Indiagram;
+import adaptor.Matching;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -17,5 +20,6 @@ import org.eclipse.emf.common.util.EList;
 public interface AdaptorValidator {
 	boolean validate();
 
-	boolean validateMatching(EList value);
+	boolean validateMatching(EList<Matching> value);
+	boolean validateEltGraph(EList<Indiagram> value);
 }

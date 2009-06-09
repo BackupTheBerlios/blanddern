@@ -2,10 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PatternValidator.java,v 1.1 2009/06/03 07:36:40 bcoppe Exp $
+ * $Id: PatternValidator.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.validation;
 
+import adaptor.Instance;
 import adaptor.Query;
 
 import org.eclipse.emf.common.util.EList;
@@ -19,6 +20,6 @@ import org.eclipse.emf.common.util.EList;
 public interface PatternValidator {
 	boolean validate();
 
-	boolean validateComposed(EList value);
+	boolean validateComposed(EList<Instance> value);
 	boolean validateQuery(Query value);
 }

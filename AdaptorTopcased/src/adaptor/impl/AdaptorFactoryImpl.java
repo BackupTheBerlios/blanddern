@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorFactoryImpl.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: AdaptorFactoryImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.impl;
 
@@ -58,6 +58,7 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case AdaptorPackage.ADAPTOR: return createAdaptor();
@@ -80,6 +81,7 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
 			case AdaptorPackage.LANGAGE:
@@ -94,6 +96,7 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
 			case AdaptorPackage.LANGAGE:
@@ -238,6 +241,7 @@ public class AdaptorFactoryImpl extends EFactoryImpl implements AdaptorFactory {
 	 * @deprecated
 	 * @generated
 	 */
+	@Deprecated
 	public static AdaptorPackage getPackage() {
 		return AdaptorPackage.eINSTANCE;
 	}

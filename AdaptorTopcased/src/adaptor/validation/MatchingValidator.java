@@ -2,11 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MatchingValidator.java,v 1.1 2009/06/03 07:36:40 bcoppe Exp $
+ * $Id: MatchingValidator.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.validation;
 
+import adaptor.CorrespondanceRule;
+import adaptor.Instance;
 import adaptor.LhsPattern;
+import adaptor.RhsPattern;
 
 import org.eclipse.emf.common.util.EList;
 
@@ -19,8 +22,8 @@ import org.eclipse.emf.common.util.EList;
 public interface MatchingValidator {
 	boolean validate();
 
-	boolean validateCorrespondanceRule(EList value);
-	boolean validateComposed(EList value);
+	boolean validateCorrespondanceRule(EList<CorrespondanceRule> value);
+	boolean validateComposed(EList<Instance> value);
 	boolean validateLhs(LhsPattern value);
-	boolean validateRhs(EList value);
+	boolean validateRhs(EList<RhsPattern> value);
 }

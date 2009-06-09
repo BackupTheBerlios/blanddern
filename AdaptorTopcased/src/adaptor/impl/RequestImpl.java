@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RequestImpl.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: RequestImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.impl;
 
@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,7 +30,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class RequestImpl extends EObjectImpl implements Request {
+public class RequestImpl extends IndiagramImpl implements Request {
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,7 +59,7 @@ public class RequestImpl extends EObjectImpl implements Request {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final Langage LANGAGE_EDEFAULT = Langage.JAVA_LITERAL;
+	protected static final Langage LANGAGE_EDEFAULT = Langage.JAVA;
 
 	/**
 	 * The cached value of the '{@link #getLangage() <em>Langage</em>}' attribute.
@@ -86,6 +85,7 @@ public class RequestImpl extends EObjectImpl implements Request {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return AdaptorPackage.Literals.REQUEST;
 	}
@@ -137,6 +137,7 @@ public class RequestImpl extends EObjectImpl implements Request {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case AdaptorPackage.REQUEST__EXPRESSION:
@@ -152,6 +153,7 @@ public class RequestImpl extends EObjectImpl implements Request {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AdaptorPackage.REQUEST__EXPRESSION:
@@ -169,6 +171,7 @@ public class RequestImpl extends EObjectImpl implements Request {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.REQUEST__EXPRESSION:
@@ -186,6 +189,7 @@ public class RequestImpl extends EObjectImpl implements Request {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.REQUEST__EXPRESSION:
@@ -201,6 +205,7 @@ public class RequestImpl extends EObjectImpl implements Request {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackage.java,v 1.1 2009/06/03 07:36:19 bcoppe Exp $
+ * $Id: AdaptorPackage.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor;
 
@@ -117,13 +117,22 @@ public interface AdaptorPackage extends EPackage {
 	int ADAPTOR__MATCHING = NAMED_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Elt Graph</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ADAPTOR__ELT_GRAPH = NAMED_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Adaptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ADAPTOR_FEATURE_COUNT = NAMED_FEATURE_COUNT + 1;
+	int ADAPTOR_FEATURE_COUNT = NAMED_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link adaptor.impl.MatchingImpl <em>Matching</em>}' class.
@@ -301,6 +310,25 @@ public interface AdaptorPackage extends EPackage {
 	int CORRESPONDANCE_RULE_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link adaptor.impl.IndiagramImpl <em>Indiagram</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see adaptor.impl.IndiagramImpl
+	 * @see adaptor.impl.AdaptorPackageImpl#getIndiagram()
+	 * @generated
+	 */
+	int INDIAGRAM = 12;
+
+	/**
+	 * The number of structural features of the '<em>Indiagram</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INDIAGRAM_FEATURE_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link adaptor.impl.PropertyImpl <em>Property</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -317,7 +345,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__SET_PART = 0;
+	int PROPERTY__SET_PART = INDIAGRAM_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Get Part</b></em>' containment reference.
@@ -326,7 +354,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY__GET_PART = 1;
+	int PROPERTY__GET_PART = INDIAGRAM_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Property</em>' class.
@@ -335,7 +363,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = 2;
+	int PROPERTY_FEATURE_COUNT = INDIAGRAM_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link adaptor.impl.QueryImpl <em>Query</em>}' class.
@@ -484,7 +512,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUEST__EXPRESSION = 0;
+	int REQUEST__EXPRESSION = INDIAGRAM_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Langage</b></em>' attribute.
@@ -493,7 +521,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUEST__LANGAGE = 1;
+	int REQUEST__LANGAGE = INDIAGRAM_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Request</em>' class.
@@ -502,7 +530,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REQUEST_FEATURE_COUNT = 2;
+	int REQUEST_FEATURE_COUNT = INDIAGRAM_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link adaptor.Langage <em>Langage</em>}' enum.
@@ -512,7 +540,7 @@ public interface AdaptorPackage extends EPackage {
 	 * @see adaptor.impl.AdaptorPackageImpl#getLangage()
 	 * @generated
 	 */
-	int LANGAGE = 12;
+	int LANGAGE = 13;
 
 
 	/**
@@ -535,6 +563,17 @@ public interface AdaptorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAdaptor_Matching();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link adaptor.Adaptor#getEltGraph <em>Elt Graph</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Elt Graph</em>'.
+	 * @see adaptor.Adaptor#getEltGraph()
+	 * @see #getAdaptor()
+	 * @generated
+	 */
+	EReference getAdaptor_EltGraph();
 
 	/**
 	 * Returns the meta object for class '{@link adaptor.Matching <em>Matching</em>}'.
@@ -834,6 +873,16 @@ public interface AdaptorPackage extends EPackage {
 	EAttribute getRequest_Langage();
 
 	/**
+	 * Returns the meta object for class '{@link adaptor.Indiagram <em>Indiagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Indiagram</em>'.
+	 * @see adaptor.Indiagram
+	 * @generated
+	 */
+	EClass getIndiagram();
+
+	/**
 	 * Returns the meta object for enum '{@link adaptor.Langage <em>Langage</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -882,6 +931,14 @@ public interface AdaptorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ADAPTOR__MATCHING = eINSTANCE.getAdaptor_Matching();
+
+		/**
+		 * The meta object literal for the '<em><b>Elt Graph</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ADAPTOR__ELT_GRAPH = eINSTANCE.getAdaptor_EltGraph();
 
 		/**
 		 * The meta object literal for the '{@link adaptor.impl.MatchingImpl <em>Matching</em>}' class.
@@ -1128,6 +1185,16 @@ public interface AdaptorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute REQUEST__LANGAGE = eINSTANCE.getRequest_Langage();
+
+		/**
+		 * The meta object literal for the '{@link adaptor.impl.IndiagramImpl <em>Indiagram</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see adaptor.impl.IndiagramImpl
+		 * @see adaptor.impl.AdaptorPackageImpl#getIndiagram()
+		 * @generated
+		 */
+		EClass INDIAGRAM = eINSTANCE.getIndiagram();
 
 		/**
 		 * The meta object literal for the '{@link adaptor.Langage <em>Langage</em>}' enum.

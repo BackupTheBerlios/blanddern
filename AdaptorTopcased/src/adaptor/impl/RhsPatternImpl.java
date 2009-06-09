@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RhsPatternImpl.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: RhsPatternImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.impl;
 
@@ -35,6 +35,7 @@ public class RhsPatternImpl extends PatternImpl implements RhsPattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return AdaptorPackage.Literals.RHS_PATTERN;
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Pattern.java,v 1.1 2009/06/03 07:36:19 bcoppe Exp $
+ * $Id: Pattern.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor;
 
@@ -39,10 +39,10 @@ public interface Pattern extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Composed</em>' containment reference list.
 	 * @see adaptor.AdaptorPackage#getPattern_Composed()
-	 * @model type="adaptor.Instance" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList getComposed();
+	EList<Instance> getComposed();
 
 	/**
 	 * Returns the value of the '<em><b>Query</b></em>' containment reference.

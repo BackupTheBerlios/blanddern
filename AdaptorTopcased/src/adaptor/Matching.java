@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Matching.java,v 1.1 2009/06/03 07:36:19 bcoppe Exp $
+ * $Id: Matching.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor;
 
@@ -41,10 +41,10 @@ public interface Matching extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Correspondance Rule</em>' containment reference list.
 	 * @see adaptor.AdaptorPackage#getMatching_CorrespondanceRule()
-	 * @model type="adaptor.CorrespondanceRule" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList getCorrespondanceRule();
+	EList<CorrespondanceRule> getCorrespondanceRule();
 
 	/**
 	 * Returns the value of the '<em><b>Composed</b></em>' containment reference list.
@@ -57,10 +57,10 @@ public interface Matching extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Composed</em>' containment reference list.
 	 * @see adaptor.AdaptorPackage#getMatching_Composed()
-	 * @model type="adaptor.Instance" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList getComposed();
+	EList<Instance> getComposed();
 
 	/**
 	 * Returns the value of the '<em><b>Lhs</b></em>' containment reference.
@@ -99,9 +99,9 @@ public interface Matching extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Rhs</em>' containment reference list.
 	 * @see adaptor.AdaptorPackage#getMatching_Rhs()
-	 * @model type="adaptor.RhsPattern" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList getRhs();
+	EList<RhsPattern> getRhs();
 
 } // Matching

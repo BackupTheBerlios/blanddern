@@ -1,104 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<diagramconfigurator:DiagramConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagramconfigurator="http://www.topcased.org/diagramconfigurator/0.10" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmi:id="_Bj2-gEFcEd6XQ8lA7cKPVQ" projectName="org.topcased.modeler.adaptor.adiagram" name="Adaptor Diagram" package="adiagram" prefix="AD">
-  <palette xmi:id="_NUzIgEXnEd6C-9k3-LBkdQ" name="Palette">
-    <paletteCategories xmi:id="_qG3X4UamEd6lT4jKunXAww" name="Nodes">
-      <items xmi:id="_G0qZEEanEd6lT4jKunXAww" name="InstanceNode" part="_6x4bYUXwEd64D5cqFFkUsQ"/>
-      <items xmi:id="_XUuSEEanEd6lT4jKunXAww" name="MatchingNode" part="_YHcIgEXjEd6C-9k3-LBkdQ"/>
-      <items xmi:id="_iph_cEatEd6lT4jKunXAww" name="PropietyNode" part="_EJY-QEaqEd6lT4jKunXAww"/>
-      <items xmi:id="_m1bYIEatEd6lT4jKunXAww" name="RequestNode" part="_tCp2wEaqEd6lT4jKunXAww"/>
+<diagramconfigurator:DiagramConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:diagramconfigurator="http://www.topcased.org/diagramconfigurator/0.10" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmi:id="_9QjTUFHPEd6iV5ZZzvc7aA" projectName="org.topcased.modeler.adaptor.adiagram" name="AdaptorDiagram" package="aDiagram" prefix="AD" forceOverwrite="true">
+  <palette xmi:id="_cnKXkFHVEd6iV5ZZzvc7aA" name="AdaptorPalette">
+    <paletteCategories xmi:id="_dLUNgFHVEd6iV5ZZzvc7aA" name="Nodes">
+      <items xmi:id="_fvKqUFHVEd6iV5ZZzvc7aA" name="matchingNode" part="_p_utcFHQEd6iV5ZZzvc7aA"/>
+      <items xmi:id="_iohdEFHVEd6iV5ZZzvc7aA" name="instanceNode" part="_z80osFHQEd6iV5ZZzvc7aA"/>
+      <items xmi:id="_k8_aEFHVEd6iV5ZZzvc7aA" name="propertyNode" part="_8q7y4FHREd6iV5ZZzvc7aA"/>
+      <items xmi:id="_puvR0FHVEd6iV5ZZzvc7aA" name="requestNode" part="_QpsgAFHVEd6iV5ZZzvc7aA"/>
     </paletteCategories>
-    <paletteCategories xmi:id="_eiXkgEanEd6lT4jKunXAww" name="Links">
-      <items xmi:id="_jA6zcEanEd6lT4jKunXAww" name="LhsLink" part="_L1u98EXxEd64D5cqFFkUsQ"/>
-      <items xmi:id="_z_7c0EaoEd6lT4jKunXAww" name="RhsLink" part="_ulKSsEanEd6lT4jKunXAww"/>
-      <items xmi:id="_qjC5YEatEd6lT4jKunXAww" name="ComposedLink" part="_--dm8EaoEd6lT4jKunXAww"/>
-      <items xmi:id="_v6_OcEatEd6lT4jKunXAww" name="CorrespondanceRulesLink" part="_-yAC0EapEd6lT4jKunXAww"/>
-      <items xmi:id="_380W4EatEd6lT4jKunXAww" name="ActionLink" part="_AK6EkEasEd6lT4jKunXAww"/>
-      <items xmi:id="_0sOv4EatEd6lT4jKunXAww" name="QueryLink" part="_K49_MEarEd6lT4jKunXAww"/>
+    <paletteCategories xmi:id="_9QHKQFHWEd6iV5ZZzvc7aA" name="Links">
+      <items xmi:id="_DWAKcFHXEd6iV5ZZzvc7aA" name="composedLink" part="_LH3ZsFHWEd6iV5ZZzvc7aA"/>
+      <items xmi:id="_SSnTsFHXEd6iV5ZZzvc7aA" name="lhsLink" part="_Vj1CQFHWEd6iV5ZZzvc7aA"/>
+      <items xmi:id="_WxwYgFHXEd6iV5ZZzvc7aA" name="rhsLink" part="_gCpxkFHWEd6iV5ZZzvc7aA"/>
+      <items xmi:id="_lUg3UFHXEd6iV5ZZzvc7aA" name="correspondanceLink" part="_lFdkIFHWEd6iV5ZZzvc7aA"/>
+      <items xmi:id="_qFmAsFHXEd6iV5ZZzvc7aA" name="queryLink" part="_r5zlwFHWEd6iV5ZZzvc7aA"/>
+      <items xmi:id="_y5s6oFHXEd6iV5ZZzvc7aA" name="actionLink" part="_2sz1UFHWEd6iV5ZZzvc7aA"/>
     </paletteCategories>
   </palette>
-  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_YHcIgEXjEd6C-9k3-LBkdQ" object="_0FL9cEFcEd6XQ8lA7cKPVQ" type="Ellipse"/>
-  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_EJY-QEaqEd6lT4jKunXAww" object="_A1s_8EaqEd6lT4jKunXAww" type="State"/>
-  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_tCp2wEaqEd6lT4jKunXAww" object="_oL8mgEaqEd6lT4jKunXAww" type="Class"/>
-  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_6x4bYUXwEd64D5cqFFkUsQ" object="_pHXhcEXwEd6C-9k3-LBkdQ" type="RectangleFigure"/>
-  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_L1u98EXxEd64D5cqFFkUsQ" object="_I1ccwEXxEd64D5cqFFkUsQ" defaultForegroundColor="0,128,0" sourceDecoration="DIAMOND" targetDecoration="ARROW">
-    <sourceTargetCouple xmi:id="_ap09AEX0Ed64D5cqFFkUsQ" containerType="DIAGRAM" sourceNode="_YHcIgEXjEd6C-9k3-LBkdQ" targetNode="_6x4bYUXwEd64D5cqFFkUsQ">
-      <containerObject href="../metaModel/adaptor.genmodel#//adaptor/Matching"/>
-      <containerRef xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Matching/lhs"/>
-      <refSourceToEdge xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Matching/lhs"/>
-      <refEdgeToTarget xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Pattern/composed"/>
-      <refSourceToTarget xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Matching/composed"/>
+  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_p_utcFHQEd6iV5ZZzvc7aA" object="_gQJCsFHQEd6iV5ZZzvc7aA" type="Ellipse"/>
+  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_z80osFHQEd6iV5ZZzvc7aA" object="_ilHWAFHQEd6iV5ZZzvc7aA" type="RectangleFigure"/>
+  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_8q7y4FHREd6iV5ZZzvc7aA" object="_jQ76MFHQEd6iV5ZZzvc7aA" type="Cloud"/>
+  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_QpsgAFHVEd6iV5ZZzvc7aA" object="_j0O0gFHQEd6iV5ZZzvc7aA" type="Class"/>
+  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_LH3ZsFHWEd6iV5ZZzvc7aA" object="_7EBioFHVEd6iV5ZZzvc7aA" sourceDecoration="DIAMOND">
+    <sourceTargetCouple xmi:id="_RZESAFHWEd6iV5ZZzvc7aA" sourceNode="_p_utcFHQEd6iV5ZZzvc7aA" targetNode="_z80osFHQEd6iV5ZZzvc7aA">
+      <refSourceToTarget xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Matching/composed"/>
     </sourceTargetCouple>
   </parts>
-  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_--dm8EaoEd6lT4jKunXAww" object="_7Jjx8EaoEd6lT4jKunXAww" defaultForegroundColor="0,0,255" sourceDecoration="DIAMOND" targetDecoration="ARROW">
-    <sourceTargetCouple xmi:id="_9B7VkE9rEd6LEZ1SNc9cgw" sourceNode="_YHcIgEXjEd6C-9k3-LBkdQ" targetNode="_6x4bYUXwEd64D5cqFFkUsQ">
-      <refSourceToTarget xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Matching/composed"/>
+  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_Vj1CQFHWEd6iV5ZZzvc7aA" object="_uEcGwFHVEd6iV5ZZzvc7aA" defaultForegroundColor="255,0,0" sourceDecoration="DIAMOND">
+    <sourceTargetCouple xmi:id="_fD_w8FHWEd6iV5ZZzvc7aA" containerType="SOURCE" sourceNode="_p_utcFHQEd6iV5ZZzvc7aA" targetNode="_z80osFHQEd6iV5ZZzvc7aA">
+      <containerObject href="../metamodel/adaptor.genmodel#//adaptor/Matching"/>
+      <containerRef xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Matching/lhs"/>
+      <refSourceToEdge xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Matching/lhs"/>
+      <refEdgeToTarget xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Pattern/composed"/>
     </sourceTargetCouple>
   </parts>
-  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_-yAC0EapEd6lT4jKunXAww" object="_7w4bMEapEd6lT4jKunXAww" sourceDecoration="TRIANGLE" defaultRouter="TreeRouter">
-    <sourceTargetCouple xmi:id="_j-bdMEaqEd6lT4jKunXAww" containerType="SOURCE_CONTAINER" sourceNode="_YHcIgEXjEd6C-9k3-LBkdQ" targetNode="_EJY-QEaqEd6lT4jKunXAww">
-      <containerObject href="../metaModel/adaptor.genmodel#//adaptor/Matching"/>
-      <containerRef xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Matching/correspondanceRule"/>
-      <refSourceToEdge xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Matching/correspondanceRule"/>
-      <refEdgeToTarget xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//CorrespondanceRule/property"/>
+  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_gCpxkFHWEd6iV5ZZzvc7aA" object="_0PiXEFHVEd6iV5ZZzvc7aA" defaultForegroundColor="0,128,0" sourceDecoration="DIAMOND">
+    <sourceTargetCouple xmi:id="_kSlVsFHWEd6iV5ZZzvc7aA" containerType="SOURCE" sourceNode="_p_utcFHQEd6iV5ZZzvc7aA" targetNode="_z80osFHQEd6iV5ZZzvc7aA">
+      <containerObject href="../metamodel/adaptor.genmodel#//adaptor/Matching"/>
+      <containerRef xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Matching/rhs"/>
+      <refSourceToEdge xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Matching/rhs"/>
+      <refEdgeToTarget xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Pattern/composed"/>
     </sourceTargetCouple>
   </parts>
-  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_ulKSsEanEd6lT4jKunXAww" object="_ns72oEanEd6lT4jKunXAww" defaultForegroundColor="255,0,0" sourceDecoration="DIAMOND" targetDecoration="ARROW">
-    <sourceTargetCouple xmi:id="_x4HbwEaoEd6lT4jKunXAww" containerType="SOURCE_CONTAINER" sourceNode="_YHcIgEXjEd6C-9k3-LBkdQ" targetNode="_6x4bYUXwEd64D5cqFFkUsQ">
-      <containerObject href="../metaModel/adaptor.genmodel#//adaptor/Matching"/>
-      <containerRef xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Matching/rhs"/>
-      <refSourceToEdge xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Matching/rhs"/>
-      <refEdgeToTarget xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Pattern/composed"/>
-      <refSourceToTarget xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Matching/composed"/>
+  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_lFdkIFHWEd6iV5ZZzvc7aA" object="_3izeoFHVEd6iV5ZZzvc7aA" sourceDecoration="TRIANGLE">
+    <sourceTargetCouple xmi:id="_rMOuEFHWEd6iV5ZZzvc7aA" containerType="SOURCE" sourceNode="_p_utcFHQEd6iV5ZZzvc7aA" targetNode="_8q7y4FHREd6iV5ZZzvc7aA">
+      <containerObject href="../metamodel/adaptor.genmodel#//adaptor/Matching"/>
+      <containerRef xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Matching/correspondanceRule"/>
+      <refSourceToEdge xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Matching/correspondanceRule"/>
+      <refEdgeToTarget xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//CorrespondanceRule/property"/>
     </sourceTargetCouple>
   </parts>
-  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_K49_MEarEd6lT4jKunXAww" object="_OOGH8EarEd6lT4jKunXAww" defaultForegroundColor="255,128,0">
-    <sourceTargetCouple xmi:id="_X6hUgEasEd6lT4jKunXAww" containerType="SOURCE_CONTAINER" sourceNode="_EJY-QEaqEd6lT4jKunXAww" targetNode="_tCp2wEaqEd6lT4jKunXAww">
-      <containerObject href="../metaModel/adaptor.genmodel#//adaptor/Property"/>
-      <containerRef xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Property/getPart"/>
-      <refSourceToEdge xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Property/getPart"/>
-      <refEdgeToTarget xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Query/request"/>
+  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_r5zlwFHWEd6iV5ZZzvc7aA" object="_ClCdAFHWEd6iV5ZZzvc7aA" sourceDecoration="ARROW">
+    <sourceTargetCouple xmi:id="_xmKEkFHWEd6iV5ZZzvc7aA" containerType="SOURCE" sourceNode="_8q7y4FHREd6iV5ZZzvc7aA" targetNode="_QpsgAFHVEd6iV5ZZzvc7aA">
+      <containerObject href="../metamodel/adaptor.genmodel#//adaptor/Property"/>
+      <containerRef xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Property/getPart"/>
+      <refSourceToEdge xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Property/getPart"/>
+      <refEdgeToTarget xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Query/request"/>
+    </sourceTargetCouple>
+    <sourceTargetCouple xmi:id="_UVhBkVQyEd6UU94hVOTpbA" containerType="SOURCE" sourceNode="_Vj1CQFHWEd6iV5ZZzvc7aA" targetNode="_QpsgAFHVEd6iV5ZZzvc7aA">
+      <containerObject href="../metamodel/adaptor.genmodel#//adaptor/LhsPattern"/>
+      <containerRef xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Pattern/query"/>
+      <refSourceToEdge xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Pattern/query"/>
+      <refEdgeToTarget xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Query/request"/>
+    </sourceTargetCouple>
+    <sourceTargetCouple xmi:id="_JBlZwFQzEd6UU94hVOTpbA" containerType="SOURCE" sourceNode="_gCpxkFHWEd6iV5ZZzvc7aA" targetNode="_QpsgAFHVEd6iV5ZZzvc7aA">
+      <containerObject href="../metamodel/adaptor.genmodel#//adaptor/RhsPattern"/>
+      <containerRef xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Pattern/query"/>
+      <refSourceToEdge xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Pattern/query"/>
+      <refEdgeToTarget xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Query/request"/>
     </sourceTargetCouple>
   </parts>
-  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_AK6EkEasEd6lT4jKunXAww" object="_QxWH0EarEd6lT4jKunXAww" defaultForegroundColor="255,128,0" targetDecoration="ARROW">
-    <sourceTargetCouple xmi:id="_JskBAEasEd6lT4jKunXAww" containerType="SOURCE_CONTAINER" sourceNode="_EJY-QEaqEd6lT4jKunXAww" targetNode="_tCp2wEaqEd6lT4jKunXAww">
-      <containerObject href="../metaModel/adaptor.genmodel#//adaptor/Property"/>
-      <containerRef xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Property/setPart"/>
-      <refSourceToEdge xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Property/setPart"/>
-      <refEdgeToTarget xsi:type="ecore:EReference" href="../metaModel/adaptor.ecore#//Action/request"/>
+  <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_2sz1UFHWEd6iV5ZZzvc7aA" object="_G2m_4FHWEd6iV5ZZzvc7aA" targetDecoration="ARROW">
+    <sourceTargetCouple xmi:id="_8EBKkFHWEd6iV5ZZzvc7aA" containerType="SOURCE" sourceNode="_8q7y4FHREd6iV5ZZzvc7aA" targetNode="_QpsgAFHVEd6iV5ZZzvc7aA">
+      <containerObject href="../metamodel/adaptor.genmodel#//adaptor/Property"/>
+      <containerRef xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Property/setPart"/>
+      <refSourceToEdge xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Property/setPart"/>
+      <refEdgeToTarget xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Action/request"/>
     </sourceTargetCouple>
   </parts>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_ykNS4EFcEd6XQ8lA7cKPVQ">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/Adaptor"/>
+  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_gQJCsFHQEd6iV5ZZzvc7aA">
+    <genClass href="../metamodel/adaptor.genmodel#//adaptor/Matching"/>
   </objects>
-  <objects xsi:type="diagramconfigurator:SimpleObjectConfiguration" xmi:id="_7Jjx8EaoEd6lT4jKunXAww" name="Composed"/>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_ns72oEanEd6lT4jKunXAww">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/RhsPattern"/>
+  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_ilHWAFHQEd6iV5ZZzvc7aA">
+    <genClass href="../metamodel/adaptor.genmodel#//adaptor/Instance"/>
   </objects>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_0FL9cEFcEd6XQ8lA7cKPVQ">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/Matching"/>
+  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_jQ76MFHQEd6iV5ZZzvc7aA">
+    <genClass href="../metamodel/adaptor.genmodel#//adaptor/Property"/>
   </objects>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_A1s_8EaqEd6lT4jKunXAww">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/Property"/>
+  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_j0O0gFHQEd6iV5ZZzvc7aA">
+    <genClass href="../metamodel/adaptor.genmodel#//adaptor/Request"/>
   </objects>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_7w4bMEapEd6lT4jKunXAww">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/CorrespondanceRule"/>
+  <objects xsi:type="diagramconfigurator:SimpleObjectConfiguration" xmi:id="_7EBioFHVEd6iV5ZZzvc7aA" name="Composed"/>
+  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_uEcGwFHVEd6iV5ZZzvc7aA">
+    <genClass href="../metamodel/adaptor.genmodel#//adaptor/LhsPattern"/>
   </objects>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_OOGH8EarEd6lT4jKunXAww">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/Query"/>
+  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_0PiXEFHVEd6iV5ZZzvc7aA">
+    <genClass href="../metamodel/adaptor.genmodel#//adaptor/RhsPattern"/>
   </objects>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_oL8mgEaqEd6lT4jKunXAww">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/Request"/>
+  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_3izeoFHVEd6iV5ZZzvc7aA">
+    <genClass href="../metamodel/adaptor.genmodel#//adaptor/CorrespondanceRule"/>
   </objects>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_QxWH0EarEd6lT4jKunXAww">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/Action"/>
+  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_ClCdAFHWEd6iV5ZZzvc7aA">
+    <genClass href="../metamodel/adaptor.genmodel#//adaptor/Query"/>
   </objects>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_pHXhcEXwEd6C-9k3-LBkdQ">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/Instance"/>
+  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_G2m_4FHWEd6iV5ZZzvc7aA">
+    <genClass href="../metamodel/adaptor.genmodel#//adaptor/Action"/>
   </objects>
-  <objects xsi:type="diagramconfigurator:ModelObjectConfiguration" xmi:id="_I1ccwEXxEd64D5cqFFkUsQ">
-    <genClass href="../metaModel/adaptor.genmodel#//adaptor/LhsPattern"/>
-  </objects>
-  <genModel href="../metaModel/adaptor.genmodel#/"/>
-  <templateRootObject href="../metaModel/adaptor.genmodel#//adaptor/Adaptor"/>
-  <editorConfigurator href="Adaptor.editorconfigurator#_U5oV0UFbEd6XQ8lA7cKPVQ"/>
+  <genModel href="../metamodel/adaptor.genmodel#/"/>
+  <templateRootObject href="../metamodel/adaptor.genmodel#//adaptor/Adaptor"/>
+  <editorConfigurator href="Adaptor.editorconfigurator#_q7QXAFHPEd6iV5ZZzvc7aA"/>
 </diagramconfigurator:DiagramConfiguration>

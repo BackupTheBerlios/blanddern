@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorSwitch.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: AdaptorSwitch.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.util;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see adaptor.AdaptorPackage
  * @generated
  */
-public class AdaptorSwitch {
+public class AdaptorSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -54,7 +54,7 @@ public class AdaptorSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	public Object doSwitch(EObject theEObject) {
+	public T doSwitch(EObject theEObject) {
 		return doSwitch(theEObject.eClass(), theEObject);
 	}
 
@@ -65,16 +65,16 @@ public class AdaptorSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(EClass theEClass, EObject theEObject) {
+	protected T doSwitch(EClass theEClass, EObject theEObject) {
 		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
 		else {
-			List eSuperTypes = theEClass.getESuperTypes();
+			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
 					defaultCase(theEObject) :
-					doSwitch((EClass)eSuperTypes.get(0), theEObject);
+					doSwitch(eSuperTypes.get(0), theEObject);
 		}
 	}
 
@@ -85,81 +85,90 @@ public class AdaptorSwitch {
 	 * @return the first non-null result returned by a <code>caseXXX</code> call.
 	 * @generated
 	 */
-	protected Object doSwitch(int classifierID, EObject theEObject) {
+	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case AdaptorPackage.ADAPTOR: {
 				Adaptor adaptor = (Adaptor)theEObject;
-				Object result = caseAdaptor(adaptor);
+				T result = caseAdaptor(adaptor);
 				if (result == null) result = caseNamed(adaptor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.MATCHING: {
 				Matching matching = (Matching)theEObject;
-				Object result = caseMatching(matching);
+				T result = caseMatching(matching);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.PATTERN: {
 				Pattern pattern = (Pattern)theEObject;
-				Object result = casePattern(pattern);
+				T result = casePattern(pattern);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.INSTANCE: {
 				Instance instance = (Instance)theEObject;
-				Object result = caseInstance(instance);
+				T result = caseInstance(instance);
 				if (result == null) result = caseNamed(instance);
+				if (result == null) result = caseIndiagram(instance);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.CORRESPONDANCE_RULE: {
 				CorrespondanceRule correspondanceRule = (CorrespondanceRule)theEObject;
-				Object result = caseCorrespondanceRule(correspondanceRule);
+				T result = caseCorrespondanceRule(correspondanceRule);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.PROPERTY: {
 				Property property = (Property)theEObject;
-				Object result = caseProperty(property);
+				T result = caseProperty(property);
+				if (result == null) result = caseIndiagram(property);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.QUERY: {
 				Query query = (Query)theEObject;
-				Object result = caseQuery(query);
+				T result = caseQuery(query);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.ACTION: {
 				Action action = (Action)theEObject;
-				Object result = caseAction(action);
+				T result = caseAction(action);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.NAMED: {
 				Named named = (Named)theEObject;
-				Object result = caseNamed(named);
+				T result = caseNamed(named);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.LHS_PATTERN: {
 				LhsPattern lhsPattern = (LhsPattern)theEObject;
-				Object result = caseLhsPattern(lhsPattern);
+				T result = caseLhsPattern(lhsPattern);
 				if (result == null) result = casePattern(lhsPattern);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.RHS_PATTERN: {
 				RhsPattern rhsPattern = (RhsPattern)theEObject;
-				Object result = caseRhsPattern(rhsPattern);
+				T result = caseRhsPattern(rhsPattern);
 				if (result == null) result = casePattern(rhsPattern);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case AdaptorPackage.REQUEST: {
 				Request request = (Request)theEObject;
-				Object result = caseRequest(request);
+				T result = caseRequest(request);
+				if (result == null) result = caseIndiagram(request);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AdaptorPackage.INDIAGRAM: {
+				Indiagram indiagram = (Indiagram)theEObject;
+				T result = caseIndiagram(indiagram);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -178,7 +187,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAdaptor(Adaptor object) {
+	public T caseAdaptor(Adaptor object) {
 		return null;
 	}
 
@@ -193,7 +202,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseMatching(Matching object) {
+	public T caseMatching(Matching object) {
 		return null;
 	}
 
@@ -208,7 +217,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object casePattern(Pattern object) {
+	public T casePattern(Pattern object) {
 		return null;
 	}
 
@@ -223,7 +232,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseInstance(Instance object) {
+	public T caseInstance(Instance object) {
 		return null;
 	}
 
@@ -238,7 +247,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseCorrespondanceRule(CorrespondanceRule object) {
+	public T caseCorrespondanceRule(CorrespondanceRule object) {
 		return null;
 	}
 
@@ -253,7 +262,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseProperty(Property object) {
+	public T caseProperty(Property object) {
 		return null;
 	}
 
@@ -268,7 +277,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseQuery(Query object) {
+	public T caseQuery(Query object) {
 		return null;
 	}
 
@@ -283,7 +292,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseAction(Action object) {
+	public T caseAction(Action object) {
 		return null;
 	}
 
@@ -298,7 +307,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseNamed(Named object) {
+	public T caseNamed(Named object) {
 		return null;
 	}
 
@@ -313,7 +322,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseLhsPattern(LhsPattern object) {
+	public T caseLhsPattern(LhsPattern object) {
 		return null;
 	}
 
@@ -328,7 +337,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRhsPattern(RhsPattern object) {
+	public T caseRhsPattern(RhsPattern object) {
 		return null;
 	}
 
@@ -343,7 +352,22 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public Object caseRequest(Request object) {
+	public T caseRequest(Request object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Indiagram</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Indiagram</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIndiagram(Indiagram object) {
 		return null;
 	}
 
@@ -358,7 +382,7 @@ public class AdaptorSwitch {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
 	 */
-	public Object defaultCase(EObject object) {
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

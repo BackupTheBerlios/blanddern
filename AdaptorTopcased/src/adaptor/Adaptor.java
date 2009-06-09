@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Adaptor.java,v 1.1 2009/06/03 07:36:19 bcoppe Exp $
+ * $Id: Adaptor.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor;
 
@@ -17,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link adaptor.Adaptor#getMatching <em>Matching</em>}</li>
+ *   <li>{@link adaptor.Adaptor#getEltGraph <em>Elt Graph</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,9 +37,25 @@ public interface Adaptor extends Named {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Matching</em>' containment reference list.
 	 * @see adaptor.AdaptorPackage#getAdaptor_Matching()
-	 * @model type="adaptor.Matching" containment="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EList getMatching();
+	EList<Matching> getMatching();
+
+	/**
+	 * Returns the value of the '<em><b>Elt Graph</b></em>' containment reference list.
+	 * The list contents are of type {@link adaptor.Indiagram}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Elt Graph</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Elt Graph</em>' containment reference list.
+	 * @see adaptor.AdaptorPackage#getAdaptor_EltGraph()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Indiagram> getEltGraph();
 
 } // Adaptor

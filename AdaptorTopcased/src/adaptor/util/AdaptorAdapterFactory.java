@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorAdapterFactory.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: AdaptorAdapterFactory.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.util;
 
@@ -52,6 +52,7 @@ public class AdaptorAdapterFactory extends AdapterFactoryImpl {
 	 * @return whether this factory is applicable for the type of the object.
 	 * @generated
 	 */
+	@Override
 	public boolean isFactoryForType(Object object) {
 		if (object == modelPackage) {
 			return true;
@@ -68,45 +69,62 @@ public class AdaptorAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AdaptorSwitch modelSwitch =
-		new AdaptorSwitch() {
-			public Object caseAdaptor(Adaptor object) {
+	protected AdaptorSwitch<Adapter> modelSwitch =
+		new AdaptorSwitch<Adapter>() {
+			@Override
+			public Adapter caseAdaptor(Adaptor object) {
 				return createAdaptorAdapter();
 			}
-			public Object caseMatching(Matching object) {
+			@Override
+			public Adapter caseMatching(Matching object) {
 				return createMatchingAdapter();
 			}
-			public Object casePattern(Pattern object) {
+			@Override
+			public Adapter casePattern(Pattern object) {
 				return createPatternAdapter();
 			}
-			public Object caseInstance(Instance object) {
+			@Override
+			public Adapter caseInstance(Instance object) {
 				return createInstanceAdapter();
 			}
-			public Object caseCorrespondanceRule(CorrespondanceRule object) {
+			@Override
+			public Adapter caseCorrespondanceRule(CorrespondanceRule object) {
 				return createCorrespondanceRuleAdapter();
 			}
-			public Object caseProperty(Property object) {
+			@Override
+			public Adapter caseProperty(Property object) {
 				return createPropertyAdapter();
 			}
-			public Object caseQuery(Query object) {
+			@Override
+			public Adapter caseQuery(Query object) {
 				return createQueryAdapter();
 			}
-			public Object caseAction(Action object) {
+			@Override
+			public Adapter caseAction(Action object) {
 				return createActionAdapter();
 			}
-			public Object caseNamed(Named object) {
+			@Override
+			public Adapter caseNamed(Named object) {
 				return createNamedAdapter();
 			}
-			public Object caseLhsPattern(LhsPattern object) {
+			@Override
+			public Adapter caseLhsPattern(LhsPattern object) {
 				return createLhsPatternAdapter();
 			}
-			public Object caseRhsPattern(RhsPattern object) {
+			@Override
+			public Adapter caseRhsPattern(RhsPattern object) {
 				return createRhsPatternAdapter();
 			}
-			public Object caseRequest(Request object) {
+			@Override
+			public Adapter caseRequest(Request object) {
 				return createRequestAdapter();
 			}
-			public Object defaultCase(EObject object) {
+			@Override
+			public Adapter caseIndiagram(Indiagram object) {
+				return createIndiagramAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};
@@ -119,8 +137,9 @@ public class AdaptorAdapterFactory extends AdapterFactoryImpl {
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
+	@Override
 	public Adapter createAdapter(Notifier target) {
-		return (Adapter)modelSwitch.doSwitch((EObject)target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
 
@@ -289,6 +308,20 @@ public class AdaptorAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRequestAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link adaptor.Indiagram <em>Indiagram</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see adaptor.Indiagram
+	 * @generated
+	 */
+	public Adapter createIndiagramAdapter() {
 		return null;
 	}
 

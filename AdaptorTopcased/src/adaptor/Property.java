@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Property.java,v 1.1 2009/06/03 07:36:19 bcoppe Exp $
+ * $Id: Property.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Property extends EObject {
+public interface Property extends Indiagram {
 	/**
 	 * Returns the value of the '<em><b>Set Part</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

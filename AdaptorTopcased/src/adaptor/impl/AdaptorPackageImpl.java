@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AdaptorPackageImpl.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: AdaptorPackageImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.impl;
 
@@ -11,6 +11,7 @@ import adaptor.Adaptor;
 import adaptor.AdaptorFactory;
 import adaptor.AdaptorPackage;
 import adaptor.CorrespondanceRule;
+import adaptor.Indiagram;
 import adaptor.Instance;
 import adaptor.Langage;
 import adaptor.LhsPattern;
@@ -127,6 +128,13 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass indiagramEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum langageEEnum = null;
 
 	/**
@@ -216,6 +224,15 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 */
 	public EReference getAdaptor_Matching() {
 		return (EReference)adaptorEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAdaptor_EltGraph() {
+		return (EReference)adaptorEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -475,6 +492,15 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getIndiagram() {
+		return indiagramEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getLangage() {
 		return langageEEnum;
 	}
@@ -509,6 +535,7 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		// Create classes and their features
 		adaptorEClass = createEClass(ADAPTOR);
 		createEReference(adaptorEClass, ADAPTOR__MATCHING);
+		createEReference(adaptorEClass, ADAPTOR__ELT_GRAPH);
 
 		matchingEClass = createEClass(MATCHING);
 		createEReference(matchingEClass, MATCHING__CORRESPONDANCE_RULE);
@@ -549,6 +576,8 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		createEAttribute(requestEClass, REQUEST__EXPRESSION);
 		createEAttribute(requestEClass, REQUEST__LANGAGE);
 
+		indiagramEClass = createEClass(INDIAGRAM);
+
 		// Create enums
 		langageEEnum = createEEnum(LANGAGE);
 	}
@@ -579,15 +608,23 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		// Obtain other dependent packages
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
+		// Create type parameters
+
+		// Set bounds for type parameters
+
 		// Add supertypes to classes
 		adaptorEClass.getESuperTypes().add(this.getNamed());
 		instanceEClass.getESuperTypes().add(this.getNamed());
+		instanceEClass.getESuperTypes().add(this.getIndiagram());
+		propertyEClass.getESuperTypes().add(this.getIndiagram());
 		lhsPatternEClass.getESuperTypes().add(this.getPattern());
 		rhsPatternEClass.getESuperTypes().add(this.getPattern());
+		requestEClass.getESuperTypes().add(this.getIndiagram());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(adaptorEClass, Adaptor.class, "Adaptor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAdaptor_Matching(), this.getMatching(), null, "matching", null, 0, -1, Adaptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAdaptor_EltGraph(), this.getIndiagram(), null, "eltGraph", null, 0, -1, Adaptor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(matchingEClass, Matching.class, "Matching", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMatching_CorrespondanceRule(), this.getCorrespondanceRule(), null, "correspondanceRule", null, 0, -1, Matching.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -628,9 +665,11 @@ public class AdaptorPackageImpl extends EPackageImpl implements AdaptorPackage {
 		initEAttribute(getRequest_Expression(), ecorePackage.getEString(), "expression", null, 0, 1, Request.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRequest_Langage(), this.getLangage(), "langage", null, 0, 1, Request.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(indiagramEClass, Indiagram.class, "Indiagram", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		// Initialize enums and add enum literals
 		initEEnum(langageEEnum, Langage.class, "Langage");
-		addEEnumLiteral(langageEEnum, Langage.JAVA_LITERAL);
+		addEEnumLiteral(langageEEnum, Langage.JAVA);
 
 		// Create resource
 		createResource(eNS_URI);

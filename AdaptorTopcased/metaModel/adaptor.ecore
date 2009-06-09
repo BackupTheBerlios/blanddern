@@ -6,6 +6,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="Adaptor" eSuperTypes="#//Named">
     <eStructuralFeatures xsi:type="ecore:EReference" name="matching" upperBound="-1"
         eType="#//Matching" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eltGraph" upperBound="-1"
+        eType="#//Indiagram" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Matching">
     <eStructuralFeatures xsi:type="ecore:EReference" name="correspondanceRule" upperBound="-1"
@@ -23,7 +25,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="query" eType="#//Query"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//Named">
+  <eClassifiers xsi:type="ecore:EClass" name="Instance" eSuperTypes="#//Named #//Indiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="concept" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isMain" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
   </eClassifiers>
@@ -32,7 +34,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
         eType="#//Property" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Property">
+  <eClassifiers xsi:type="ecore:EClass" name="Property" eSuperTypes="#//Indiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="setPart" eType="#//Action"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="getPart" lowerBound="1"
@@ -51,11 +53,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LhsPattern" eSuperTypes="#//Pattern"/>
   <eClassifiers xsi:type="ecore:EClass" name="RhsPattern" eSuperTypes="#//Pattern"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Request">
+  <eClassifiers xsi:type="ecore:EClass" name="Request" eSuperTypes="#//Indiagram">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expression" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="langage" eType="#//Langage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Langage">
     <eLiterals name="Java"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Indiagram" abstract="true"/>
 </ecore:EPackage>

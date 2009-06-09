@@ -3,14 +3,15 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Adaptor/src"
     modelPluginID="Adaptor" modelName="Adaptor" importerID="org.eclipse.emf.importer.ecore"
-    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
-  <foreignModel>file:/D:/PROJET_BLANDDERN/adaptor/metamodel/adaptor.ecore</foreignModel>
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>adaptor.ecore</foreignModel>
   <genPackages prefix="Adaptor" disposableProviderFactory="true" ecorePackage="adaptor.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="adaptor.ecore#//Langage">
       <genEnumLiterals ecoreEnumLiteral="adaptor.ecore#//Langage/Java"/>
     </genEnums>
     <genClasses ecoreClass="adaptor.ecore#//Adaptor">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Adaptor/matching"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Adaptor/eltGraph"/>
     </genClasses>
     <genClasses ecoreClass="adaptor.ecore#//Matching">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference adaptor.ecore#//Matching/correspondanceRule"/>
@@ -49,5 +50,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Request/expression"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute adaptor.ecore#//Request/langage"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="adaptor.ecore#//Indiagram"/>
   </genPackages>
 </genmodel:GenModel>

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Instance.java,v 1.1 2009/06/03 07:36:19 bcoppe Exp $
+ * $Id: Instance.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  * @model
  * @generated
  */
-public interface Instance extends Named {
+public interface Instance extends Named, Indiagram {
 	/**
 	 * Returns the value of the '<em><b>Concept</b></em>' reference.
 	 * <!-- begin-user-doc -->

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MatchingImpl.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: MatchingImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.impl;
 
@@ -54,7 +54,7 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList correspondanceRule;
+	protected EList<CorrespondanceRule> correspondanceRule;
 
 	/**
 	 * The cached value of the '{@link #getComposed() <em>Composed</em>}' containment reference list.
@@ -64,7 +64,7 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList composed;
+	protected EList<Instance> composed;
 
 	/**
 	 * The cached value of the '{@link #getLhs() <em>Lhs</em>}' containment reference.
@@ -84,7 +84,7 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList rhs;
+	protected EList<RhsPattern> rhs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -100,6 +100,7 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return AdaptorPackage.Literals.MATCHING;
 	}
@@ -109,9 +110,9 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getCorrespondanceRule() {
+	public EList<CorrespondanceRule> getCorrespondanceRule() {
 		if (correspondanceRule == null) {
-			correspondanceRule = new EObjectContainmentEList(CorrespondanceRule.class, this, AdaptorPackage.MATCHING__CORRESPONDANCE_RULE);
+			correspondanceRule = new EObjectContainmentEList<CorrespondanceRule>(CorrespondanceRule.class, this, AdaptorPackage.MATCHING__CORRESPONDANCE_RULE);
 		}
 		return correspondanceRule;
 	}
@@ -121,9 +122,9 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getComposed() {
+	public EList<Instance> getComposed() {
 		if (composed == null) {
-			composed = new EObjectContainmentEList(Instance.class, this, AdaptorPackage.MATCHING__COMPOSED);
+			composed = new EObjectContainmentEList<Instance>(Instance.class, this, AdaptorPackage.MATCHING__COMPOSED);
 		}
 		return composed;
 	}
@@ -176,9 +177,9 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRhs() {
+	public EList<RhsPattern> getRhs() {
 		if (rhs == null) {
-			rhs = new EObjectContainmentEList(RhsPattern.class, this, AdaptorPackage.MATCHING__RHS);
+			rhs = new EObjectContainmentEList<RhsPattern>(RhsPattern.class, this, AdaptorPackage.MATCHING__RHS);
 		}
 		return rhs;
 	}
@@ -188,16 +189,17 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case AdaptorPackage.MATCHING__CORRESPONDANCE_RULE:
-				return ((InternalEList)getCorrespondanceRule()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getCorrespondanceRule()).basicRemove(otherEnd, msgs);
 			case AdaptorPackage.MATCHING__COMPOSED:
-				return ((InternalEList)getComposed()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getComposed()).basicRemove(otherEnd, msgs);
 			case AdaptorPackage.MATCHING__LHS:
 				return basicSetLhs(null, msgs);
 			case AdaptorPackage.MATCHING__RHS:
-				return ((InternalEList)getRhs()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getRhs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -207,6 +209,7 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case AdaptorPackage.MATCHING__CORRESPONDANCE_RULE:
@@ -226,22 +229,24 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AdaptorPackage.MATCHING__CORRESPONDANCE_RULE:
 				getCorrespondanceRule().clear();
-				getCorrespondanceRule().addAll((Collection)newValue);
+				getCorrespondanceRule().addAll((Collection<? extends CorrespondanceRule>)newValue);
 				return;
 			case AdaptorPackage.MATCHING__COMPOSED:
 				getComposed().clear();
-				getComposed().addAll((Collection)newValue);
+				getComposed().addAll((Collection<? extends Instance>)newValue);
 				return;
 			case AdaptorPackage.MATCHING__LHS:
 				setLhs((LhsPattern)newValue);
 				return;
 			case AdaptorPackage.MATCHING__RHS:
 				getRhs().clear();
-				getRhs().addAll((Collection)newValue);
+				getRhs().addAll((Collection<? extends RhsPattern>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -252,6 +257,7 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.MATCHING__CORRESPONDANCE_RULE:
@@ -275,6 +281,7 @@ public class MatchingImpl extends EObjectImpl implements Matching {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.MATCHING__CORRESPONDANCE_RULE:

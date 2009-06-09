@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: InstanceImpl.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: InstanceImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.impl;
 
@@ -75,6 +75,7 @@ public class InstanceImpl extends NamedImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return AdaptorPackage.Literals.INSTANCE;
 	}
@@ -143,6 +144,7 @@ public class InstanceImpl extends NamedImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case AdaptorPackage.INSTANCE__CONCEPT:
@@ -159,6 +161,7 @@ public class InstanceImpl extends NamedImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AdaptorPackage.INSTANCE__CONCEPT:
@@ -176,6 +179,7 @@ public class InstanceImpl extends NamedImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.INSTANCE__CONCEPT:
@@ -193,6 +197,7 @@ public class InstanceImpl extends NamedImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.INSTANCE__CONCEPT:
@@ -208,6 +213,7 @@ public class InstanceImpl extends NamedImpl implements Instance {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 

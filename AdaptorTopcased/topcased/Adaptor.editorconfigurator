@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editorconfigurator:EditorConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:editorconfigurator="http://www.topcased.org/editorconfigurator/0.10" xmi:id="_U5oV0UFbEd6XQ8lA7cKPVQ" name="Adaptor Editor" projectName="org.topcased.modeler.adaptor" forceOverwrite="true">
-  <genModel href="../metaModel/adaptor.genmodel#/"/>
+<editorconfigurator:EditorConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:editorconfigurator="http://www.topcased.org/editorconfigurator/0.10" xmi:id="_q7QXAFHPEd6iV5ZZzvc7aA" name="Adaptor" projectName="org.topcased.modeler.adaptor" forceOverwrite="true">
+  <genModel href="../metamodel/adaptor.genmodel#/"/>
 </editorconfigurator:EditorConfiguration>

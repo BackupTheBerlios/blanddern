@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: PatternImpl.java,v 1.1 2009/06/03 07:37:06 bcoppe Exp $
+ * $Id: PatternImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor.impl;
 
@@ -50,7 +50,7 @@ public abstract class PatternImpl extends EObjectImpl implements Pattern {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList composed;
+	protected EList<Instance> composed;
 
 	/**
 	 * The cached value of the '{@link #getQuery() <em>Query</em>}' containment reference.
@@ -76,6 +76,7 @@ public abstract class PatternImpl extends EObjectImpl implements Pattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	protected EClass eStaticClass() {
 		return AdaptorPackage.Literals.PATTERN;
 	}
@@ -85,9 +86,9 @@ public abstract class PatternImpl extends EObjectImpl implements Pattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getComposed() {
+	public EList<Instance> getComposed() {
 		if (composed == null) {
-			composed = new EObjectContainmentEList(Instance.class, this, AdaptorPackage.PATTERN__COMPOSED);
+			composed = new EObjectContainmentEList<Instance>(Instance.class, this, AdaptorPackage.PATTERN__COMPOSED);
 		}
 		return composed;
 	}
@@ -140,10 +141,11 @@ public abstract class PatternImpl extends EObjectImpl implements Pattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case AdaptorPackage.PATTERN__COMPOSED:
-				return ((InternalEList)getComposed()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getComposed()).basicRemove(otherEnd, msgs);
 			case AdaptorPackage.PATTERN__QUERY:
 				return basicSetQuery(null, msgs);
 		}
@@ -155,6 +157,7 @@ public abstract class PatternImpl extends EObjectImpl implements Pattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case AdaptorPackage.PATTERN__COMPOSED:
@@ -170,11 +173,13 @@ public abstract class PatternImpl extends EObjectImpl implements Pattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
+	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AdaptorPackage.PATTERN__COMPOSED:
 				getComposed().clear();
-				getComposed().addAll((Collection)newValue);
+				getComposed().addAll((Collection<? extends Instance>)newValue);
 				return;
 			case AdaptorPackage.PATTERN__QUERY:
 				setQuery((Query)newValue);
@@ -188,6 +193,7 @@ public abstract class PatternImpl extends EObjectImpl implements Pattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.PATTERN__COMPOSED:
@@ -205,6 +211,7 @@ public abstract class PatternImpl extends EObjectImpl implements Pattern {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case AdaptorPackage.PATTERN__COMPOSED:

@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Request.java,v 1.1 2009/06/03 07:36:19 bcoppe Exp $
+ * $Id: Request.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
  */
 package adaptor;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Request extends EObject {
+public interface Request extends Indiagram {
 	/**
 	 * Returns the value of the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
