@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ActionImpl.java,v 1.2 2009/06/09 09:01:05 bcoppe Exp $
+ * $Id: ActionImpl.java,v 1.3 2009/07/10 17:23:14 bcoppe Exp $
  */
 package adaptor.impl;
 

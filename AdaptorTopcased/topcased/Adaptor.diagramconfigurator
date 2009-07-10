@@ -17,9 +17,9 @@
     </paletteCategories>
   </palette>
   <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_p_utcFHQEd6iV5ZZzvc7aA" object="_gQJCsFHQEd6iV5ZZzvc7aA" type="Ellipse"/>
-  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_z80osFHQEd6iV5ZZzvc7aA" object="_ilHWAFHQEd6iV5ZZzvc7aA" type="RectangleFigure"/>
+  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_z80osFHQEd6iV5ZZzvc7aA" object="_ilHWAFHQEd6iV5ZZzvc7aA" type="Class"/>
   <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_8q7y4FHREd6iV5ZZzvc7aA" object="_jQ76MFHQEd6iV5ZZzvc7aA" type="Cloud"/>
-  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_QpsgAFHVEd6iV5ZZzvc7aA" object="_j0O0gFHQEd6iV5ZZzvc7aA" type="Class"/>
+  <parts xsi:type="diagramconfigurator:NodePartConfiguration" xmi:id="_QpsgAFHVEd6iV5ZZzvc7aA" object="_j0O0gFHQEd6iV5ZZzvc7aA" type="Class" defaultBackgroundColor="192,192,192"/>
   <parts xsi:type="diagramconfigurator:EdgePartConfiguration" xmi:id="_LH3ZsFHWEd6iV5ZZzvc7aA" object="_7EBioFHVEd6iV5ZZzvc7aA" sourceDecoration="DIAMOND">
     <sourceTargetCouple xmi:id="_RZESAFHWEd6iV5ZZzvc7aA" sourceNode="_p_utcFHQEd6iV5ZZzvc7aA" targetNode="_z80osFHQEd6iV5ZZzvc7aA">
       <refSourceToTarget xsi:type="ecore:EReference" href="../metamodel/adaptor.ecore#//Matching/composed"/>

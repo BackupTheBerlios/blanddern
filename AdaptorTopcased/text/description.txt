@@ -9,6 +9,7 @@ Package adaptor <http://adaptor>
 
   Class Adaptor -> Named
     Reference matching : Matching<<0..*>>
+    Reference eltGraph : Indiagram<<0..*>>
 
   Class Matching
     Reference correspondanceRule : CorrespondanceRule<<0..*>>
@@ -20,7 +21,7 @@ Package adaptor <http://adaptor>
     Reference composed : Instance<<0..*>>
     Reference query : Query
 
-  Class Instance -> Named
+  Class Instance -> Named, Indiagram
     Reference concept : EClass
     Attribute isMain : EBoolean
 
@@ -28,7 +29,7 @@ Package adaptor <http://adaptor>
     Reference feature : EStructuralFeature
     Reference property : Property<<1..1>>
 
-  Class Property
+  Class Property -> Indiagram
     Reference setPart : Action
     Reference getPart : Query<<1..1>>
 
@@ -45,9 +46,11 @@ Package adaptor <http://adaptor>
 
   Class RhsPattern -> Pattern
 
-  Class Request
+  Class Request -> Indiagram
     Attribute expression : EString
     Attribute langage : Langage
+
+  Class Indiagram
 
   Enum Langage
     Literal Java = 0
